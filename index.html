@@ -2,33 +2,40 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Приглашение на свадьбу — Виталий и Алёна</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400&family=Montserrat:wght@200;300;400&family=Parisienne&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Приглашение на свадьбу | Виталий & Алёна</title>
+    <!-- Тонкие шрифты -->
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@100;200;300;400&family=Parisienne&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
-        /* Сброс стилей и общие настройки */
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         html, body {
-            height: 100%;
             width: 100%;
-            overflow: hidden;
+            height: 100%;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        body {
             font-family: 'Montserrat', sans-serif;
-            color: white;
-            background-color: black;
+            background-color: #0a0a0a;
         }
 
-        /* Главный контейнер */
-        .page-container {
+        /* ----- ПЕРВЫЙ ЭКРАН (С ИМЕНАМИ) ----- */
+        .first-screen {
             position: relative;
+            width: 100%;
             height: 100vh;
-            width: 100vw;
-            display: flex;
-            flex-direction: column;
+            height: 100dvh;
             overflow: hidden;
+            background-color: #0a0a0a;
         }
 
-        /* Фоновое изображение */
-        .background-image {
+        .photo-bg {
             position: absolute;
             top: 0;
             left: 0;
@@ -36,99 +43,107 @@
             height: 100%;
             background-image: url('молодые.jpg');
             background-size: cover;
-            background-position: center;
+            background-position: center 30%;
             opacity: 0;
+            filter: brightness(0.78) contrast(1.05);
+            animation: photoReveal 2.2s ease-out forwards;
             z-index: 1;
-            animation: backgroundFadeIn 2s ease-out forwards;
-            filter: brightness(85%);
         }
 
-        /* Поверхностный слой для текста */
-        .content-layer {
-            position: relative;
-            z-index: 2;
+        .soft-veil {
+            position: absolute;
+            top: 0;
+            left: 0;
             width: 100%;
             height: 100%;
-            padding: 30px;
+            background: radial-gradient(circle at 30% 40%, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 100%);
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .content-first {
+            position: relative;
+            z-index: 3;
+            width: 100%;
+            height: 100%;
             display: flex;
             flex-direction: column;
             justify-content: space-between;
             align-items: center;
+            padding: 2rem 2rem 2rem 2rem;
         }
 
-        /* Тонкий, легкий и каллиграфически рукописный заголовок "Wedding" */
-        /* ИЗМЕНЕНИЕ 1: wedding чуть поднят вверх — уменьшен margin-top c 6vh до 2vh */
-        .wedding-header {
+        .wedding-script {
             font-family: 'Parisienne', cursive;
-            font-weight: 300; /* Ультратонкое начертание без жирности */
-            font-size: 3.5rem; 
-            color: rgba(255, 255, 255, 0.85); /* Нежный белый цвет */
-            margin-top: 2vh; /* было 6vh — ПОДНЯЛИ ВВЕРХ */
+            font-weight: 400;
+            font-size: 3.8rem;
+            color: rgba(255, 248, 235, 0.92);
+            letter-spacing: 2px;
+            text-shadow: 0 1px 8px rgba(0,0,0,0.2);
+            margin-top: 3vh;
             opacity: 0;
-            transform: translateY(25px);
-            animation: weddingRaise 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            transform: translateY(30px);
+            animation: floatUp 1.6s cubic-bezier(0.2, 0.9, 0.3, 1.1) forwards 0.4s;
         }
 
-        /* Блок с именами — ВЛЕВО ВНИЗ */
-        /* ИЗМЕНЕНИЕ 2: виталий и алена чуть вниз — увеличен bottom c 160px до 110px (опустили ниже) */
-        .names-container {
+        .names-block {
             position: absolute;
-            bottom: 110px; /* было 160px — ОПУСТИЛИ ВНИЗ */
-            left: 10%;     
-            width: auto;
+            bottom: 130px;
+            left: 8%;
+            z-index: 10;
+        }
+
+        .names-lines {
             display: flex;
             flex-direction: column;
             align-items: flex-start;
-            text-align: left;
+            gap: 0.1rem;
         }
 
-        /* Плавный серый значок '&' за именами */
-        .ampersand {
-            position: absolute;
+        .name-line {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 8rem;
-            font-style: italic;
             font-weight: 300;
-            color: rgba(255, 255, 255, 0.1);
-            top: 45%;
-            left: 10px;
-            transform: translateY(-50%) scale(0.9);
+            font-size: 4.2rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: #fffcf5;
+            text-shadow: 0 2px 14px rgba(0, 0, 0, 0.45);
             opacity: 0;
-            z-index: -1;
-            animation: ampersandFadeIn 2.5s ease-out forwards 1.2s;
-            pointer-events: none;
-        }
-
-        /* Имена большими заглавными буквами и уменьшенным размером */
-        .name {
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 3.2rem; 
-            font-weight: 300;  
             line-height: 1.2;
+        }
+
+        .vitaliy-name {
+            transform: translateX(-35px);
+            animation: slideInLeft 1.4s ease-out forwards 0.7s;
+        }
+
+        .alyona-name {
+            margin-left: 128px;
+            transform: translateX(35px);
+            animation: slideInRight 1.4s ease-out forwards 0.95s;
+        }
+
+        .delicate-ampersand {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 7rem;
+            font-weight: 300;
+            font-style: italic;
+            color: rgba(255, 245, 235, 0.12);
+            letter-spacing: 0;
+            pointer-events: none;
+            z-index: 0;
+            animation: ampersandGlow 2.4s ease forwards 1.2s;
             opacity: 0;
-            text-transform: uppercase; 
-            letter-spacing: 4px;       
-            text-shadow: 0 2px 8px rgba(0,0,0,0.5);
         }
 
-        /* Виталий (анимация появления) */
-        .name-vitaliy {
-            transform: translateX(-40px);
-            animation: nameSlideLeft 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.8s;
-        }
-
-        /* Алёна (смещение скорректировано, чтобы имя гарантированно не вылазило правее имени Виталий) */
-        .name-alyona {
-            margin-left: 112px; /* Идеальное начало под буквой "Т", при этом слово не вылазит наружу */
-            transform: translateX(40px);
-            animation: nameSlideRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 1s;
-        }
-
-        /* ИЗМЕНЕНИЕ 3: кнопка "листайте вниз" чуть ужата сжата — уменьшен padding и font-size */
+        /* Кнопка скролла - СТАТИЧНАЯ, появляется ПЕРВОЙ (без анимации, сразу видна) */
         .scroll-down {
             position: absolute;
-            bottom: 45px;
+            bottom: 35px;
             left: 50%;
             transform: translateX(-50%);
             display: flex;
@@ -136,27 +151,29 @@
             justify-content: center;
             background-color: white;
             color: black;
-            padding: 4px 8px; /* было 6px 12px — УЖАЛИ И СЖАЛИ (уменьшили отступы) */
+            padding: 4px 8px;
             border-radius: 2px;
             font-family: 'Montserrat', sans-serif;
-            font-weight: 300; 
-            font-size: 0.6rem; /* было 0.7rem — сделали меньше, чтобы кнопка стала компактнее */
+            font-weight: 300;
+            font-size: 0.6rem;
             text-decoration: none;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 0.6px; /* чуть уменьшили межбуквенный интервал для компактности */
+            letter-spacing: 0.6px;
             box-shadow: 0 4px 12px rgba(0,0,0,0.25);
-            opacity: 0;
             transition: transform 0.3s ease;
-            animation: scrollDownIn 1s ease-out forwards 1.8s;
             white-space: nowrap;
+            z-index: 20;
+            border: none;
+            /* Без анимации - сразу видна */
+            opacity: 1;
         }
 
         .scroll-down:hover {
             transform: translateX(-50%) translateY(-3px);
+            background-color: #f5f5f5;
         }
 
-        /* Тонкая контурная стрелочка тоже чуть уменьшена для гармонии с ужатой кнопкой */
         .arrow-icon-svg {
             margin-left: 5px;
             width: 8px;
@@ -164,94 +181,534 @@
             display: block;
         }
 
-        /* --- Анимации --- */
-        @keyframes backgroundFadeIn {
-            0% { opacity: 0; transform: translateY(30px) scale(1.03); }
-            100% { opacity: 1; transform: translateY(0) scale(1); }
+        /* ----- ВТОРОЙ ЭКРАН (ДОРОГИЕ И РОДНЫЕ + КАЛЕНДАРЬ) ----- */
+        .second-screen {
+            width: 100%;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 60px 20px;
         }
 
-        @keyframes weddingRaise {
-            0% { opacity: 0; transform: translateY(50px); }
-            100% { opacity: 0.85; transform: translateY(0); }
+        .invitation-container {
+            text-align: center;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        @keyframes nameSlideLeft {
-            0% { opacity: 0; transform: translateX(-40px); }
-            100% { opacity: 1; transform: translateX(0); }
+        .title {
+            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-size: clamp(2.2rem, 5vw, 2.8rem);
+            font-weight: 400;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 25px;
         }
 
-        @keyframes nameSlideRight {
-            0% { opacity: 0; transform: translateX(40px); }
-            100% { opacity: 1; transform: translateX(0); }
+        .save-the-date {
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(2.2rem, 5vw, 2.6rem);
+            color: #1a1a1a;
+            transform: rotate(-2deg);
+            margin-bottom: 30px;
         }
 
-        @keyframes ampersandFadeIn {
-            0% { opacity: 0; transform: translateY(-50%) scale(0.85); }
-            100% { opacity: 1; transform: translateY(-50%) scale(1); }
+        .description {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #555555;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+            max-width: 340px;
+            margin-bottom: 40px;
         }
 
-        @keyframes scrollDownIn {
-            0% { opacity: 0; transform: translateX(-50%) translateY(15px); }
-            100% { opacity: 1; transform: translateX(-50%) translateY(0); }
+        .line {
+            width: 1px;
+            background-color: #1a1a1a;
+            opacity: 0.6;
+            height: 100px;
         }
 
-        /* Адаптивность для мобильных экранов — сохраняем пропорции изменений */
-        @media (max-width: 600px) {
-            .name { font-size: 2.5rem; letter-spacing: 3px; }
-            .wedding-header { font-size: 2.8rem; margin-top: 2vh; } /* на мобилке тоже поднято */
-            .ampersand { font-size: 6rem; }
-            .names-container { left: 8%; bottom: 100px; } /* на мобилках тоже опустили имена (было 155px, стало 100px для наглядности смещения вниз) */
-            .name-alyona { margin-left: 88px; }
+        .line-top {
+            margin-bottom: 40px;
+        }
+
+        .line-bottom {
+            margin-top: 40px;
+            margin-bottom: 60px;
+        }
+
+        .date-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .date-number {
+            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-size: clamp(3rem, 7vw, 3.8rem);
+            font-weight: 400;
+            color: #1a1a1a;
+            line-height: 0.9;
+        }
+
+        .dot {
+            font-size: 1.5rem;
+            color: #1a1a1a;
+            line-height: 0.3;
+            margin: 5px 0;
+        }
+
+        .calendar-section {
+            width: 100%;
+            max-width: 290px;
+        }
+
+        .calendar-month {
+            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-size: 1.4rem;
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            color: #1a1a1a;
+            margin-bottom: 25px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            row-gap: 15px;
+            column-gap: 8px;
+        }
+
+        .weekday {
+            font-size: 0.75rem;
+            font-weight: 400;
+            color: #999999;
+            text-transform: lowercase;
+            padding-bottom: 5px;
+        }
+
+        .day {
+            font-size: 0.95rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            position: relative;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .empty-day {
+            visibility: hidden;
+        }
+
+        .special-day {
+            font-weight: 400;
+        }
+
+        .heart-svg {
+            position: absolute;
+            width: 42px;
+            height: 42px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -46%);
+            pointer-events: none;
+        }
+
+        .heart-path {
+            stroke: #1a1a1a;
+            stroke-width: 1.1;
+            fill: none;
+            stroke-linecap: round;
+            opacity: 0.8;
+        }
+
+        /* Анимации для второго блока */
+        .fade-bottom {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .calendar-fade-up {
+            opacity: 0;
+            transform: translateY(140px);
+            transition: opacity 2.4s cubic-bezier(0.16, 1, 0.3, 1), transform 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .scale-up {
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: opacity 1.3s ease, transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .line-bottom.scale-up {
+            transform-origin: bottom;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transition: opacity 0.8s ease;
+        }
+
+        .from-left-1, .from-left-2 {
+            opacity: 0;
+            transform: translateX(-120px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .from-right {
+            opacity: 0;
+            transform: translateX(120px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .animated.fade-bottom,
+        .animated.calendar-fade-up {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .animated.scale-up {
+            opacity: 0.6;
+            transform: scaleY(1);
+        }
+
+        .animated.fade-in {
+            opacity: 1;
+        }
+
+        .animated.from-left-1,
+        .animated.from-right,
+        .animated.from-left-2 {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        /* Адаптив для первого экрана */
+        @media (max-width: 768px) {
+            .name-line {
+                font-size: 3.4rem;
+                letter-spacing: 4px;
+            }
+            .alyona-name {
+                margin-left: 104px;
+            }
+            .names-block {
+                bottom: 110px;
+                left: 6%;
+            }
+            .wedding-script {
+                font-size: 3rem;
+                margin-top: 2vh;
+            }
             .scroll-down {
-                padding: 3px 7px; /* дополнительная ужатость на мобильных */
+                padding: 4px 8px;
                 font-size: 0.55rem;
-                letter-spacing: 0.5px;
+                bottom: 30px;
             }
             .arrow-icon-svg {
                 width: 7px;
                 height: 7px;
-                margin-left: 4px;
             }
         }
-        /* Дополнительная адаптация для очень маленьких экранов, чтобы имена не налезали на кнопку */
+
+        @media (max-width: 580px) {
+            .name-line {
+                font-size: 2.8rem;
+                letter-spacing: 3.5px;
+            }
+            .alyona-name {
+                margin-left: 86px;
+            }
+            .names-block {
+                bottom: 95px;
+                left: 5%;
+            }
+            .wedding-script {
+                font-size: 2.6rem;
+            }
+            .scroll-down {
+                padding: 3px 7px;
+                font-size: 0.5rem;
+                bottom: 25px;
+            }
+        }
+
         @media (max-width: 480px) {
-            .names-container {
-                bottom: 90px;
+            .name-line {
+                font-size: 2.4rem;
+                letter-spacing: 3px;
             }
-            .wedding-header {
-                margin-top: 1.5vh;
+            .alyona-name {
+                margin-left: 74px;
             }
+            .names-block {
+                bottom: 85px;
+                left: 5%;
+            }
+        }
+
+        @media (min-width: 1400px) {
+            .alyona-name {
+                margin-left: 140px;
+            }
+            .name-line {
+                font-size: 4.5rem;
+            }
+        }
+
+        @media (min-width: 1800px) {
+            .name-line {
+                font-size: 5rem;
+            }
+            .alyona-name {
+                margin-left: 158px;
+            }
+            .names-block {
+                bottom: 150px;
+                left: 10%;
+            }
+        }
+
+        /* Анимации первого экрана */
+        @keyframes photoReveal {
+            0% { opacity: 0; transform: scale(1.02); }
+            100% { opacity: 1; transform: scale(1); }
+        }
+        @keyframes floatUp {
+            0% { opacity: 0; transform: translateY(35px); }
+            100% { opacity: 0.96; transform: translateY(0); }
+        }
+        @keyframes slideInLeft {
+            0% { opacity: 0; transform: translateX(-40px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes slideInRight {
+            0% { opacity: 0; transform: translateX(45px); }
+            100% { opacity: 1; transform: translateX(0); }
+        }
+        @keyframes ampersandGlow {
+            0% { opacity: 0; transform: translateY(-50%) scale(0.8); }
+            100% { opacity: 0.28; transform: translateY(-50%) scale(1); }
         }
     </style>
 </head>
 <body>
-
-    <div class="page-container">
-        <div class="background-image"></div>
-        
-        <div class="content-layer">
-            <h1 class="wedding-header">Wedding</h1>
-
-            <div class="names-container">
-                <div class="ampersand">&</div>
-                <div class="name name-vitaliy">Виталий</div>
-                <div class="name name-alyona">Алёна</div>
+    <!-- ПЕРВЫЙ ЭКРАН: ФОТО + ИМЕНА -->
+    <div class="first-screen" id="firstScreen">
+        <div class="photo-bg"></div>
+        <div class="soft-veil"></div>
+        <div class="content-first">
+            <div class="wedding-script">Wedding</div>
+            <div class="names-block">
+                <div class="names-lines">
+                    <div class="name-line vitaliy-name">Виталий</div>
+                    <div class="name-line alyona-name">Алёна</div>
+                </div>
+                <div class="delicate-ampersand">&</div>
             </div>
-
-            <a href="#details" class="scroll-down" id="scrollBtn">
+            <!-- Кнопка СТАТИЧНАЯ - без анимации, видна сразу -->
+            <div class="scroll-down" id="scrollBtn">
                 Листайте вниз
                 <svg class="arrow-icon-svg" viewBox="0 0 10 10">
                     <polyline points="1,3 5,7 9,3" style="fill:none; stroke:black; stroke-width:1.2; stroke-linecap:round; stroke-linejoin:round;"/>
                 </svg>
-            </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- ВТОРОЙ ЭКРАН: ДОРОГИЕ И РОДНЫЕ + КАЛЕНДАРЬ -->
+    <div class="second-screen" id="secondScreen">
+        <div class="invitation-container">
+            <h1 class="title fade-bottom">ДОРОГИЕ И<br>РОДНЫЕ!</h1>
+            <div class="save-the-date fade-bottom">Save the date!</div>
+            <p class="description fade-bottom">
+                Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этот день рядом с нами!
+            </p>
+            
+            <div class="line line-top scale-up"></div>
+            
+            <div class="date-block">
+                <span class="date-number from-left-1">03</span>
+                <span class="dot fade-in">.</span>
+                <span class="date-number from-right">07</span>
+                <span class="dot fade-in">.</span>
+                <span class="date-number from-left-2">26</span>
+            </div>
+            
+            <div class="line line-bottom scale-up"></div>
+
+            <div class="calendar-section calendar-fade-up">
+                <div class="calendar-month">Июль</div>
+                <div class="calendar-grid">
+                    <div class="weekday">пн</div>
+                    <div class="weekday">вт</div>
+                    <div class="weekday">ср</div>
+                    <div class="weekday">чт</div>
+                    <div class="weekday">пт</div>
+                    <div class="weekday">сб</div>
+                    <div class="weekday">вс</div>
+
+                    <div class="day empty-day"></div>
+                    <div class="day empty-day"></div>
+                    <div class="day">1</div>
+                    <div class="day">2</div>
+                    
+                    <div class="day special-day">
+                        3
+                        <svg class="heart-svg" viewBox="0 0 50 50">
+                            <path class="heart-path" d="M25,15 C21,8 11,9 11,18 C11,27 23,36 25,38 C27,36 39,27 39,18 C39,9 29,8 25,15 Z" />
+                        </svg>
+                    </div>
+                    
+                    <div class="day">4</div>
+                    <div class="day">5</div>
+                    <div class="day">6</div>
+                    <div class="day">7</div>
+                    <div class="day">8</div>
+                    <div class="day">9</div>
+                    <div class="day">10</div>
+                    <div class="day">11</div>
+                    <div class="day">12</div>
+                    <div class="day">13</div>
+                    <div class="day">14</div>
+                    <div class="day">15</div>
+                    <div class="day">16</div>
+                    <div class="day">17</div>
+                    <div class="day">18</div>
+                    <div class="day">19</div>
+                    <div class="day">20</div>
+                    <div class="day">21</div>
+                    <div class="day">22</div>
+                    <div class="day">23</div>
+                    <div class="day">24</div>
+                    <div class="day">25</div>
+                    <div class="day">26</div>
+                    <div class="day">27</div>
+                    <div class="day">28</div>
+                    <div class="day">29</div>
+                    <div class="day">30</div>
+                    <div class="day">31</div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
-        document.getElementById('scrollBtn').addEventListener('click', function(e) {
-            e.preventDefault();
-            console.log("Плавный скролл вниз...");
+        // Плавный скролл при клике на кнопку "Листайте вниз"
+        const scrollBtn = document.getElementById('scrollBtn');
+        const secondScreen = document.getElementById('secondScreen');
+        
+        if (scrollBtn && secondScreen) {
+            scrollBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                secondScreen.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            });
+        }
+
+        // Активация анимаций для второго блока при прокрутке
+        const secondScreenElement = document.querySelector('.second-screen');
+        
+        function activateSecondScreenAnimations() {
+            const container = document.querySelector('.invitation-container');
+            if (!container) return;
+            if (container.getAttribute('data-animated') === 'true') return;
+            container.setAttribute('data-animated', 'true');
+            
+            // 1. Появление верхних текстов
+            const texts = container.querySelectorAll('.title, .save-the-date, .description');
+            texts.forEach((text, index) => {
+                setTimeout(() => {
+                    text.classList.add('animated');
+                }, index * 150);
+            });
+            
+            // 2. Линия сверху
+            const topLine = container.querySelector('.line-top');
+            setTimeout(() => {
+                if (topLine) topLine.classList.add('animated');
+            }, 600);
+            
+            // 3. Анимация цифр даты и нижней линии
+            const d03 = container.querySelector('.from-left-1');
+            const d07 = container.querySelector('.from-right');
+            const d26 = container.querySelector('.from-left-2');
+            const bottomLine = container.querySelector('.line-bottom');
+            const dots = container.querySelectorAll('.dot');
+            
+            setTimeout(() => { if (d03) d03.classList.add('animated'); }, 1000);
+            setTimeout(() => { 
+                if (d07) d07.classList.add('animated'); 
+                if (bottomLine) bottomLine.classList.add('animated');
+            }, 1200);
+            setTimeout(() => { if (d26) d26.classList.add('animated'); }, 1400);
+            
+            dots.forEach(dot => {
+                setTimeout(() => { dot.classList.add('animated'); }, 1700);
+            });
+            
+            // 4. Календарь появляется плавно
+            const calendar = container.querySelector('.calendar-section');
+            setTimeout(() => {
+                if (calendar) calendar.classList.add('animated');
+            }, 2300);
+        }
+        
+        // Intersection Observer для запуска анимаций второго экрана
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    activateSecondScreenAnimations();
+                }
+            });
+        }, { threshold: 0.25 });
+        
+        if (secondScreenElement) {
+            observer.observe(secondScreenElement);
+        }
+        
+        // Проверка, если второй экран уже виден при загрузке
+        if (secondScreenElement && secondScreenElement.getBoundingClientRect().top < window.innerHeight) {
+            activateSecondScreenAnimations();
+        }
+        
+        // Проверка загрузки фонового изображения
+        window.addEventListener('load', () => {
+            const bgDiv = document.querySelector('.photo-bg');
+            if (bgDiv) {
+                const computedStyle = window.getComputedStyle(bgDiv);
+                const bgImage = computedStyle.getPropertyValue('background-image');
+                if (!bgImage || bgImage === 'none' || bgImage.includes('undefined')) {
+                    bgDiv.style.background = 'linear-gradient(135deg, #3a2c24, #1a1612)';
+                    bgDiv.style.backgroundSize = 'cover';
+                }
+            }
         });
+        
+        // Обработка якоря
+        if (window.location.hash === '#secondScreen') {
+            setTimeout(() => {
+                if (secondScreenElement) {
+                    secondScreenElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            }, 100);
+        }
     </script>
 </body>
 </html>
