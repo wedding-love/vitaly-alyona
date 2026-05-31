@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Приглашение на свадьбу | Виталий & Алёна</title>
     <!-- Тонкие шрифты -->
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@100;200;300;400&family=Parisienne&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Montserrat:wght@100;200;300;400;700&family=Parisienne&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400;1,6..96,400&family=Playfair+Display:ital,wght@0,400;1,400&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -15,7 +15,6 @@
 
         html, body {
             width: 100%;
-            height: 100%;
             overflow-x: hidden;
             scroll-behavior: smooth;
         }
@@ -140,7 +139,7 @@
             opacity: 0;
         }
 
-        /* Кнопка скролла - СТАТИЧНАЯ, появляется ПЕРВОЙ (без анимации, сразу видна) */
+        /* Кнопка скролла - статичная, видна сразу */
         .scroll-down {
             position: absolute;
             bottom: 35px;
@@ -165,7 +164,6 @@
             white-space: nowrap;
             z-index: 20;
             border: none;
-            /* Без анимации - сразу видна */
             opacity: 1;
         }
 
@@ -209,6 +207,9 @@
             line-height: 1.2;
             color: #1a1a1a;
             margin-bottom: 25px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .save-the-date {
@@ -217,6 +218,9 @@
             color: #1a1a1a;
             transform: rotate(-2deg);
             margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .description {
@@ -227,6 +231,9 @@
             letter-spacing: 0.5px;
             max-width: 340px;
             margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .line {
@@ -238,11 +245,19 @@
 
         .line-top {
             margin-bottom: 40px;
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: top;
+            transition: opacity 1.3s ease, transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .line-bottom {
             margin-top: 40px;
             margin-bottom: 60px;
+            opacity: 0;
+            transform: scaleY(0);
+            transform-origin: bottom;
+            transition: opacity 1.3s ease, transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .date-block {
@@ -258,6 +273,17 @@
             font-weight: 400;
             color: #1a1a1a;
             line-height: 0.9;
+            opacity: 0;
+        }
+
+        .from-left-1, .from-left-2 {
+            transform: translateX(-120px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .from-right {
+            transform: translateX(120px);
+            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
 
         .dot {
@@ -265,11 +291,16 @@
             color: #1a1a1a;
             line-height: 0.3;
             margin: 5px 0;
+            opacity: 0;
+            transition: opacity 0.8s ease;
         }
 
         .calendar-section {
             width: 100%;
             max-width: 290px;
+            opacity: 0;
+            transform: translateY(140px);
+            transition: opacity 2.4s cubic-bezier(0.16, 1, 0.3, 1), transform 2.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .calendar-month {
@@ -334,70 +365,179 @@
             opacity: 0.8;
         }
 
-        /* Анимации для второго блока */
-        .fade-bottom {
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+        /* Активация анимаций второго блока */
+        .title.animated-in, .save-the-date.animated-in, .description.animated-in {
+            opacity: 1;
+            transform: translateY(0);
         }
-
-        .calendar-fade-up {
-            opacity: 0;
-            transform: translateY(140px);
-            transition: opacity 2.4s cubic-bezier(0.16, 1, 0.3, 1), transform 2.4s cubic-bezier(0.16, 1, 0.3, 1);
+        .line-top.animated-in, .line-bottom.animated-in {
+            opacity: 0.6;
+            transform: scaleY(1);
         }
-
-        .scale-up {
-            opacity: 0;
-            transform: scaleY(0);
-            transform-origin: top;
-            transition: opacity 1.3s ease, transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
+        .date-number.animated-in {
+            opacity: 1;
+            transform: translateX(0);
         }
-
-        .line-bottom.scale-up {
-            transform-origin: bottom;
+        .dot.animated-in {
+            opacity: 1;
         }
-
-        .fade-in {
-            opacity: 0;
-            transition: opacity 0.8s ease;
-        }
-
-        .from-left-1, .from-left-2 {
-            opacity: 0;
-            transform: translateX(-120px);
-            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.3s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .from-right {
-            opacity: 0;
-            transform: translateX(120px);
-            transition: opacity 1.3s cubic-bezier(0.25, 1, 0.5, 1), transform 1.4s cubic-bezier(0.25, 1, 0.5, 1);
-        }
-
-        .animated.fade-bottom,
-        .animated.calendar-fade-up {
+        .calendar-section.animated-in {
             opacity: 1;
             transform: translateY(0);
         }
 
-        .animated.scale-up {
-            opacity: 0.6;
-            transform: scaleY(1);
+        /* ----- ТРЕТИЙ ЭКРАН (МЕСТО ПРОВЕДЕНИЯ) ----- */
+        .location-section {
+            position: relative;
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            padding: 50px 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background-color: #ffffff;
         }
 
-        .animated.fade-in {
-            opacity: 1;
+        .location-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop');
+            background-size: cover;
+            background-position: center;
+            filter: blur(4px) grayscale(30%);
+            transform: scale(1.05);
+            z-index: 1;
         }
 
-        .animated.from-left-1,
-        .animated.from-right,
-        .animated.from-left-2 {
+        .location-card {
+            position: relative;
+            z-index: 2;
+            background-color: #ffffff;
+            width: 100%;
+            padding: 45px 25px 40px 25px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .icon-scene {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 25px auto;
+            perspective: 1000px;
+        }
+
+        .icon-3d {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            transform-style: preserve-3d;
+            animation: rotate3d 5s linear infinite;
+        }
+
+        .pin-layer {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            backface-visibility: hidden;
+        }
+
+        .layer-1 { transform: translateZ(2px); }
+        .layer-2 { transform: translateZ(1px); }
+        .layer-3 { transform: translateZ(0px); }
+        .layer-4 { transform: translateZ(-1px); }
+        .layer-5 { transform: translateZ(-2px); }
+        .layer-6 { transform: translateZ(-3px) rotateY(180deg); }
+
+        .location-svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+
+        .location-title {
+            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-size: clamp(1.8rem, 4.5vw, 2.3rem);
+            font-weight: 400;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            color: #1a1a1a;
+            margin-bottom: 12px;
+            opacity: 0;
+            transform: translateX(-60px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .save-the-place {
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(2.3rem, 5.8vw, 2.8rem);
+            color: #1a1a1a;
+            margin-bottom: 25px;
+            display: inline-block;
+            transform: skewX(-3deg) translateX(60px);
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .venue-name {
+            font-size: 0.95rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #1a1a1a;
+            max-width: 280px;
+            margin: 0 auto 35px auto;
+            letter-spacing: 0.3px;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .btn-maps {
+            display: inline-block;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            text-decoration: none;
+            font-size: 0.75rem;
+            font-weight: 400;
+            letter-spacing: 2px;
+            padding: 14px 35px;
+            text-transform: uppercase;
+            opacity: 0;
+            transform: translateY(50px);
+            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease;
+        }
+
+        .btn-maps:hover {
+            background-color: #333333;
+        }
+
+        .location-title.animated-in, .save-the-place.animated-in,
+        .venue-name.animated-in, .btn-maps.animated-in {
             opacity: 1;
             transform: translateX(0);
         }
 
-        /* Адаптив для первого экрана */
+        .venue-name.animated-in, .btn-maps.animated-in {
+            transform: translateY(0);
+        }
+
+        .save-the-place.animated-in {
+            transform: skewX(-3deg) translateX(0);
+        }
+
+        @keyframes rotate3d {
+            0% { transform: rotateY(0deg); }
+            100% { transform: rotateY(360deg); }
+        }
+
+        /* Адаптив */
         @media (max-width: 768px) {
             .name-line {
                 font-size: 3.4rem;
@@ -414,15 +554,6 @@
                 font-size: 3rem;
                 margin-top: 2vh;
             }
-            .scroll-down {
-                padding: 4px 8px;
-                font-size: 0.55rem;
-                bottom: 30px;
-            }
-            .arrow-icon-svg {
-                width: 7px;
-                height: 7px;
-            }
         }
 
         @media (max-width: 580px) {
@@ -436,14 +567,6 @@
             .names-block {
                 bottom: 95px;
                 left: 5%;
-            }
-            .wedding-script {
-                font-size: 2.6rem;
-            }
-            .scroll-down {
-                padding: 3px 7px;
-                font-size: 0.5rem;
-                bottom: 25px;
             }
         }
 
@@ -467,19 +590,6 @@
             }
             .name-line {
                 font-size: 4.5rem;
-            }
-        }
-
-        @media (min-width: 1800px) {
-            .name-line {
-                font-size: 5rem;
-            }
-            .alyona-name {
-                margin-left: 158px;
-            }
-            .names-block {
-                bottom: 150px;
-                left: 10%;
             }
         }
 
@@ -507,7 +617,7 @@
     </style>
 </head>
 <body>
-    <!-- ПЕРВЫЙ ЭКРАН: ФОТО + ИМЕНА -->
+    <!-- ПЕРВЫЙ ЭКРАН -->
     <div class="first-screen" id="firstScreen">
         <div class="photo-bg"></div>
         <div class="soft-veil"></div>
@@ -520,7 +630,6 @@
                 </div>
                 <div class="delicate-ampersand">&</div>
             </div>
-            <!-- Кнопка СТАТИЧНАЯ - без анимации, видна сразу -->
             <div class="scroll-down" id="scrollBtn">
                 Листайте вниз
                 <svg class="arrow-icon-svg" viewBox="0 0 10 10">
@@ -530,28 +639,22 @@
         </div>
     </div>
 
-    <!-- ВТОРОЙ ЭКРАН: ДОРОГИЕ И РОДНЫЕ + КАЛЕНДАРЬ -->
+    <!-- ВТОРОЙ ЭКРАН -->
     <div class="second-screen" id="secondScreen">
         <div class="invitation-container">
-            <h1 class="title fade-bottom">ДОРОГИЕ И<br>РОДНЫЕ!</h1>
-            <div class="save-the-date fade-bottom">Save the date!</div>
-            <p class="description fade-bottom">
-                Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этот день рядом с нами!
-            </p>
-            
-            <div class="line line-top scale-up"></div>
-            
+            <h1 class="title">ДОРОГИЕ И<br>РОДНЫЕ!</h1>
+            <div class="save-the-date">Save the date!</div>
+            <p class="description">Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этот день рядом с нами!</p>
+            <div class="line line-top"></div>
             <div class="date-block">
                 <span class="date-number from-left-1">03</span>
-                <span class="dot fade-in">.</span>
+                <span class="dot">.</span>
                 <span class="date-number from-right">07</span>
-                <span class="dot fade-in">.</span>
+                <span class="dot">.</span>
                 <span class="date-number from-left-2">26</span>
             </div>
-            
-            <div class="line line-bottom scale-up"></div>
-
-            <div class="calendar-section calendar-fade-up">
+            <div class="line line-bottom"></div>
+            <div class="calendar-section">
                 <div class="calendar-month">Июль</div>
                 <div class="calendar-grid">
                     <div class="weekday">пн</div>
@@ -561,19 +664,16 @@
                     <div class="weekday">пт</div>
                     <div class="weekday">сб</div>
                     <div class="weekday">вс</div>
-
                     <div class="day empty-day"></div>
                     <div class="day empty-day"></div>
                     <div class="day">1</div>
                     <div class="day">2</div>
-                    
                     <div class="day special-day">
                         3
                         <svg class="heart-svg" viewBox="0 0 50 50">
                             <path class="heart-path" d="M25,15 C21,8 11,9 11,18 C11,27 23,36 25,38 C27,36 39,27 39,18 C39,9 29,8 25,15 Z" />
                         </svg>
                     </div>
-                    
                     <div class="day">4</div>
                     <div class="day">5</div>
                     <div class="day">6</div>
@@ -607,108 +707,104 @@
         </div>
     </div>
 
+    <!-- ТРЕТИЙ ЭКРАН: МЕСТО ПРОВЕДЕНИЯ -->
+    <div class="location-section" id="locationSection">
+        <div class="location-bg"></div>
+        <div class="location-card">
+            <div class="icon-scene">
+                <div class="icon-3d">
+                    <div class="pin-layer layer-1"><svg class="location-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#1a1a1a"/></svg></div>
+                    <div class="pin-layer layer-2"><svg class="location-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#222222"/></svg></div>
+                    <div class="pin-layer layer-3"><svg class="location-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#2a2a2a"/></svg></div>
+                    <div class="pin-layer layer-4"><svg class="location-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#222222"/></svg></div>
+                    <div class="pin-layer layer-5"><svg class="location-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#1a1a1a"/></svg></div>
+                    <div class="pin-layer layer-6"><svg class="location-svg" viewBox="0 0 24 24" fill="none"><path d="M12 2C8.13 2 5 5.13 5 9C5 14.25 12 22 12 22C12 22 19 14.25 19 9C19 5.13 15.87 2 12 2ZM12 11.5C10.62 11.5 9.5 10.38 9.5 9C9.5 7.62 10.62 6.5 12 6.5C13.38 6.5 14.5 7.62 14.5 9C14.5 10.38 13.38 11.5 12 11.5Z" fill="#1a1a1a"/></svg></div>
+                </div>
+            </div>
+            <h2 class="location-title">МЕСТО<br>ПРОВЕДЕНИЯ</h2>
+            <div class="save-the-place">Save the place!</div>
+            <p class="venue-name">Костёл Пресвятого<br>Искупителя</p>
+            <a href="https://maps.google.com" target="_blank" class="btn-maps">Как добраться</a>
+        </div>
+    </div>
+
     <script>
-        // Плавный скролл при клике на кнопку "Листайте вниз"
+        // Кнопка скролла
         const scrollBtn = document.getElementById('scrollBtn');
         const secondScreen = document.getElementById('secondScreen');
-        
         if (scrollBtn && secondScreen) {
             scrollBtn.addEventListener('click', (e) => {
                 e.preventDefault();
-                secondScreen.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
+                secondScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
             });
         }
 
-        // Активация анимаций для второго блока при прокрутке
-        const secondScreenElement = document.querySelector('.second-screen');
-        
-        function activateSecondScreenAnimations() {
-            const container = document.querySelector('.invitation-container');
-            if (!container) return;
-            if (container.getAttribute('data-animated') === 'true') return;
-            container.setAttribute('data-animated', 'true');
-            
-            // 1. Появление верхних текстов
-            const texts = container.querySelectorAll('.title, .save-the-date, .description');
-            texts.forEach((text, index) => {
-                setTimeout(() => {
-                    text.classList.add('animated');
-                }, index * 150);
-            });
-            
-            // 2. Линия сверху
-            const topLine = container.querySelector('.line-top');
-            setTimeout(() => {
-                if (topLine) topLine.classList.add('animated');
-            }, 600);
-            
-            // 3. Анимация цифр даты и нижней линии
-            const d03 = container.querySelector('.from-left-1');
-            const d07 = container.querySelector('.from-right');
-            const d26 = container.querySelector('.from-left-2');
-            const bottomLine = container.querySelector('.line-bottom');
-            const dots = container.querySelectorAll('.dot');
-            
-            setTimeout(() => { if (d03) d03.classList.add('animated'); }, 1000);
-            setTimeout(() => { 
-                if (d07) d07.classList.add('animated'); 
-                if (bottomLine) bottomLine.classList.add('animated');
-            }, 1200);
-            setTimeout(() => { if (d26) d26.classList.add('animated'); }, 1400);
-            
-            dots.forEach(dot => {
-                setTimeout(() => { dot.classList.add('animated'); }, 1700);
-            });
-            
-            // 4. Календарь появляется плавно
-            const calendar = container.querySelector('.calendar-section');
-            setTimeout(() => {
-                if (calendar) calendar.classList.add('animated');
-            }, 2300);
-        }
-        
-        // Intersection Observer для запуска анимаций второго экрана
-        const observer = new IntersectionObserver((entries) => {
+        // Observer для второго экрана
+        const secondContainer = document.querySelector('.invitation-container');
+        const secondObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    activateSecondScreenAnimations();
+                if (entry.isIntersecting && !secondContainer.getAttribute('data-animated')) {
+                    secondContainer.setAttribute('data-animated', 'true');
+                    
+                    setTimeout(() => {
+                        document.querySelector('.title').classList.add('animated-in');
+                    }, 100);
+                    setTimeout(() => {
+                        document.querySelector('.save-the-date').classList.add('animated-in');
+                    }, 200);
+                    setTimeout(() => {
+                        document.querySelector('.description').classList.add('animated-in');
+                    }, 300);
+                    setTimeout(() => {
+                        document.querySelector('.line-top').classList.add('animated-in');
+                    }, 500);
+                    setTimeout(() => {
+                        document.querySelectorAll('.date-number').forEach(el => el.classList.add('animated-in'));
+                    }, 800);
+                    setTimeout(() => {
+                        document.querySelectorAll('.dot').forEach(el => el.classList.add('animated-in'));
+                    }, 1200);
+                    setTimeout(() => {
+                        document.querySelector('.line-bottom').classList.add('animated-in');
+                    }, 1400);
+                    setTimeout(() => {
+                        document.querySelector('.calendar-section').classList.add('animated-in');
+                    }, 2000);
                 }
             });
-        }, { threshold: 0.25 });
-        
-        if (secondScreenElement) {
-            observer.observe(secondScreenElement);
-        }
-        
-        // Проверка, если второй экран уже виден при загрузке
-        if (secondScreenElement && secondScreenElement.getBoundingClientRect().top < window.innerHeight) {
-            activateSecondScreenAnimations();
-        }
-        
-        // Проверка загрузки фонового изображения
+        }, { threshold: 0.2 });
+        if (secondContainer) secondObserver.observe(secondContainer);
+
+        // Observer для третьего экрана (место проведения)
+        const locationSection = document.querySelector('.location-section');
+        const locationTitle = document.querySelector('.location-title');
+        const saveThePlace = document.querySelector('.save-the-place');
+        const venueName = document.querySelector('.venue-name');
+        const btnMaps = document.querySelector('.btn-maps');
+
+        const locationObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => locationTitle.classList.add('animated-in'), 100);
+                    setTimeout(() => saveThePlace.classList.add('animated-in'), 250);
+                    setTimeout(() => venueName.classList.add('animated-in'), 500);
+                    setTimeout(() => btnMaps.classList.add('animated-in'), 750);
+                    locationObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.2 });
+        if (locationSection) locationObserver.observe(locationSection);
+
+        // Проверка фонового изображения
         window.addEventListener('load', () => {
             const bgDiv = document.querySelector('.photo-bg');
             if (bgDiv) {
-                const computedStyle = window.getComputedStyle(bgDiv);
-                const bgImage = computedStyle.getPropertyValue('background-image');
+                const bgImage = window.getComputedStyle(bgDiv).getPropertyValue('background-image');
                 if (!bgImage || bgImage === 'none' || bgImage.includes('undefined')) {
                     bgDiv.style.background = 'linear-gradient(135deg, #3a2c24, #1a1612)';
-                    bgDiv.style.backgroundSize = 'cover';
                 }
             }
         });
-        
-        // Обработка якоря
-        if (window.location.hash === '#secondScreen') {
-            setTimeout(() => {
-                if (secondScreenElement) {
-                    secondScreenElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            }, 100);
-        }
     </script>
 </body>
 </html>
