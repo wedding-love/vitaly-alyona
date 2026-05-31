@@ -57,12 +57,13 @@
         }
 
         /* Тонкий, легкий и каллиграфически рукописный заголовок "Wedding" */
+        /* ИЗМЕНЕНИЕ 1: wedding чуть поднят вверх — уменьшен margin-top c 6vh до 2vh */
         .wedding-header {
             font-family: 'Parisienne', cursive;
             font-weight: 300; /* Ультратонкое начертание без жирности */
             font-size: 3.5rem; 
             color: rgba(255, 255, 255, 0.85); /* Нежный белый цвет */
-            margin-top: 6vh;
+            margin-top: 2vh; /* было 6vh — ПОДНЯЛИ ВВЕРХ */
             opacity: 0;
             transform: translateY(25px);
             animation: weddingRaise 1.8s cubic-bezier(0.22, 1, 0.36, 1) forwards 0.3s;
@@ -70,9 +71,10 @@
         }
 
         /* Блок с именами — ВЛЕВО ВНИЗ */
+        /* ИЗМЕНЕНИЕ 2: виталий и алена чуть вниз — увеличен bottom c 160px до 110px (опустили ниже) */
         .names-container {
             position: absolute;
-            bottom: 160px; 
+            bottom: 110px; /* было 160px — ОПУСТИЛИ ВНИЗ */
             left: 10%;     
             width: auto;
             display: flex;
@@ -123,7 +125,7 @@
             animation: nameSlideRight 1.5s cubic-bezier(0.22, 1, 0.36, 1) forwards 1s;
         }
 
-        /* Максимально компактная кнопка */
+        /* ИЗМЕНЕНИЕ 3: кнопка "листайте вниз" чуть ужата сжата — уменьшен padding и font-size */
         .scroll-down {
             position: absolute;
             bottom: 45px;
@@ -134,15 +136,15 @@
             justify-content: center;
             background-color: white;
             color: black;
-            padding: 6px 12px; 
+            padding: 4px 8px; /* было 6px 12px — УЖАЛИ И СЖАЛИ (уменьшили отступы) */
             border-radius: 2px;
             font-family: 'Montserrat', sans-serif;
             font-weight: 300; 
-            font-size: 0.7rem; 
+            font-size: 0.6rem; /* было 0.7rem — сделали меньше, чтобы кнопка стала компактнее */
             text-decoration: none;
             cursor: pointer;
             text-transform: uppercase;
-            letter-spacing: 0.8px; 
+            letter-spacing: 0.6px; /* чуть уменьшили межбуквенный интервал для компактности */
             box-shadow: 0 4px 12px rgba(0,0,0,0.25);
             opacity: 0;
             transition: transform 0.3s ease;
@@ -154,11 +156,11 @@
             transform: translateX(-50%) translateY(-3px);
         }
 
-        /* Тонкая контурная стрелочка */
+        /* Тонкая контурная стрелочка тоже чуть уменьшена для гармонии с ужатой кнопкой */
         .arrow-icon-svg {
-            margin-left: 6px;
-            width: 9px;
-            height: 9px;
+            margin-left: 5px;
+            width: 8px;
+            height: 8px;
             display: block;
         }
 
@@ -193,13 +195,32 @@
             100% { opacity: 1; transform: translateX(-50%) translateY(0); }
         }
 
-        /* Адаптивность для мобильных экранов */
+        /* Адаптивность для мобильных экранов — сохраняем пропорции изменений */
         @media (max-width: 600px) {
             .name { font-size: 2.5rem; letter-spacing: 3px; }
-            .wedding-header { font-size: 2.8rem; }
+            .wedding-header { font-size: 2.8rem; margin-top: 2vh; } /* на мобилке тоже поднято */
             .ampersand { font-size: 6rem; }
-            .names-container { left: 8%; bottom: 155px; }
-            .name-alyona { margin-left: 88px; } /* Сбалансированный отступ на мобильных экранах */
+            .names-container { left: 8%; bottom: 100px; } /* на мобилках тоже опустили имена (было 155px, стало 100px для наглядности смещения вниз) */
+            .name-alyona { margin-left: 88px; }
+            .scroll-down {
+                padding: 3px 7px; /* дополнительная ужатость на мобильных */
+                font-size: 0.55rem;
+                letter-spacing: 0.5px;
+            }
+            .arrow-icon-svg {
+                width: 7px;
+                height: 7px;
+                margin-left: 4px;
+            }
+        }
+        /* Дополнительная адаптация для очень маленьких экранов, чтобы имена не налезали на кнопку */
+        @media (max-width: 480px) {
+            .names-container {
+                bottom: 90px;
+            }
+            .wedding-header {
+                margin-top: 1.5vh;
+            }
         }
     </style>
 </head>
