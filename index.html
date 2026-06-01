@@ -44,8 +44,12 @@
             background-position: center 30%;
             opacity: 0;
             filter: brightness(0.78) contrast(1.05);
-            animation: photoReveal 3.5s ease-out forwards;
+            transition: opacity 3.5s ease-out;
             z-index: 1;
+        }
+        
+        .photo-bg.visible-bg {
+            opacity: 1;
         }
 
         .soft-veil {
@@ -79,7 +83,12 @@
             margin-top: 3vh;
             opacity: 0;
             transform: translateY(30px);
-            animation: floatUp 2.5s cubic-bezier(0.2,0.9,0.3,1.1) forwards 0.8s;
+            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+        
+        .wedding-script.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
 
         .names-block-first {
@@ -105,8 +114,8 @@
             text-shadow: 0 2px 14px rgba(0,0,0,0.45);
             opacity: 0;
             line-height: 1.2;
-            transform: translateX(-35px);
-            animation: slideInLeft 2s ease-out forwards 1.2s;
+            transform: translateX(-60px);
+            transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
 
         .name-line-right {
@@ -119,8 +128,13 @@
             text-shadow: 0 2px 14px rgba(0,0,0,0.45);
             opacity: 0;
             line-height: 1.2;
-            transform: translateX(35px);
-            animation: slideInRight 2s ease-out forwards 1.6s;
+            transform: translateX(60px);
+            transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+        
+        .name-line-left.visible, .name-line-right.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
 
         .scroll-down {
@@ -142,6 +156,11 @@
             font-family: 'Montserrat', sans-serif;
             font-weight: 300;
             letter-spacing: 0.6px;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+        
+        .scroll-down.visible {
             opacity: 1;
         }
 
@@ -207,19 +226,19 @@
             height: 60px;
             margin: 0 auto;
             opacity: 0;
+            transform: scaleY(0);
+            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
         }
 
         .line-top {
             margin-bottom: 30px;
-            transform: scaleY(0);
-            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
+            transform-origin: top;
         }
 
         .line-bottom {
             margin-top: 30px;
             margin-bottom: 50px;
-            transform: scaleY(0);
-            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
+            transform-origin: bottom;
         }
 
         .date-block {
@@ -279,13 +298,17 @@
         }
 
         .weekday {
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.7rem;
+            font-weight: 400;
             color: #999;
             text-transform: lowercase;
         }
 
         .day {
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.9rem;
+            font-weight: 300;
             color: #1a1a1a;
             position: relative;
             height: 28px;
@@ -310,20 +333,20 @@
             fill: none;
         }
 
-        .title.animated-in, .save-the-date.animated-in, .description-text.animated-in {
+        .title.visible, .save-the-date.visible, .description-text.visible {
             opacity: 1;
             transform: translateY(0);
         }
-        .line-top.animated-in, .line-bottom.animated-in {
+        .line.visible {
             opacity: 0.6;
             transform: scaleY(1);
         }
-        .date-number.animated-in {
+        .date-number.visible {
             opacity: 1;
             transform: translateX(0);
         }
-        .dot.animated-in { opacity: 1; }
-        .calendar-section.animated-in {
+        .dot.visible { opacity: 1; }
+        .calendar-section.visible {
             opacity: 1;
             transform: translateY(0);
         }
@@ -346,7 +369,7 @@
             background-size: cover;
             filter: blur(4px) grayscale(30%);
             opacity: 0;
-            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.4,1) 0.3s;
+            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.4,1);
             z-index: 1;
         }
         .location-card {
@@ -423,21 +446,24 @@
             background: #1a1a1a;
             color: #fff;
             text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
             font-size: 0.7rem;
+            font-weight: 400;
             letter-spacing: 2px;
             padding: 12px 30px;
             text-transform: uppercase;
             opacity: 0;
             transform: translateY(55px);
-            transition: opacity 3s cubic-bezier(0.16,1,0.3,1.1) 0.2s, transform 3s cubic-bezier(0.16,1,0.3,1.1) 0.2s;
+            transition: opacity 3s cubic-bezier(0.16,1,0.3,1.1), transform 3s cubic-bezier(0.16,1,0.3,1.1);
         }
         .btn-maps:hover { background: #333; }
-        .location-section.animated-bg .location-bg { opacity: 1; }
-        .location-section .icon-scene.animated-in { opacity: 1; transform: scale(1); }
-        .location-title.animated-in { opacity: 1; transform: translateX(0); }
-        .save-the-place.animated-in { opacity: 1; transform: skewX(-3deg) translateX(0); }
-        .venue-name.animated-in { opacity: 1; transform: translateY(0); }
-        .btn-maps.animated-in { opacity: 1; transform: translateY(0); }
+        
+        .location-section.visible .location-bg { opacity: 1; }
+        .location-section.visible .icon-scene { opacity: 1; transform: scale(1); }
+        .location-section.visible .location-title { opacity: 1; transform: translateX(0); }
+        .location-section.visible .save-the-place { opacity: 1; transform: skewX(-3deg) translateX(0); }
+        .location-section.visible .venue-name { opacity: 1; transform: translateY(0); }
+        .location-section.visible .btn-maps { opacity: 1; transform: translateY(0); }
 
         /* ----- ЧЕТВЕРТЫЙ ЭКРАН: ТАЙМИНГ ----- */
         .timeline-screen {
@@ -448,6 +474,13 @@
             max-width: 400px;
             margin: 0 auto;
             text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.8s cubic-bezier(0.2,0.9,0.3,1.1), transform 1.8s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+        .timeline-container.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
         .timeline-main-title {
             font-family: 'Bodoni Moda', 'Playfair Display', serif;
@@ -456,37 +489,35 @@
             text-transform: uppercase;
             letter-spacing: 6px;
             margin-bottom: 8px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.8s cubic-bezier(0.2,0.9,0.3,1.1);
         }
         .timeline-subtitle {
             font-family: 'Pinyon Script', cursive;
             font-size: clamp(1.3rem, 3.5vw, 1.6rem);
             margin-bottom: 25px;
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 1.8s cubic-bezier(0.2,0.9,0.3,1.1);
         }
         .timeline-middle-line, .timeline-bottom-line {
             width: 1px;
             background: #b5b5b5;
             margin: 0 auto;
-            opacity: 0;
-            transform: scaleY(0);
-            transition: all 2s cubic-bezier(0.2,0.9,0.3,1.1);
+            height: 50px;
         }
-        .timeline-middle-line { height: 50px; }
-        .timeline-bottom-line { height: 50px; margin-top: 20px; }
+        .timeline-bottom-line { margin-top: 20px; }
         .timeline-list { margin: 35px 0 25px; }
         .timeline-item {
             margin: 30px 0;
             opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 0.6s cubic-bezier(0.2,0.9,0.3,1.1), transform 0.6s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+        .timeline-item.timeline-slide-right {
+            transform: translateX(40px);
+        }
+        .timeline-item.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
         .timeline-item:first-child { margin-top: 0; }
         .timeline-item:last-child { margin-bottom: 0; }
-        .timeline-slide-left { transform: translateX(-40px); transition: all 2.2s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .timeline-slide-right { transform: translateX(40px); transition: all 2.2s cubic-bezier(0.2,0.9,0.3,1.1); }
         .timeline-item .time {
             font-family: 'Cormorant Garamond', serif;
             font-size: 32px;
@@ -501,11 +532,6 @@
             max-width: 300px;
             margin: 0 auto;
         }
-        .timeline-screen.animated .timeline-main-title,
-        .timeline-screen.animated .timeline-subtitle { opacity: 1; transform: translateY(0); }
-        .timeline-screen.animated .timeline-middle-line,
-        .timeline-screen.animated .timeline-bottom-line { opacity: 0.6; transform: scaleY(1); }
-        .timeline-screen.animated .timeline-item { opacity: 1; transform: translateX(0); }
 
         /* ----- ПЯТЫЙ ЭКРАН: ДРЕСС-КОД ----- */
         .dresscode-screen {
@@ -517,10 +543,25 @@
             margin: 0 auto;
             text-align: center;
         }
-        .animate-up, .animate-left, .animate-right, .look-card { opacity: 0; }
-        .visible.animate-up {
+        .dresscode-main-title, .dresscode-description, .color-palette, .vertical-divider, .section-subtitle, .moodboard {
+            opacity: 0;
             transform: translateY(30px);
-            animation: slideUpFade 3s cubic-bezier(0.25,1,0.5,1) forwards;
+            transition: opacity 0.8s cubic-bezier(0.25,1,0.5,1), transform 0.8s cubic-bezier(0.25,1,0.5,1);
+        }
+        .dresscode-main-title.visible, .dresscode-description.visible, .color-palette.visible,
+        .vertical-divider.visible, .section-subtitle.visible, .moodboard.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .animate-left {
+            transform: translateX(-40px);
+        }
+        .animate-right {
+            transform: translateX(40px);
+        }
+        .section-subtitle.animate-left.visible, .section-subtitle.animate-right.visible {
+            opacity: 1;
+            transform: translateX(0);
         }
         .dresscode-main-title {
             font-family: 'Cormorant Garamond', serif;
@@ -559,13 +600,8 @@
             background-color: #b5b5b5;
             margin: 0 auto;
         }
-        .divider-before {
-            margin-bottom: 35px;
-        }
-        .divider-after {
-            margin-top: 35px;
-            margin-bottom: 35px;
-        }
+        .divider-before { margin-bottom: 35px; }
+        .divider-after { margin-top: 35px; margin-bottom: 35px; }
         
         .section-subtitle {
             font-family: 'Cormorant Garamond', serif;
@@ -573,19 +609,12 @@
             font-size: 34px;
             margin-bottom: 30px;
         }
-        .visible.animate-left {
-            transform: translateX(-40px);
-            animation: slideLeftFade 3s cubic-bezier(0.25,1,0.5,1) forwards;
-        }
-        .visible.animate-right {
-            transform: translateX(40px);
-            animation: slideRightFade 3s cubic-bezier(0.25,1,0.5,1) forwards;
-        }
+        
         .moodboard {
             position: relative;
             width: 100%;
             height: auto;
-            min-height: 460px;
+            min-height: 520px;
             margin-bottom: 40px;
         }
         .look-card {
@@ -593,47 +622,51 @@
             background-size: cover;
             background-position: center;
             border-radius: 2px;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.25,1,0.5,1);
         }
-        .look-card.visible-card { animation: fadeInVerySlow 3s cubic-bezier(0.25,1,0.5,1) forwards; }
+        .look-card.visible {
+            opacity: 1;
+        }
         
-        .ladies { position: relative; height: auto; min-height: 480px; }
+        .ladies { position: relative; height: auto; min-height: 520px; }
         .ladies .card-main {
-            width: 48%;
-            height: 270px;
-            left: 26%;
+            width: 52%;
+            height: 310px;
+            left: 24%;
             top: 0;
             z-index: 3;
             background-image: url('2.jpg');
         }
         .ladies .card-right-top {
-            width: 28%;
-            height: 155px;
-            right: 2%;
+            width: 32%;
+            height: 180px;
+            right: 0%;
             top: 10px;
             z-index: 1;
             background-image: url('3.jpg');
         }
         .ladies .card-left-top {
-            width: 30%;
-            height: 175px;
-            left: 2%;
+            width: 34%;
+            height: 200px;
+            left: 0%;
             top: 40px;
             z-index: 2;
             background-image: url('1.jpg');
         }
         .ladies .card-right-bottom {
-            width: 38%;
-            height: 185px;
-            right: 5%;
-            top: 195px;
+            width: 42%;
+            height: 210px;
+            right: 3%;
+            top: 210px;
             z-index: 2;
             background-image: url('4.jpg');
         }
         .ladies .card-left-bottom {
-            width: 36%;
-            height: 185px;
-            left: 8%;
-            top: 225px;
+            width: 40%;
+            height: 210px;
+            left: 6%;
+            top: 245px;
             z-index: 4;
             background-image: url('5.jpg');
         }
@@ -641,46 +674,46 @@
         .gents {
             position: relative;
             height: auto;
-            min-height: 480px;
+            min-height: 520px;
             margin-bottom: 20px;
         }
         .gents .card-main {
-            width: 46%;
-            height: 250px;
-            left: 27%;
+            width: 50%;
+            height: 290px;
+            left: 25%;
             top: 0;
             z-index: 3;
             background-image: url('6.jpg');
         }
         .gents .card-left-top {
-            width: 26%;
-            height: 135px;
-            left: 2%;
-            top: 45px;
+            width: 30%;
+            height: 160px;
+            left: 0%;
+            top: 50px;
             z-index: 1;
             background-image: url('7.jpg');
         }
         .gents .card-right-top {
-            width: 32%;
-            height: 165px;
-            right: 2%;
+            width: 36%;
+            height: 190px;
+            right: 0%;
             top: 5px;
             z-index: 2;
             background-image: url('8.jpg');
         }
         .gents .card-right-bottom {
-            width: 34%;
-            height: 175px;
-            right: 5%;
-            top: 195px;
+            width: 38%;
+            height: 200px;
+            right: 3%;
+            top: 210px;
             z-index: 2;
             background-image: url('9.jpg');
         }
         .gents .card-left-bottom {
-            width: 38%;
-            height: 185px;
-            left: 5%;
-            top: 215px;
+            width: 42%;
+            height: 210px;
+            left: 3%;
+            top: 235px;
             z-index: 4;
             background-image: url('10.jpg');
         }
@@ -698,7 +731,7 @@
             opacity: 0;
             transition: opacity 3s cubic-bezier(0.2,0.9,0.3,1.1);
         }
-        .countdown-container.visible-block { opacity: 1; }
+        .countdown-container.visible { opacity: 1; }
         .countdown-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 34px;
@@ -709,7 +742,7 @@
             margin-bottom: 10px;
             opacity: 0;
             transform: translateY(40px);
-            transition: all 2.8s cubic-bezier(0.25,1,0.5,1) 0.8s;
+            transition: all 2.8s cubic-bezier(0.25,1,0.5,1);
         }
         .countdown-subtitle {
             font-family: 'Pinyon Script', cursive;
@@ -718,7 +751,7 @@
             margin-bottom: 35px;
             opacity: 0;
             transform: translateY(40px);
-            transition: all 2.8s cubic-bezier(0.25,1,0.5,1) 1.2s;
+            transition: all 2.8s cubic-bezier(0.25,1,0.5,1);
         }
         .countdown-divider {
             width: 1px;
@@ -726,11 +759,11 @@
             background: rgba(255,255,255,0.25);
             margin: 0 auto 50px;
             opacity: 0;
-            transition: opacity 3.5s cubic-bezier(0.2,0.9,0.3,1.1) 0.5s;
+            transition: opacity 3.5s cubic-bezier(0.2,0.9,0.3,1.1);
         }
-        .countdown-container.visible-block .countdown-title,
-        .countdown-container.visible-block .countdown-subtitle { opacity: 1; transform: translateY(0); }
-        .countdown-container.visible-block .countdown-divider { opacity: 1; }
+        .countdown-container.visible .countdown-title,
+        .countdown-container.visible .countdown-subtitle { opacity: 1; transform: translateY(0); }
+        .countdown-container.visible .countdown-divider { opacity: 1; }
         .timer-grid {
             display: flex;
             justify-content: center;
@@ -745,20 +778,25 @@
             color: #fff;
             margin-bottom: 10px;
             opacity: 0;
+            transform: translateX(-60px);
+            transition: all 3s cubic-bezier(0.25,1,0.5,1);
         }
-        .slide-from-left { transform: translateX(-60px); transition: all 3s cubic-bezier(0.25,1,0.5,1) 2s; }
-        .slide-from-right { transform: translateX(60px); transition: all 3s cubic-bezier(0.25,1,0.5,1) 2.4s; }
-        .countdown-container.visible-block .slide-from-left,
-        .countdown-container.visible-block .slide-from-right { opacity: 1; transform: translateX(0); }
+        .timer-number.slide-from-right {
+            transform: translateX(60px);
+        }
+        .countdown-container.visible .timer-number {
+            opacity: 1;
+            transform: translateX(0);
+        }
         .timer-label {
             font-family: 'Montserrat', sans-serif;
             font-size: 10px;
             font-weight: 300;
             color: rgba(255,255,255,0.4);
             opacity: 0;
-            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1) 1.5s;
+            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
         }
-        .countdown-container.visible-block .timer-label { opacity: 1; }
+        .countdown-container.visible .timer-label { opacity: 1; }
 
         /* ----- СЕДЬМОЙ ЭКРАН: ПОЖЕЛАНИЯ ----- */
         .wishes-screen {
@@ -770,14 +808,20 @@
             margin: 0 auto;
             text-align: center;
         }
-        .wishes-anim-slide-up, .wishes-anim-fade-in, .wishes-anim-slide-left, .wishes-anim-slide-right {
+        .wishes-anim-slide-up, .wishes-anim-fade-in, .wishes-anim-slide-left, .wishes-anim-slide-right,
+        .slider-wrapper, .wishes-vertical-divider, .pre-closing, .couple-photo-container {
             opacity: 0;
+            transform: translateY(45px);
             transition: all 4s cubic-bezier(0.215,0.61,0.355,1);
         }
-        .wishes-anim-slide-up { transform: translateY(45px); }
         .wishes-anim-slide-left { transform: translateX(-60px); }
         .wishes-anim-slide-right { transform: translateX(60px); }
-        .wishes-container .visible { opacity: 1; transform: translate(0) !important; }
+        .wishes-anim-fade-in { transform: none; }
+        
+        .wishes-container .visible {
+            opacity: 1;
+            transform: translate(0) !important;
+        }
         .wishes-main-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 38px;
@@ -847,19 +891,29 @@
             line-height: 1.6;
             margin-bottom: 40px;
         }
-        .wishes-names-block { margin-bottom: 50px; }
-        .name-item-wishes {
+        .wishes-names-block {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            margin-bottom: 50px;
+            width: 100%;
+            padding: 0 20px;
+        }
+        .name-item-wishes-left {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
+            font-size: 56px;
             font-weight: 300;
             text-transform: uppercase;
             letter-spacing: 5px;
+            text-align: left;
         }
-        .ampersand-wishes {
+        .name-item-wishes-right {
             font-family: 'Cormorant Garamond', serif;
-            font-style: italic;
-            font-size: 34px;
-            margin: 10px 0;
+            font-size: 56px;
+            font-weight: 300;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-align: right;
         }
         .couple-photo-container {
             width: 100%;
@@ -875,49 +929,42 @@
         }
 
         @keyframes rotate3d { 100% { transform: rotateY(360deg); } }
-        @keyframes photoReveal { 100% { opacity: 1; transform: scale(1); } }
-        @keyframes floatUp { 100% { opacity: 0.96; transform: translateY(0); } }
-        @keyframes slideInLeft { 100% { opacity: 1; transform: translateX(0); } }
-        @keyframes slideInRight { 100% { opacity: 1; transform: translateX(0); } }
-        @keyframes slideUpFade { to { opacity: 1; transform: translateY(0); } }
-        @keyframes slideLeftFade { to { opacity: 1; transform: translateX(0); } }
-        @keyframes slideRightFade { to { opacity: 1; transform: translateX(0); } }
-        @keyframes fadeInVerySlow { from { opacity: 0; } to { opacity: 1; } }
 
         @media (max-width: 768px) {
             .name-line-left, .name-line-right { font-size: 3.8rem; }
-            .name-item-wishes { font-size: 36px; }
-            .ladies, .gents { min-height: 420px; }
+            .name-item-wishes-left, .name-item-wishes-right { font-size: 42px; }
+            .ladies, .gents { min-height: 460px; }
+            .ladies .card-main { height: 270px; }
+            .gents .card-main { height: 250px; }
         }
         @media (max-width: 580px) {
             .name-line-left, .name-line-right { font-size: 3rem; }
-            .name-item-wishes { font-size: 30px; letter-spacing: 3px; }
-            .ladies, .gents { min-height: 380px; }
-            .ladies .card-main, .gents .card-main { height: 220px; }
+            .name-item-wishes-left, .name-item-wishes-right { font-size: 32px; letter-spacing: 3px; }
+            .ladies, .gents { min-height: 420px; }
+            .ladies .card-main, .gents .card-main { height: 230px; }
             .section-subtitle { font-size: 28px; }
         }
         @media (max-width: 480px) {
             .name-line-left, .name-line-right { font-size: 2.5rem; }
+            .name-item-wishes-left, .name-item-wishes-right { font-size: 26px; }
             .timer-number { font-size: 30px; }
             .countdown-title { font-size: 26px; }
             .wishes-main-title { font-size: 30px; }
-            .name-item-wishes { font-size: 26px; }
-            .ampersand-wishes { font-size: 24px; }
-            .ladies, .gents { min-height: 340px; }
-            .ladies .card-main, .gents .card-main { height: 180px; }
+            .ladies, .gents { min-height: 380px; }
+            .ladies .card-main, .gents .card-main { height: 200px; }
         }
     </style>
 </head>
 <body>
     <!-- ПЕРВЫЙ ЭКРАН -->
-    <div class="first-screen">
-        <div class="photo-bg"></div>
+    <div class="first-screen" id="firstScreen">
+        <div class="photo-bg" id="photoBg"></div>
         <div class="soft-veil"></div>
         <div class="content-first">
-            <div class="wedding-script">Wedding</div>
+            <div class="wedding-script" id="weddingScript">Wedding</div>
             <div class="names-block-first">
-                <div class="name-line-left">Виталий</div>
-                <div class="name-line-right">Алёна</div>
+                <div class="name-line-left" id="vitaliyName">Виталий</div>
+                <div class="name-line-right" id="alyonaName">Алёна</div>
             </div>
             <div class="scroll-down" id="scrollBtn">
                 Листайте вниз
@@ -992,8 +1039,8 @@
     <!-- ПЯТЫЙ ЭКРАН: ДРЕСС-КОД -->
     <div class="dresscode-screen" id="dresscodeScreen">
         <div class="dresscode-container">
-            <h1 class="dresscode-main-title animate-up">Дресс-код</h1>
-            <p class="dresscode-description animate-up">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
+            <h1 class="dresscode-main-title">Дресс-код</h1>
+            <p class="dresscode-description">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
             <div class="color-palette">
                 <span class="color-circle color-1"></span>
                 <span class="color-circle color-2"></span>
@@ -1056,110 +1103,155 @@
             <div class="wishes-vertical-divider wishes-anim-fade-in"></div>
             <div class="pre-closing wishes-anim-slide-up">До скорой встречи!<br>С любовью</div>
             <div class="wishes-names-block">
-                <span class="name-item-wishes wishes-anim-slide-left">Виталий</span>
-                <span class="ampersand-wishes wishes-anim-slide-left">&</span>
-                <span class="name-item-wishes wishes-anim-slide-right">Алена</span>
+                <span class="name-item-wishes-left wishes-anim-slide-left">Виталий</span>
+                <span class="name-item-wishes-right wishes-anim-slide-right">Алёна</span>
             </div>
             <div class="couple-photo-container wishes-anim-slide-up"><div class="couple-photo"></div></div>
         </div>
     </div>
 
     <script>
-        // Скролл по кнопке
-        document.getElementById('scrollBtn')?.addEventListener('click', () => {
-            document.getElementById('secondScreen')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        });
-
+        // Функция для проверки видимости элементов
+        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -5% 0px' };
+        
+        // Observer для первого экрана
+        const firstScreen = document.getElementById('firstScreen');
+        const photoBg = document.getElementById('photoBg');
+        const weddingScript = document.getElementById('weddingScript');
+        const vitaliyName = document.getElementById('vitaliyName');
+        const alyonaName = document.getElementById('alyonaName');
+        const scrollBtn = document.getElementById('scrollBtn');
+        
+        const firstObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => photoBg?.classList.add('visible-bg'), 100);
+                    setTimeout(() => weddingScript?.classList.add('visible'), 800);
+                    setTimeout(() => vitaliyName?.classList.add('visible'), 1400);
+                    setTimeout(() => alyonaName?.classList.add('visible'), 1800);
+                    setTimeout(() => scrollBtn?.classList.add('visible'), 2400);
+                    firstObserver.disconnect();
+                }
+            });
+        }, { threshold: 0.1 });
+        firstObserver.observe(firstScreen);
+        
         // Observer для второго экрана
         const secondContainer = document.querySelector('.invitation-container');
         if (secondContainer) {
-            const obs = new IntersectionObserver((e) => {
-                e.forEach(entry => {
-                    if (entry.isIntersecting && !secondContainer.dataset.animated) {
-                        secondContainer.dataset.animated = 'true';
-                        setTimeout(() => document.querySelector('.title')?.classList.add('animated-in'), 150);
-                        setTimeout(() => document.querySelector('.save-the-date')?.classList.add('animated-in'), 300);
-                        setTimeout(() => document.querySelector('.description-text')?.classList.add('animated-in'), 450);
-                        setTimeout(() => document.querySelector('.line-top')?.classList.add('animated-in'), 700);
-                        setTimeout(() => document.querySelectorAll('.date-number').forEach(el => el.classList.add('animated-in')), 1000);
-                        setTimeout(() => document.querySelectorAll('.dot').forEach(el => el.classList.add('animated-in')), 1400);
-                        setTimeout(() => document.querySelector('.line-bottom')?.classList.add('animated-in'), 1700);
-                        setTimeout(() => document.querySelector('.calendar-section')?.classList.add('animated-in'), 2300);
+            const elements = [
+                '.title', '.save-the-date', '.description-text',
+                '.line-top', '.line-bottom',
+                '.date-number', '.dot', '.calendar-section'
+            ];
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        elements.forEach(sel => {
+                            document.querySelectorAll(sel).forEach(el => el.classList.add('visible'));
+                        });
+                        obs.disconnect();
                     }
                 });
-            }, { threshold: 0.2 });
+            }, observerOptions);
             obs.observe(secondContainer);
         }
-
-        // Observer для места проведения
-        const locBlock = document.querySelector('.location-section');
-        if (locBlock) {
-            const obs = new IntersectionObserver((e) => {
-                e.forEach(entry => {
-                    if (entry.isIntersecting && !locBlock.dataset.revealed) {
-                        locBlock.dataset.revealed = 'true';
-                        locBlock.classList.add('animated-bg');
-                        setTimeout(() => document.querySelector('.icon-scene')?.classList.add('animated-in'), 300);
-                        setTimeout(() => document.querySelector('.location-title')?.classList.add('animated-in'), 700);
-                        setTimeout(() => document.querySelector('.save-the-place')?.classList.add('animated-in'), 1100);
-                        setTimeout(() => document.querySelector('.venue-name')?.classList.add('animated-in'), 1500);
-                        setTimeout(() => document.querySelector('.btn-maps')?.classList.add('animated-in'), 1900);
-                    }
-                });
-            }, { threshold: 0.45 });
-            obs.observe(locBlock);
-        }
-
-        // Observer для тайминга
-        const timelineScreen = document.getElementById('timelineScreen');
-        if (timelineScreen) {
-            const obs = new IntersectionObserver((e) => {
-                e.forEach(entry => {
-                    if (entry.isIntersecting && !timelineScreen.classList.contains('animated')) {
-                        timelineScreen.classList.add('animated');
-                        document.querySelectorAll('.timeline-item').forEach((item, i) => {
-                            item.style.transitionDelay = `${[0.3, 0.9, 1.5, 2.1][i] || 0.3}s`;
-                        });
+        
+        // Observer для третьего экрана
+        const locationSection = document.getElementById('locationSection');
+        if (locationSection) {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        locationSection.classList.add('visible');
+                        obs.disconnect();
                     }
                 });
             }, { threshold: 0.3 });
-            obs.observe(timelineScreen);
+            obs.observe(locationSection);
         }
-
-        // Observer для дресс-кода
-        const dressScreen = document.getElementById('dresscodeScreen');
-        if (dressScreen) {
-            const textObs = new IntersectionObserver((e) => {
-                e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); textObs.unobserve(entry.target); } });
-            }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-            ['.dresscode-main-title', '.dresscode-description', '.section-subtitle.animate-left', '.section-subtitle.animate-right'].forEach(s => {
-                const el = document.querySelector(s);
-                if (el) textObs.observe(el);
-            });
-            const cardObs = new IntersectionObserver((e) => {
-                e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible-card'); cardObs.unobserve(entry.target); } });
-            }, { rootMargin: '0px 0px -15% 0px', threshold: 0.1 });
-            document.querySelectorAll('.look-card').forEach(c => cardObs.observe(c));
+        
+        // Observer для четвертого экрана (тайминг)
+        const timelineContainer = document.querySelector('.timeline-container');
+        if (timelineContainer) {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        timelineContainer.classList.add('visible');
+                        const items = document.querySelectorAll('.timeline-item');
+                        const delays = [0.2, 0.6, 1.0, 1.4];
+                        items.forEach((item, i) => {
+                            setTimeout(() => item.classList.add('visible'), delays[i] * 1000);
+                        });
+                        obs.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+            obs.observe(timelineContainer);
         }
-
-        // Observer для таймера
-        const countdownCont = document.querySelector('.countdown-container');
-        if (countdownCont) {
-            const obs = new IntersectionObserver((e) => {
-                e.forEach(entry => { if (entry.isIntersecting && !countdownCont.classList.contains('visible-block')) { countdownCont.classList.add('visible-block'); } });
+        
+        // Observer для пятого экрана (дресс-код)
+        const dresscodeContainer = document.querySelector('.dresscode-container');
+        if (dresscodeContainer) {
+            const dressElements = [
+                '.dresscode-main-title', '.dresscode-description', '.color-palette',
+                '.vertical-divider', '.section-subtitle', '.moodboard', '.look-card'
+            ];
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        dressElements.forEach(sel => {
+                            document.querySelectorAll(sel).forEach((el, idx) => {
+                                setTimeout(() => el.classList.add('visible'), idx * 80);
+                            });
+                        });
+                        obs.disconnect();
+                    }
+                });
             }, { threshold: 0.2 });
-            obs.observe(countdownCont);
+            obs.observe(dresscodeContainer);
         }
-
-        // Observer для пожеланий
-        const wishesCont = document.querySelector('.wishes-container');
-        if (wishesCont) {
-            const obs = new IntersectionObserver((e) => {
-                e.forEach(entry => { if (entry.isIntersecting) { entry.target.classList.add('visible'); } });
-            }, { rootMargin: '0px 0px -15% 0px', threshold: 0.05 });
-            document.querySelectorAll('.wishes-anim-slide-up, .wishes-anim-fade-in, .wishes-anim-slide-left, .wishes-anim-slide-right').forEach(el => obs.observe(el));
+        
+        // Observer для шестого экрана (таймер)
+        const countdownContainer = document.querySelector('.countdown-container');
+        if (countdownContainer) {
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        countdownContainer.classList.add('visible');
+                        obs.disconnect();
+                    }
+                });
+            }, { threshold: 0.2 });
+            obs.observe(countdownContainer);
         }
-
+        
+        // Observer для седьмого экрана (пожелания)
+        const wishesContainer = document.querySelector('.wishes-container');
+        if (wishesContainer) {
+            const wishElements = [
+                '.wishes-anim-slide-up', '.wishes-anim-fade-in', 
+                '.wishes-anim-slide-left', '.wishes-anim-slide-right',
+                '.slider-wrapper', '.wishes-vertical-divider', '.pre-closing', '.couple-photo-container'
+            ];
+            const obs = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        wishElements.forEach(sel => {
+                            document.querySelectorAll(sel).forEach(el => el.classList.add('visible'));
+                        });
+                        obs.disconnect();
+                    }
+                });
+            }, { threshold: 0.2 });
+            obs.observe(wishesContainer);
+        }
+        
+        // Скролл по кнопке
+        scrollBtn?.addEventListener('click', () => {
+            document.getElementById('secondScreen')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+        
         // Слайдер
         const slides = document.querySelectorAll('.slide-text');
         const prev = document.getElementById('prevBtn');
@@ -1170,7 +1262,7 @@
             prev.onclick = () => show(current - 1);
             next.onclick = () => show(current + 1);
         }
-
+        
         // Таймер
         const target = new Date(2026, 6, 3, 15, 0, 0).getTime();
         const updateTimer = () => {
