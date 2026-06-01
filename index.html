@@ -48,7 +48,7 @@
             z-index: 1;
         }
         
-        .photo-bg.visible-bg {
+        .photo-bg.visible {
             opacity: 1;
         }
 
@@ -94,47 +94,63 @@
         .names-block-first {
             position: absolute;
             bottom: 130px;
-            left: 0;
-            right: 0;
+            left: 8%;
             z-index: 10;
-            display: flex;
-            justify-content: space-between;
-            align-items: baseline;
-            padding: 0 8%;
-            width: 100%;
         }
 
-        .name-line-left {
+        .names-lines {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.1rem;
+        }
+
+        .name-line {
             font-family: 'Cormorant Garamond', serif;
             font-weight: 300;
-            font-size: 5rem;
+            font-size: 4.2rem;
             letter-spacing: 5px;
             text-transform: uppercase;
             color: #fffcf5;
             text-shadow: 0 2px 14px rgba(0,0,0,0.45);
             opacity: 0;
             line-height: 1.2;
-            transform: translateX(-60px);
+        }
+
+        .vitaliy-name {
+            transform: translateX(-35px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
 
-        .name-line-right {
-            font-family: 'Cormorant Garamond', serif;
-            font-weight: 300;
-            font-size: 5rem;
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            color: #fffcf5;
-            text-shadow: 0 2px 14px rgba(0,0,0,0.45);
-            opacity: 0;
-            line-height: 1.2;
-            transform: translateX(60px);
+        .alyona-name {
+            margin-left: 128px;
+            transform: translateX(35px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
         
-        .name-line-left.visible, .name-line-right.visible {
+        .vitaliy-name.visible, .alyona-name.visible {
             opacity: 1;
             transform: translateX(0);
+        }
+
+        .delicate-ampersand {
+            position: absolute;
+            left: -10px;
+            top: 50%;
+            transform: translateY(-50%) scale(0.9);
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 7rem;
+            font-style: italic;
+            color: rgba(255,245,235,0.12);
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0;
+            transition: opacity 3s ease;
+        }
+        
+        .delicate-ampersand.visible {
+            opacity: 0.28;
+            transform: translateY(-50%) scale(1);
         }
 
         .scroll-down {
@@ -351,7 +367,7 @@
             transform: translateY(0);
         }
 
-        /* ----- ТРЕТИЙ ЭКРАН: МЕСТО ПРОВЕДЕНИЯ ----- */
+        /* ----- ТРЕТИЙ ЭКРАН: МЕСТО ПРОВЕДЕНИЯ (ОБЫЧНЫЙ ШРИФТ, ЖИРНЫЙ ТОЛЬКО КОСТЕЛ) ----- */
         .location-section {
             position: relative;
             max-width: 450px;
@@ -413,6 +429,7 @@
         .location-title {
             font-family: 'Bodoni Moda', 'Playfair Display', serif;
             font-size: clamp(1.6rem, 4vw, 2rem);
+            font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -423,6 +440,7 @@
         .save-the-place {
             font-family: 'Pinyon Script', cursive;
             font-size: clamp(2rem, 5vw, 2.5rem);
+            font-weight: 400;
             margin-bottom: 20px;
             display: inline-block;
             transform: skewX(-3deg) translateX(60px);
@@ -431,12 +449,13 @@
         }
         .venue-name {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem;
+            font-size: 1.1rem;
             font-weight: 800;
             line-height: 1.4;
             max-width: 260px;
             margin: 0 auto 30px;
             text-transform: uppercase;
+            letter-spacing: 1px;
             opacity: 0;
             transform: translateY(55px);
             transition: opacity 2.8s cubic-bezier(0.16,1,0.3,1.1), transform 2.8s cubic-bezier(0.16,1,0.3,1.1);
@@ -465,7 +484,7 @@
         .location-section.visible .venue-name { opacity: 1; transform: translateY(0); }
         .location-section.visible .btn-maps { opacity: 1; transform: translateY(0); }
 
-        /* ----- ЧЕТВЕРТЫЙ ЭКРАН: ТАЙМИНГ ----- */
+        /* ----- ЧЕТВЕРТЫЙ ЭКРАН: ТАЙМИНГ (ЗАГОЛОВОК СНИЗУ ВВЕРХ, ЛИНИИ СТАТИЧНЫ) ----- */
         .timeline-screen {
             background: #fff;
             padding: 50px 20px 60px;
@@ -476,7 +495,7 @@
             text-align: center;
             opacity: 0;
             transform: translateY(30px);
-            transition: opacity 1.8s cubic-bezier(0.2,0.9,0.3,1.1), transform 1.8s cubic-bezier(0.2,0.9,0.3,1.1);
+            transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
         .timeline-container.visible {
             opacity: 1;
@@ -506,10 +525,12 @@
         .timeline-item {
             margin: 30px 0;
             opacity: 0;
-            transform: translateX(-40px);
-            transition: opacity 0.6s cubic-bezier(0.2,0.9,0.3,1.1), transform 0.6s cubic-bezier(0.2,0.9,0.3,1.1);
+            transition: opacity 0.8s cubic-bezier(0.2,0.9,0.3,1.1), transform 0.8s cubic-bezier(0.2,0.9,0.3,1.1);
         }
-        .timeline-item.timeline-slide-right {
+        .timeline-item.slide-left {
+            transform: translateX(-40px);
+        }
+        .timeline-item.slide-right {
             transform: translateX(40px);
         }
         .timeline-item.visible {
@@ -931,27 +952,26 @@
         @keyframes rotate3d { 100% { transform: rotateY(360deg); } }
 
         @media (max-width: 768px) {
-            .name-line-left, .name-line-right { font-size: 3.8rem; }
+            .name-line { font-size: 3.4rem; }
+            .alyona-name { margin-left: 104px; }
             .name-item-wishes-left, .name-item-wishes-right { font-size: 42px; }
             .ladies, .gents { min-height: 460px; }
-            .ladies .card-main { height: 270px; }
-            .gents .card-main { height: 250px; }
         }
         @media (max-width: 580px) {
-            .name-line-left, .name-line-right { font-size: 3rem; }
+            .name-line { font-size: 2.8rem; }
+            .alyona-name { margin-left: 86px; }
             .name-item-wishes-left, .name-item-wishes-right { font-size: 32px; letter-spacing: 3px; }
             .ladies, .gents { min-height: 420px; }
-            .ladies .card-main, .gents .card-main { height: 230px; }
             .section-subtitle { font-size: 28px; }
         }
         @media (max-width: 480px) {
-            .name-line-left, .name-line-right { font-size: 2.5rem; }
+            .name-line { font-size: 2.4rem; }
+            .alyona-name { margin-left: 74px; }
             .name-item-wishes-left, .name-item-wishes-right { font-size: 26px; }
             .timer-number { font-size: 30px; }
             .countdown-title { font-size: 26px; }
             .wishes-main-title { font-size: 30px; }
             .ladies, .gents { min-height: 380px; }
-            .ladies .card-main, .gents .card-main { height: 200px; }
         }
     </style>
 </head>
@@ -963,8 +983,11 @@
         <div class="content-first">
             <div class="wedding-script" id="weddingScript">Wedding</div>
             <div class="names-block-first">
-                <div class="name-line-left" id="vitaliyName">Виталий</div>
-                <div class="name-line-right" id="alyonaName">Алёна</div>
+                <div class="names-lines">
+                    <div class="name-line vitaliy-name" id="vitaliyName">Виталий</div>
+                    <div class="name-line alyona-name" id="alyonaName">Алёна</div>
+                </div>
+                <div class="delicate-ampersand" id="ampersand">&</div>
             </div>
             <div class="scroll-down" id="scrollBtn">
                 Листайте вниз
@@ -1020,17 +1043,17 @@
         </div>
     </div>
 
-    <!-- ЧЕТВЕРТЫЙ ЭКРАН: ТАЙМИНГ -->
+    <!-- ЧЕТВЕРТЫЙ ЭКРАН: ТАЙМИНГ (ЗАГОЛОВОК СНИЗУ ВВЕРХ, ДВА СЛЕВА, ДВА СПРАВА) -->
     <div class="timeline-screen" id="timelineScreen">
         <div class="timeline-container">
             <h2 class="timeline-main-title">Тайминг</h2>
             <div class="timeline-subtitle">Of the day</div>
             <div class="timeline-middle-line"></div>
             <div class="timeline-list">
-                <div class="timeline-item timeline-slide-left"><div class="time">15:00</div><div class="timeline-desc">Церемония венчания</div></div>
-                <div class="timeline-item timeline-slide-left"><div class="time">16:30</div><div class="timeline-desc">Сбор гостей в живописном "River Hall". Фуршет</div></div>
-                <div class="timeline-item timeline-slide-right"><div class="time">17:00</div><div class="timeline-desc">Банкет в "River Hall"</div></div>
-                <div class="timeline-item timeline-slide-right"><div class="time">23:00</div><div class="timeline-desc">Завершение вечера</div></div>
+                <div class="timeline-item slide-left"><div class="time">15:00</div><div class="timeline-desc">Церемония венчания</div></div>
+                <div class="timeline-item slide-left"><div class="time">16:30</div><div class="timeline-desc">Сбор гостей в живописном "River Hall". Фуршет</div></div>
+                <div class="timeline-item slide-right"><div class="time">17:00</div><div class="timeline-desc">Банкет в "River Hall"</div></div>
+                <div class="timeline-item slide-right"><div class="time">23:00</div><div class="timeline-desc">Завершение вечера</div></div>
             </div>
             <div class="timeline-bottom-line"></div>
         </div>
@@ -1111,25 +1134,24 @@
     </div>
 
     <script>
-        // Функция для проверки видимости элементов
-        const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -5% 0px' };
-        
-        // Observer для первого экрана
+        // Функция для проверки видимости элементов первого экрана
         const firstScreen = document.getElementById('firstScreen');
         const photoBg = document.getElementById('photoBg');
         const weddingScript = document.getElementById('weddingScript');
         const vitaliyName = document.getElementById('vitaliyName');
         const alyonaName = document.getElementById('alyonaName');
+        const ampersand = document.getElementById('ampersand');
         const scrollBtn = document.getElementById('scrollBtn');
         
         const firstObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
-                    setTimeout(() => photoBg?.classList.add('visible-bg'), 100);
+                    setTimeout(() => photoBg?.classList.add('visible'), 100);
                     setTimeout(() => weddingScript?.classList.add('visible'), 800);
                     setTimeout(() => vitaliyName?.classList.add('visible'), 1400);
                     setTimeout(() => alyonaName?.classList.add('visible'), 1800);
-                    setTimeout(() => scrollBtn?.classList.add('visible'), 2400);
+                    setTimeout(() => ampersand?.classList.add('visible'), 2200);
+                    setTimeout(() => scrollBtn?.classList.add('visible'), 2600);
                     firstObserver.disconnect();
                 }
             });
@@ -1139,21 +1161,25 @@
         // Observer для второго экрана
         const secondContainer = document.querySelector('.invitation-container');
         if (secondContainer) {
-            const elements = [
-                '.title', '.save-the-date', '.description-text',
-                '.line-top', '.line-bottom',
-                '.date-number', '.dot', '.calendar-section'
-            ];
             const obs = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        elements.forEach(sel => {
-                            document.querySelectorAll(sel).forEach(el => el.classList.add('visible'));
-                        });
+                        document.querySelector('.title')?.classList.add('visible');
+                        setTimeout(() => document.querySelector('.save-the-date')?.classList.add('visible'), 200);
+                        setTimeout(() => document.querySelector('.description-text')?.classList.add('visible'), 400);
+                        setTimeout(() => document.querySelector('.line-top')?.classList.add('visible'), 600);
+                        setTimeout(() => {
+                            document.querySelectorAll('.date-number').forEach(el => el.classList.add('visible'));
+                        }, 900);
+                        setTimeout(() => {
+                            document.querySelectorAll('.dot').forEach(el => el.classList.add('visible'));
+                        }, 1200);
+                        setTimeout(() => document.querySelector('.line-bottom')?.classList.add('visible'), 1500);
+                        setTimeout(() => document.querySelector('.calendar-section')?.classList.add('visible'), 2000);
                         obs.disconnect();
                     }
                 });
-            }, observerOptions);
+            }, { threshold: 0.2 });
             obs.observe(secondContainer);
         }
         
@@ -1263,7 +1289,7 @@
             next.onclick = () => show(current + 1);
         }
         
-        // Таймер
+        // Таймер обратного отсчета
         const target = new Date(2026, 6, 3, 15, 0, 0).getTime();
         const updateTimer = () => {
             const diff = target - new Date().getTime();
