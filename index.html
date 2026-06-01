@@ -581,7 +581,7 @@
         /* Класс visible запускает анимацию */
         .visible.animate-up {
             transform: translateY(30px);
-            animation: slideUpFade 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: slideUpFade 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
         
         .dresscode-main-title {
@@ -625,6 +625,13 @@
         .color-3 { background-color: #eae1d8; }
         .color-4 { background-color: #b5b5b5; }
 
+        .separator-line {
+            width: 1px;
+            height: 80px;
+            background-color: #b5b5b5;
+            margin: 0 auto 35px auto;
+        }
+
         .section-subtitle {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
@@ -637,12 +644,12 @@
 
         .visible.animate-left {
             transform: translateX(-40px);
-            animation: slideLeftFade 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: slideLeftFade 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .visible.animate-right {
             transform: translateX(40px);
-            animation: slideRightFade 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: slideRightFade 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         .moodboard {
@@ -666,7 +673,7 @@
         }
         
         .look-card.visible-card {
-            animation: fadeInVerySlow 2.5s cubic-bezier(0.25, 1, 0.5, 1) forwards;
+            animation: fadeInVerySlow 2s cubic-bezier(0.25, 1, 0.5, 1) forwards;
         }
 
         /* LADIES */
@@ -711,7 +718,13 @@
             background-image: url('5.jpg');
         }
 
-        /* GENTS */
+        /* GENTS - отдельный блок без наложения */
+        .gents {
+            margin-top: 80px;
+            position: relative;
+            width: 100%;
+            height: 480px;
+        }
         .gents .card-left-bottom {
             width: 40%;
             height: 220px;
@@ -1066,22 +1079,43 @@
         @keyframes slideRightFade { to { opacity: 1; transform: translateX(0); } }
         @keyframes fadeInVerySlow { from { opacity: 0; } to { opacity: 1; } }
 
+        /* Адаптивность */
         @media (max-width: 768px) {
             .name-line { font-size: 3.4rem; }
             .alyona-name { margin-left: 104px; }
-            .moodboard { height: 420px; }
+            .moodboard, .gents { height: 420px; }
+            .ladies .card-main { height: 260px; width: 50%; left: 25%; }
+            .ladies .card-left-top, .ladies .card-right-top { height: 160px; width: 30%; }
+            .ladies .card-left-bottom, .ladies .card-right-bottom { height: 180px; width: 36%; }
+            .gents .card-main { height: 260px; width: 48%; left: 26%; }
+            .gents .card-left-top, .gents .card-right-top { height: 140px; }
+            .gents .card-left-bottom, .gents .card-right-bottom { height: 180px; }
         }
         @media (max-width: 580px) {
             .name-line { font-size: 2.8rem; }
             .alyona-name { margin-left: 86px; }
-            .moodboard { height: 380px; }
+            .moodboard, .gents { height: 380px; }
+            .ladies .card-main { height: 220px; }
+            .ladies .card-left-top, .ladies .card-right-top { height: 140px; width: 32%; }
+            .ladies .card-left-bottom, .ladies .card-right-bottom { height: 150px; width: 38%; }
+            .gents .card-main { height: 220px; }
+            .gents .card-left-top, .gents .card-right-top { height: 120px; }
+            .gents .card-left-bottom, .gents .card-right-bottom { height: 150px; }
+            .gents { margin-top: 60px; }
         }
         @media (max-width: 480px) {
             .name-line { font-size: 2.4rem; }
             .alyona-name { margin-left: 74px; }
             .timer-number { font-size: 34px; }
             .countdown-title { font-size: 28px; }
-            .moodboard { height: 350px; }
+            .moodboard, .gents { height: 350px; }
+            .ladies .card-main { height: 190px; }
+            .ladies .card-left-top, .ladies .card-right-top { height: 120px; top: 30px; }
+            .ladies .card-left-bottom, .ladies .card-right-bottom { height: 130px; top: 170px; }
+            .gents .card-main { height: 190px; }
+            .gents .card-left-top, .gents .card-right-top { height: 100px; }
+            .gents .card-left-bottom, .gents .card-right-bottom { height: 130px; top: 180px; }
+            .gents { margin-top: 50px; }
         }
     </style>
 </head>
@@ -1180,6 +1214,7 @@
                 <span class="color-circle color-3"></span>
                 <span class="color-circle color-4"></span>
             </div>
+            <div class="separator-line"></div>
             <div class="section-subtitle animate-left">Ladies</div>
             <div class="moodboard ladies">
                 <div class="look-card card-left-top"></div>
@@ -1188,6 +1223,7 @@
                 <div class="look-card card-right-bottom"></div>
                 <div class="look-card card-left-bottom"></div>
             </div>
+            <div class="separator-line" style="margin-top: 40px;"></div>
             <div class="section-subtitle animate-right">Gents</div>
             <div class="moodboard gents">
                 <div class="look-card card-main"></div>
