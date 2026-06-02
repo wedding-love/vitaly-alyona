@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -107,7 +106,7 @@
         }
 
         .name-line {
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Cormorant Garamond', serif;  /* мягкий, изящный */
             font-weight: 300;
             font-size: 4.2rem;
             letter-spacing: 5px;
@@ -209,9 +208,9 @@
         }
 
         .title {
-            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;  /* как дресс-код */
+            font-weight: 300;
             font-size: clamp(2rem, 4.5vw, 2.5rem);
-            font-weight: 400;
             letter-spacing: 2px;
             line-height: 1.2;
             color: #1a1a1a;
@@ -389,7 +388,7 @@
             transform: translateY(0);
         }
 
-        /* ----- ТРЕТИЙ ЭКРАН: ЛОКАЦИЯ (ЧЁТКИЙ ФОН) ----- */
+        /* ----- ТРЕТИЙ ЭКРАН: ЛОКАЦИЯ ----- */
         .location-section {
             position: relative;
             max-width: 450px;
@@ -413,7 +412,6 @@
             background-image: url('локация.JPG');
             background-size: cover;
             background-position: center;
-            /* Убран filter: blur и grayscale */
             opacity: 0;
             transition: opacity 2.5s cubic-bezier(0.2,0.9,0.4,1) 0.3s;
             z-index: 1;
@@ -444,9 +442,9 @@
         }
 
         .location-title {
-            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
             font-size: clamp(1.6rem, 4vw, 2rem);
-            font-weight: 400;
             text-transform: uppercase;
             letter-spacing: 2px;
             margin-bottom: 10px;
@@ -550,9 +548,9 @@
         }
 
         .timeline-main-title {
-            font-family: 'Bodoni Moda', 'Playfair Display', serif;
-            font-size: clamp(1.8rem, 4.5vw, 2.2rem);
+            font-family: 'Cormorant Garamond', serif;
             font-weight: 300;
+            font-size: clamp(1.8rem, 4.5vw, 2.2rem);
             text-transform: uppercase;
             letter-spacing: 6px;
             margin-bottom: 8px;
@@ -663,8 +661,8 @@
 
         .dresscode-main-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 42px;
             font-weight: 300;
+            font-size: 42px;
             text-transform: uppercase;
             letter-spacing: 3px;
             line-height: 1.2;
@@ -673,6 +671,7 @@
         }
 
         .dresscode-description {
+            font-family: 'Montserrat', sans-serif;
             font-size: 12px;
             font-weight: 300;
             line-height: 1.7;
@@ -770,8 +769,8 @@
 
         .countdown-title {
             font-family: 'Cormorant Garamond', serif;
-            font-size: 38px;
             font-weight: 300;
+            font-size: 38px;
             text-transform: uppercase;
             letter-spacing: 4px;
             line-height: 1.3;
@@ -853,11 +852,19 @@
         }
         .couple-photo-container.visible { opacity: 1; transform: translateY(0); }
 
-        .wishes-main-title { font-family: 'Cormorant Garamond', serif; font-size: 42px; font-weight: 300; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; }
+        .wishes-main-title {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
         .wishes-handwritten-subtitle { font-family: 'Pinyon Script', cursive; font-size: 34px; margin-bottom: 35px; letter-spacing: 1px; }
         .slider-wrapper { position: relative; display: flex; align-items: center; justify-content: center; min-height: 120px; margin-bottom: 50px; padding: 0 40px; }
         .slider-content { width: 100%; position: relative; }
         .slide-text {
+            font-family: 'Montserrat', sans-serif;
             font-size: 12px; font-weight: 300; line-height: 1.8; color: #555555; letter-spacing: 0.3px;
             position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
             opacity: 0; visibility: hidden; transition: opacity 1.2s ease, visibility 1.2s ease;
@@ -870,9 +877,17 @@
         .slider-arrow svg { width: 24px; height: 16px; fill: none; stroke: #121212; stroke-width: 1px; }
 
         .wishes-vertical-divider { width: 1px; height: 90px; background-color: #b5b5b5; margin: 0 auto 45px auto; }
-        .pre-closing { font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; letter-spacing: 0.5px; margin-bottom: 45px; }
+        .pre-closing { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; letter-spacing: 0.5px; margin-bottom: 45px; }
         .wishes-names-block { display: flex; flex-direction: column; align-items: center; margin-bottom: 55px; width: 100%; }
-        .name-item { font-family: 'Cormorant Garamond', serif; font-size: 46px; font-weight: 300; text-transform: uppercase; letter-spacing: 5px; line-height: 1.1; color: #121212; }
+        .name-item {
+            font-family: 'Cormorant Garamond', serif;
+            font-weight: 300;
+            font-size: 46px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            line-height: 1.1;
+            color: #121212;
+        }
         .ampersand-item { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 38px; font-weight: 400; color: #121212; margin: 12px 0; }
         .couple-photo { width: 100%; height: auto; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; }
 
@@ -1119,7 +1134,7 @@
                     if (entry.isIntersecting) {
                         setTimeout(() => {
                             entry.target.classList.add('visible-card');
-                        }, i * 150); // поочерёдная задержка
+                        }, i * 150);
                         cardObserver.unobserve(entry.target);
                     }
                 });
