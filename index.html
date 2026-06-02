@@ -4,9 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Приглашение на свадьбу | Виталий & Алёна</title>
-    <!-- Noto Sans: тонкий 100 для имён, 300 для заголовков -->
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;700;800&family=Parisienne&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
+    <!-- Подключаем резервные шрифты (Quicksand, Montserrat, Pinyon Script) -->
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;700;800&family=Parisienne&family=Pinyon+Script&display=swap" rel="stylesheet">
+    
     <style>
+        /* ===== ПОДКЛЮЧЕНИЕ ЛОКАЛЬНОГО ШРИФТА LIGHTHAUS ===== */
+        @font-face {
+            font-family: 'Lighthaus';
+            src: url('Lighthaus.otf') format('opentype');
+            font-weight: 300;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Lighthaus';
+            src: url('Lighthaus.otf') format('opentype');
+            font-weight: 400;
+            font-style: normal;
+            font-display: swap;
+        }
+        
+        @font-face {
+            font-family: 'Lighthaus';
+            src: url('Lighthaus.otf') format('opentype');
+            font-weight: 500;
+            font-style: normal;
+            font-display: swap;
+        }
+        /* ================================================= */
+
         * {
             margin: 0;
             padding: 0;
@@ -106,10 +134,10 @@
             gap: 0.1rem;
         }
 
-        /* ИМЕНА — максимально тонкие (weight: 100) */
+        /* ИМЕНА — LIGHTHAUS (плавный, мягкий, округлый) */
         .name-line {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 100;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 300;
             font-size: 4.2rem;
             letter-spacing: 5px;
             text-transform: uppercase;
@@ -196,7 +224,7 @@
             height: 11px;
         }
 
-        /* ----- ВТОРОЙ ЭКРАН (ЗАГОЛОВКИ — weight 300) ----- */
+        /* ----- ВТОРОЙ ЭКРАН (ЗАГОЛОВКИ LIGHTHAUS) ----- */
         .second-screen {
             width: 100%;
             background: #fff;
@@ -210,8 +238,8 @@
         }
 
         .title {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 300;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
             font-size: clamp(2rem, 4.5vw, 2.5rem);
             letter-spacing: 2px;
             line-height: 1.2;
@@ -390,7 +418,7 @@
             transform: translateY(0);
         }
 
-        /* ----- ЛОКАЦИЯ (заголовок weight 300) ----- */
+        /* ----- ЛОКАЦИЯ ----- */
         .location-section {
             position: relative;
             max-width: 450px;
@@ -438,8 +466,8 @@
         }
 
         .location-title {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 300;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
             font-size: clamp(1.6rem, 4vw, 2rem);
             text-transform: uppercase;
             letter-spacing: 2px;
@@ -501,7 +529,7 @@
         .location-section.visible .venue-name { opacity: 1; transform: translateY(0); }
         .location-section.visible .btn-maps { opacity: 1; transform: translateY(0); }
 
-        /* ----- ТАЙМИНГ (заголовок weight 300) ----- */
+        /* ----- ТАЙМИНГ ----- */
         .timeline-screen {
             background: #fff;
             padding: 50px 20px 60px;
@@ -522,8 +550,8 @@
         }
 
         .timeline-main-title {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 300;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
             font-size: clamp(1.8rem, 4.5vw, 2.2rem);
             text-transform: uppercase;
             letter-spacing: 6px;
@@ -571,7 +599,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (Ladies / Gents — рукописным Pinyon Script, как фразы We are waiting) ----- */
+        /* ----- ДРЕСС-КОД ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -586,8 +614,8 @@
         }
 
         .dresscode-main-title {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 300;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
             font-size: 42px;
             text-transform: uppercase;
             letter-spacing: 3px;
@@ -610,7 +638,6 @@
             transform: translateY(40px);
             transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
         }
-        /* КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: Ladies и Gents — шрифт Pinyon Script (как We are waiting) */
         .section-subtitle {
             font-family: 'Pinyon Script', cursive;
             font-weight: 400;
@@ -671,7 +698,7 @@
         .gents .card-left-top { width: 28%; height: 155px; left: -4%; top: 65px; z-index: 1; background-image: url('7.jpg'); }
         .gents .card-right-top { width: 34%; height: 200px; right: -6%; top: -10px; z-index: 4; background-image: url('8.jpg'); }
 
-        /* ----- ТАЙМЕР (заголовок weight 300) ----- */
+        /* ----- ТАЙМЕР ----- */
         .countdown-screen {
             background: #000000;
             padding: 75px 16px 85px 16px;
@@ -687,8 +714,8 @@
         }
         .countdown-dark-block.visible-block { opacity: 1; transform: translateY(0); }
         .countdown-title {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 300;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
             font-size: 38px;
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -747,7 +774,7 @@
         }
         .countdown-dark-block.visible-block .timer-label { opacity: 1; }
 
-        /* ----- ПОЖЕЛАНИЯ (заголовок weight 300, имена тонкие 100) ----- */
+        /* ----- ПОЖЕЛАНИЯ ----- */
         .wishes-screen { background: #ffffff; padding: 60px 20px 80px; }
         .wishes-container { max-width: 450px; margin: 0 auto; text-align: center; }
         .anim-slide-up, .anim-fade-in, .anim-slide-left, .anim-slide-right {
@@ -760,8 +787,8 @@
         .anim-fade-in { transform: none; }
         .anim-slide-up.visible, .anim-fade-in.visible, .anim-slide-left.visible, .anim-slide-right.visible { opacity: 1; transform: translate(0) !important; }
         .wishes-main-title {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 300;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
             font-size: 42px;
             text-transform: uppercase;
             letter-spacing: 4px;
@@ -785,8 +812,8 @@
         .pre-closing { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; margin-bottom: 45px; }
         .wishes-names-block { display: flex; flex-direction: column; align-items: center; margin-bottom: 55px; }
         .name-item {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 100;
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 300;
             font-size: 46px;
             text-transform: uppercase;
             letter-spacing: 5px;
@@ -889,7 +916,6 @@
         <h1 class="dresscode-main-title" id="dresscodeMainTitle">Дресс-код</h1>
         <p class="dresscode-description" id="dresscodeDescription">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
         <div class="color-palette"><span class="color-circle color-1"></span><span class="color-circle color-2"></span><span class="color-circle color-3"></span><span class="color-circle color-4"></span></div>
-        <!-- Ladies и Gents теперь шрифтом Pinyon Script, как We are waiting -->
         <div class="section-subtitle animate-left" id="ladiesSubtitle">Ladies</div>
         <div class="moodboard ladies"><div class="look-card card-left-top"></div><div class="look-card card-main"></div><div class="look-card card-right-top"></div><div class="look-card card-right-bottom"></div><div class="look-card card-left-bottom"></div></div>
         <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
