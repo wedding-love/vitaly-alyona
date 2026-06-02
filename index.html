@@ -75,7 +75,6 @@
             padding: 2rem;
         }
 
-        /* WEDDING – поднят выше и уменьшен */
         .wedding-script {
             font-family: 'Parisienne', cursive;
             font-size: 3.2rem;
@@ -135,7 +134,6 @@
             transform: translateX(0);
         }
 
-        /* АМПЕРСАНД – сразу под Виталий, увеличен */
         .delicate-ampersand {
             position: absolute;
             left: -5px;
@@ -390,7 +388,7 @@
             transform: translateY(0);
         }
 
-        /* ----- ТРЕТИЙ ЭКРАН: ЛОКАЦИЯ (ЧИСТО ЧЁРНЫЙ ЗНАЧОК) ----- */
+        /* ----- ТРЕТИЙ ЭКРАН: ЛОКАЦИЯ (ЧЁРНЫЙ ЗНАЧОК) ----- */
         .location-section {
             position: relative;
             max-width: 450px;
@@ -618,7 +616,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД ----- */
+        /* ----- ДРЕСС-КОД (БЕЗ ЛИНИИ МЕЖДУ LADIES И GENTS) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -635,25 +633,21 @@
         .dresscode-main-title,
         .dresscode-description,
         .section-subtitle,
-        .look-card,
-        .animate-up,
-        .animate-left,
-        .animate-right {
+        .look-card {
             opacity: 0;
             transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
         }
 
-        .animate-up,
         .dresscode-main-title,
         .dresscode-description {
             transform: translateY(40px);
         }
 
-        .animate-left {
+        .section-subtitle.animate-left {
             transform: translateX(-40px);
         }
 
-        .animate-right {
+        .section-subtitle.animate-right {
             transform: translateX(40px);
         }
 
@@ -738,18 +732,7 @@
             margin-bottom: 0;
         }
 
-        .dresscode-divider {
-            width: 1px;
-            height: 70px;
-            background: #d4cfc9;
-            margin: 0 auto 50px;
-            opacity: 0;
-            transition: opacity 2s ease 1s;
-        }
-
-        .dresscode-divider.visible {
-            opacity: 1;
-        }
+        /* Убран dresscode-divider, так как линия между таймингом и дресс-кодом не нужна */
 
         .look-card {
             position: absolute;
@@ -1026,6 +1009,21 @@
             transform: translate(0) !important;
         }
 
+        /* Финальное фото – своя анимация снизу вверх */
+        .couple-photo-container {
+            width: 100%;
+            padding: 0 10px;
+            box-sizing: border-box;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+        }
+
+        .couple-photo-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
         .wishes-main-title {
             font-family: 'Cormorant Garamond', serif;
             font-size: 42px;
@@ -1155,12 +1153,6 @@
             font-weight: 400;
             color: #121212;
             margin: 12px 0;
-        }
-
-        .couple-photo-container {
-            width: 100%;
-            padding: 0 10px;
-            box-sizing: border-box;
         }
 
         .couple-photo {
@@ -1319,22 +1311,22 @@
 
 <div class="dresscode-screen" id="dresscodeScreen">
     <div class="dresscode-container">
-        <h1 class="dresscode-main-title animate-up">Дресс-код</h1>
-        <p class="dresscode-description animate-up">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
+        <h1 class="dresscode-main-title" id="dresscodeMainTitle">Дресс-код</h1>
+        <p class="dresscode-description" id="dresscodeDescription">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
         <div class="color-palette">
             <span class="color-circle color-1"></span><span class="color-circle color-2"></span><span class="color-circle color-3"></span><span class="color-circle color-4"></span>
         </div>
-        <div class="section-subtitle animate-left">Ladies</div>
-        <div class="moodboard ladies">
+        <div class="section-subtitle animate-left" id="ladiesSubtitle">Ladies</div>
+        <div class="moodboard ladies" id="ladiesMoodboard">
             <div class="look-card card-left-top"></div>
             <div class="look-card card-main"></div>
             <div class="look-card card-right-top"></div>
             <div class="look-card card-right-bottom"></div>
             <div class="look-card card-left-bottom"></div>
         </div>
-        <div class="dresscode-divider" id="dresscodeDivider"></div>
-        <div class="section-subtitle animate-right">Gents</div>
-        <div class="moodboard gents">
+        <!-- Убран dresscode-divider -->
+        <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
+        <div class="moodboard gents" id="gentsMoodboard">
             <div class="look-card card-left-bottom"></div>
             <div class="look-card card-right-bottom"></div>
             <div class="look-card card-main"></div>
@@ -1373,11 +1365,11 @@
         <div class="wishes-vertical-divider anim-fade-in"></div>
         <div class="pre-closing anim-slide-up">До скорой встречи!<br>С любовью</div>
         <div class="wishes-names-block">
-            <span class="name-item anim-slide-left">Виталий</span>
-            <span class="ampersand-item anim-slide-left">&</span>
-            <span class="name-item anim-slide-right">Алена</span>
+            <span class="name-item anim-slide-left" id="vitaliyWishes">Виталий</span>
+            <span class="ampersand-item anim-slide-left" id="ampersandWishes">&</span>
+            <span class="name-item anim-slide-right" id="alyonaWishes">Алена</span>
         </div>
-        <div class="couple-photo-container anim-slide-up">
+        <div class="couple-photo-container" id="finalPhoto">
             <div class="couple-photo"></div>
         </div>
     </div>
@@ -1433,7 +1425,7 @@
             }, { threshold: 0.3 }).observe(locSec);
         }
 
-        // Тайминг (анимация при видимости)
+        // Тайминг
         const timeline = document.querySelector('.timeline-container');
         if (timeline) {
             new IntersectionObserver((entries) => {
@@ -1449,35 +1441,39 @@
             }, { threshold: 0.5, rootMargin: "0px 0px -5% 0px" }).observe(timeline);
         }
 
-        // Дресс-код – единый запуск при 50% видимости секции
-        const dressScreen = document.getElementById('dresscodeScreen');
-        if (dressScreen) {
-            new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        // Заголовок и описание
-                        document.querySelector('.dresscode-main-title')?.classList.add('visible');
-                        document.querySelector('.dresscode-description')?.classList.add('visible');
-                        // Ladies
-                        setTimeout(() => {
-                            document.querySelector('.section-subtitle.animate-left')?.classList.add('visible');
-                        }, 100);
-                        // Карточки ladies
-                        document.querySelectorAll('.ladies .look-card').forEach(c => c.classList.add('visible-card'));
-                        // Разделитель
-                        setTimeout(() => {
-                            document.getElementById('dresscodeDivider')?.classList.add('visible');
-                        }, 200);
-                        // Gents
-                        setTimeout(() => {
-                            document.querySelector('.section-subtitle.animate-right')?.classList.add('visible');
-                        }, 300);
-                        document.querySelectorAll('.gents .look-card').forEach(c => c.classList.add('visible-card'));
-                        observer.disconnect();
-                    }
-                });
-            }, { threshold: 0.5 }).observe(dressScreen);
-        }
+        // Дресс-код – индивидуальные обсерверы
+        const dressMainTitle = document.getElementById('dresscodeMainTitle');
+        const dressDesc = document.getElementById('dresscodeDescription');
+        const ladiesSub = document.getElementById('ladiesSubtitle');
+        const gentsSub = document.getElementById('gentsSubtitle');
+        const ladiesCards = document.querySelectorAll('.ladies .look-card');
+        const gentsCards = document.querySelectorAll('.gents .look-card');
+
+        const textObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                    textObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.25, rootMargin: "0px" });
+
+        if (dressMainTitle) textObserver.observe(dressMainTitle);
+        if (dressDesc) textObserver.observe(dressDesc);
+        if (ladiesSub) textObserver.observe(ladiesSub);
+        if (gentsSub) textObserver.observe(gentsSub);
+
+        const cardObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible-card');
+                    cardObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.3, rootMargin: "0px" });
+
+        ladiesCards.forEach(card => cardObserver.observe(card));
+        gentsCards.forEach(card => cardObserver.observe(card));
 
         // Таймер
         const countBlock = document.querySelector('.countdown-dark-block');
@@ -1492,10 +1488,10 @@
             }, { threshold: 0.3, rootMargin: "0px 0px -10% 0px" }).observe(countBlock);
         }
 
-        // Пожелания – раздельная активация для имён и фото
+        // Пожелания – раздельная активация
         const wishesContainer = document.querySelector('.wishes-container');
         if (wishesContainer) {
-            // Верхние элементы (заголовки, слайдер, разделитель) появляются при 30% контейнера
+            // Верхние элементы (без фото)
             const topObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1507,7 +1503,7 @@
             }, { threshold: 0.3, rootMargin: "0px 0px -5% 0px" });
             topObserver.observe(wishesContainer);
 
-            // Виталий и & (слева) – появляются, когда видны сами
+            // Виталий и & слева
             const leftElements = document.querySelectorAll('.anim-slide-left');
             if (leftElements.length) {
                 const leftObserver = new IntersectionObserver((entries) => {
@@ -1518,10 +1514,10 @@
                         }
                     });
                 }, { threshold: 0.6 });
-                leftObserver.observe(leftElements[0].parentNode); // наблюдаем родительский блок
+                leftObserver.observe(document.querySelector('.wishes-names-block'));
             }
 
-            // Алёна (справа)
+            // Алёна справа
             const rightElement = document.querySelector('.anim-slide-right');
             if (rightElement) {
                 const rightObserver = new IntersectionObserver((entries) => {
@@ -1535,18 +1531,18 @@
                 rightObserver.observe(rightElement);
             }
 
-            // Фото (снизу)
-            const photoContainer = document.querySelector('.couple-photo-container');
-            if (photoContainer) {
+            // Финальное фото – только когда пользователь доскроллит до него
+            const finalPhoto = document.getElementById('finalPhoto');
+            if (finalPhoto) {
                 const photoObserver = new IntersectionObserver((entries) => {
                     entries.forEach(entry => {
                         if (entry.isIntersecting) {
-                            photoContainer.classList.add('visible');
+                            finalPhoto.classList.add('visible');
                             photoObserver.disconnect();
                         }
                     });
-                }, { threshold: 0.6, rootMargin: "0px 0px -10% 0px" });
-                photoObserver.observe(photoContainer);
+                }, { threshold: 0.25 });
+                photoObserver.observe(finalPhoto);
             }
         }
 
