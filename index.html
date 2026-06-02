@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -409,7 +410,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('https://images.unsplash.com/photo-1519741497674-611481863552?q=80&w=600&auto=format&fit=crop');
+            background-image: url('локация.jpg');
             background-size: cover;
             filter: blur(4px) grayscale(30%);
             opacity: 0;
@@ -616,7 +617,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (БЕЗ ЛИНИИ МЕЖДУ LADIES И GENTS) ----- */
+        /* ----- ДРЕСС-КОД (анимация запустится только при 30% видимости) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -731,8 +732,6 @@
         .moodboard:last-child {
             margin-bottom: 0;
         }
-
-        /* Убран dresscode-divider, так как линия между таймингом и дресс-кодом не нужна */
 
         .look-card {
             position: absolute;
@@ -1009,7 +1008,6 @@
             transform: translate(0) !important;
         }
 
-        /* Финальное фото – своя анимация снизу вверх */
         .couple-photo-container {
             width: 100%;
             padding: 0 10px;
@@ -1324,7 +1322,6 @@
             <div class="look-card card-right-bottom"></div>
             <div class="look-card card-left-bottom"></div>
         </div>
-        <!-- Убран dresscode-divider -->
         <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
         <div class="moodboard gents" id="gentsMoodboard">
             <div class="look-card card-left-bottom"></div>
@@ -1441,39 +1438,24 @@
             }, { threshold: 0.5, rootMargin: "0px 0px -5% 0px" }).observe(timeline);
         }
 
-        // Дресс-код – индивидуальные обсерверы
-        const dressMainTitle = document.getElementById('dresscodeMainTitle');
-        const dressDesc = document.getElementById('dresscodeDescription');
-        const ladiesSub = document.getElementById('ladiesSubtitle');
-        const gentsSub = document.getElementById('gentsSubtitle');
-        const ladiesCards = document.querySelectorAll('.ladies .look-card');
-        const gentsCards = document.querySelectorAll('.gents .look-card');
-
-        const textObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible');
-                    textObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.25, rootMargin: "0px" });
-
-        if (dressMainTitle) textObserver.observe(dressMainTitle);
-        if (dressDesc) textObserver.observe(dressDesc);
-        if (ladiesSub) textObserver.observe(ladiesSub);
-        if (gentsSub) textObserver.observe(gentsSub);
-
-        const cardObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('visible-card');
-                    cardObserver.unobserve(entry.target);
-                }
-            });
-        }, { threshold: 0.3, rootMargin: "0px" });
-
-        ladiesCards.forEach(card => cardObserver.observe(card));
-        gentsCards.forEach(card => cardObserver.observe(card));
+        // Дресс-код – появляется только когда видно 30% секции
+        const dressScreen = document.getElementById('dresscodeScreen');
+        if (dressScreen) {
+            const dressObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        document.getElementById('dresscodeMainTitle')?.classList.add('visible');
+                        document.getElementById('dresscodeDescription')?.classList.add('visible');
+                        document.getElementById('ladiesSubtitle')?.classList.add('visible');
+                        document.getElementById('gentsSubtitle')?.classList.add('visible');
+                        document.querySelectorAll('.ladies .look-card').forEach(c => c.classList.add('visible-card'));
+                        document.querySelectorAll('.gents .look-card').forEach(c => c.classList.add('visible-card'));
+                        dressObserver.disconnect();
+                    }
+                });
+            }, { threshold: 0.3 });
+            dressObserver.observe(dressScreen);
+        }
 
         // Таймер
         const countBlock = document.querySelector('.countdown-dark-block');
@@ -1488,10 +1470,9 @@
             }, { threshold: 0.3, rootMargin: "0px 0px -10% 0px" }).observe(countBlock);
         }
 
-        // Пожелания – раздельная активация
+        // Пожелания
         const wishesContainer = document.querySelector('.wishes-container');
         if (wishesContainer) {
-            // Верхние элементы (без фото)
             const topObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
@@ -1503,7 +1484,6 @@
             }, { threshold: 0.3, rootMargin: "0px 0px -5% 0px" });
             topObserver.observe(wishesContainer);
 
-            // Виталий и & слева
             const leftElements = document.querySelectorAll('.anim-slide-left');
             if (leftElements.length) {
                 const leftObserver = new IntersectionObserver((entries) => {
@@ -1517,7 +1497,6 @@
                 leftObserver.observe(document.querySelector('.wishes-names-block'));
             }
 
-            // Алёна справа
             const rightElement = document.querySelector('.anim-slide-right');
             if (rightElement) {
                 const rightObserver = new IntersectionObserver((entries) => {
@@ -1531,7 +1510,6 @@
                 rightObserver.observe(rightElement);
             }
 
-            // Финальное фото – только когда пользователь доскроллит до него
             const finalPhoto = document.getElementById('finalPhoto');
             if (finalPhoto) {
                 const photoObserver = new IntersectionObserver((entries) => {
@@ -1546,12 +1524,11 @@
             }
         }
 
-        // Кнопка скролла
         document.getElementById('scrollBtn')?.addEventListener('click', () => {
             document.getElementById('secondScreen')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
 
-        // Слайдер пожеланий
+        // Слайдер
         const slides = document.querySelectorAll('.slide-text');
         const prevBtn = document.getElementById('prevBtn');
         const nextBtn = document.getElementById('nextBtn');
@@ -1566,7 +1543,7 @@
             nextBtn.onclick = () => showSlide(currentSlide + 1);
         }
 
-        // Таймер обратного отсчёта
+        // Таймер
         const targetDate = new Date(2026, 6, 3, 15, 0, 0).getTime();
         function updateTimer() {
             let diff = targetDate - new Date().getTime();
