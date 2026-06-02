@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Приглашение на свадьбу | Виталий & Алёна</title>
-    <!-- Noto Sans: тонкий 100 для имён, 300 для заголовков (чуть тоньше regular) -->
+    <!-- Noto Sans: тонкий 100 для имён, 300 для заголовков -->
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@100;200;300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;700;800&family=Parisienne&family=Pinyon+Script&display=swap" rel="stylesheet">
     <style>
         * {
@@ -196,7 +196,7 @@
             height: 11px;
         }
 
-        /* ----- ВТОРОЙ ЭКРАН (ЗАГОЛОВКИ — weight 300, чуть тоньше regular) ----- */
+        /* ----- ВТОРОЙ ЭКРАН (ЗАГОЛОВКИ — weight 300) ----- */
         .second-screen {
             width: 100%;
             background: #fff;
@@ -571,7 +571,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (заголовки weight 300, Ladies / Gents — курсив) ----- */
+        /* ----- ДРЕСС-КОД (Ladies / Gents — рукописным Pinyon Script, как фразы We are waiting) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -610,15 +610,14 @@
             transform: translateY(40px);
             transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
         }
+        /* КЛЮЧЕВОЕ ИЗМЕНЕНИЕ: Ladies и Gents — шрифт Pinyon Script (как We are waiting) */
         .section-subtitle {
-            font-family: 'Noto Sans', sans-serif;
-            font-weight: 300;
-            font-size: 34px;
-            font-style: italic;  /* КУРСИВ для Ladies / Gents */
+            font-family: 'Pinyon Script', cursive;
+            font-weight: 400;
+            font-size: 42px;
             color: #121212;
             margin-bottom: 35px;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
+            letter-spacing: 1px;
             opacity: 0;
             transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
         }
@@ -807,16 +806,19 @@
             .name-line { font-size: 3.4rem; }
             .alyona-name { margin-left: 104px; }
             .moodboard, .gents { height: 420px; }
+            .section-subtitle { font-size: 36px; }
         }
         @media (max-width: 580px) {
             .name-line { font-size: 2.8rem; }
             .alyona-name { margin-left: 86px; }
+            .section-subtitle { font-size: 32px; }
         }
         @media (max-width: 480px) {
             .name-line { font-size: 2.4rem; }
             .alyona-name { margin-left: 74px; }
             .timer-number { font-size: 34px; }
             .countdown-title { font-size: 28px; }
+            .section-subtitle { font-size: 28px; }
         }
     </style>
 </head>
@@ -887,6 +889,7 @@
         <h1 class="dresscode-main-title" id="dresscodeMainTitle">Дресс-код</h1>
         <p class="dresscode-description" id="dresscodeDescription">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
         <div class="color-palette"><span class="color-circle color-1"></span><span class="color-circle color-2"></span><span class="color-circle color-3"></span><span class="color-circle color-4"></span></div>
+        <!-- Ladies и Gents теперь шрифтом Pinyon Script, как We are waiting -->
         <div class="section-subtitle animate-left" id="ladiesSubtitle">Ladies</div>
         <div class="moodboard ladies"><div class="look-card card-left-top"></div><div class="look-card card-main"></div><div class="look-card card-right-top"></div><div class="look-card card-right-bottom"></div><div class="look-card card-left-bottom"></div></div>
         <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
