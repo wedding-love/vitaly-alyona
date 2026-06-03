@@ -164,7 +164,6 @@
             transform: translateX(0);
         }
 
-        /* Амперсанд — чисто серый, полупрозрачный */
         .ampersand-between {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
@@ -599,7 +598,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (ЦЕНТРАЛЬНЫЕ ФОТО ТОЧНО ПО ЦЕНТРУ ВЕРТИКАЛЬНО И ГОРИЗОНТАЛЬНО) ----- */
+        /* ----- ДРЕСС-КОД (2 слева, 1 центр, 2 справа с отступами) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -610,7 +609,6 @@
             max-width: 450px;
             margin: 0 auto;
             text-align: center;
-            position: relative;
         }
 
         .dresscode-main-title {
@@ -672,66 +670,101 @@
         .color-3 { background-color: #eae1d8; }
         .color-4 { background-color: #b5b5b5; }
 
-        .moodboard { position: relative; width: 100%; height: 520px; margin-bottom: 70px; }
-        .moodboard:last-child { margin-bottom: 0; }
+        /* Гибкая сетка 5 элементов: 2 слева, 1 центр, 2 справа */
+        .moodboard {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 70px;
+            position: relative;
+        }
+        .moodboard:last-child {
+            margin-bottom: 0;
+        }
+        
         .look-card {
-            position: absolute;
             background-size: cover;
             background-position: center;
             background-color: #f4f4f4;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
             border-radius: 18px;
             opacity: 0;
             transform: scale(0.95);
-            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+            transition: opacity 0.5s cubic-bezier(0.25, 0.8, 0.4, 1), transform 0.5s cubic-bezier(0.25, 0.8, 0.4, 1);
+            flex-shrink: 0;
         }
-        .look-card.visible-card { opacity: 1; transform: scale(1); }
+        .look-card.visible-card {
+            opacity: 1;
+            transform: scale(1);
+        }
         
-        /* Ladies - центральное фото строго по центру блока */
-        .ladies { position: relative; height: 520px; }
-        .ladies .card-main { 
-            width: 38%; 
-            height: 240px; 
-            left: 31%; 
-            top: 50%; 
-            transform: translateY(-50%);
-            z-index: 10; 
-            background-image: url('2.jpg'); 
-            border-radius: 22px; 
+        /* Общая сетка для Ladies и Gents — 2 слева, центр, 2 справа */
+        .ladies, .gents {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 10px;
         }
-        .ladies .card-right-top { width: 28%; height: 160px; right: 2%; top: 40px; z-index: 1; background-image: url('3.jpg'); border-radius: 16px; }
-        .ladies .card-left-top { width: 30%; height: 190px; left: 2%; top: 70px; z-index: 2; background-image: url('1.jpg'); border-radius: 16px; }
-        .ladies .card-right-bottom { width: 38%; height: 190px; right: 0; bottom: 30px; z-index: 3; background-image: url('4.jpg'); border-radius: 16px; }
-        .ladies .card-left-bottom { width: 36%; height: 200px; left: 8%; bottom: 50px; z-index: 4; background-image: url('5.jpg'); border-radius: 16px; }
         
-        /* Gents - центральное фото строго по центру блока */
-        .gents { margin-top: 90px; position: relative; height: 520px; }
-        .gents .card-left-bottom { width: 38%; height: 210px; left: 4%; bottom: 30px; z-index: 2; background-image: url('10.jpg'); border-radius: 16px; }
-        .gents .card-right-bottom { width: 34%; height: 200px; right: 4%; bottom: 40px; z-index: 3; background-image: url('9.jpg'); border-radius: 16px; }
-        .gents .card-main { 
-            width: 36%; 
-            height: 250px; 
-            left: 32%; 
-            top: 50%; 
-            transform: translateY(-50%);
-            z-index: 10; 
-            background-image: url('6.jpg'); 
-            border-radius: 22px; 
+        /* Все карточки имеют одинаковый базовый размер, но центр чуть крупнее */
+        .ladies .look-card, .gents .look-card {
+            width: calc(33% - 10px);
+            min-width: 100px;
+            height: 170px;
+            border-radius: 18px;
         }
-        .gents .card-left-top { width: 26%; height: 145px; left: 0%; top: 80px; z-index: 1; background-image: url('7.jpg'); border-radius: 16px; }
-        .gents .card-right-top { width: 32%; height: 190px; right: 2%; top: 10px; z-index: 4; background-image: url('8.jpg'); border-radius: 16px; }
-
-        @media (max-width: 580px) {
-            .moodboard { height: 460px; }
-            .gents { height: 460px; }
-            .ladies .card-main { width: 42%; height: 210px; left: 29%; }
-            .gents .card-main { width: 40%; height: 220px; left: 30%; }
+        
+        /* Центральное фото — чуть больше и заметнее */
+        .ladies .card-main, .gents .card-main {
+            width: calc(34% - 8px);
+            height: 210px;
         }
-        @media (max-width: 480px) {
-            .moodboard { height: 420px; margin-bottom: 50px; }
-            .gents { height: 420px; margin-top: 60px; }
-            .ladies .card-main { width: 44%; height: 190px; left: 28%; }
-            .gents .card-main { width: 42%; height: 200px; left: 29%; }
+        
+        /* Индивидуальные фоны для Ladies */
+        .ladies .card-left-top { background-image: url('1.jpg'); }
+        .ladies .card-main { background-image: url('2.jpg'); }
+        .ladies .card-right-top { background-image: url('3.jpg'); }
+        .ladies .card-right-bottom { background-image: url('4.jpg'); }
+        .ladies .card-left-bottom { background-image: url('5.jpg'); }
+        
+        /* Индивидуальные фоны для Gents */
+        .gents .card-left-bottom { background-image: url('10.jpg'); }
+        .gents .card-right-bottom { background-image: url('9.jpg'); }
+        .gents .card-main { background-image: url('6.jpg'); }
+        .gents .card-left-top { background-image: url('7.jpg'); }
+        .gents .card-right-top { background-image: url('8.jpg'); }
+        
+        /* Адаптация под мобильные: превращается в 2 колонки с центром посередине */
+        @media (max-width: 550px) {
+            .ladies, .gents {
+                gap: 12px;
+            }
+            .ladies .look-card, .gents .look-card {
+                width: calc(50% - 8px);
+                height: 150px;
+            }
+            .ladies .card-main, .gents .card-main {
+                width: calc(50% - 8px);
+                height: 180px;
+                order: -1;
+            }
+            /* Переупорядочиваем: центральное фото первым */
+            .gents {
+                display: flex;
+                flex-wrap: wrap;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .ladies .look-card, .gents .look-card {
+                height: 130px;
+            }
+            .ladies .card-main, .gents .card-main {
+                height: 160px;
+            }
         }
 
         /* ----- ТАЙМЕР ----- */
@@ -952,18 +985,18 @@
         <div class="section-subtitle animate-left" id="ladiesSubtitle">Ladies</div>
         <div class="moodboard ladies">
             <div class="look-card card-left-top"></div>
+            <div class="look-card card-left-bottom"></div>
             <div class="look-card card-main"></div>
             <div class="look-card card-right-top"></div>
             <div class="look-card card-right-bottom"></div>
-            <div class="look-card card-left-bottom"></div>
         </div>
         <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
         <div class="moodboard gents">
-            <div class="look-card card-left-bottom"></div>
-            <div class="look-card card-right-bottom"></div>
-            <div class="look-card card-main"></div>
             <div class="look-card card-left-top"></div>
+            <div class="look-card card-left-bottom"></div>
+            <div class="look-card card-main"></div>
             <div class="look-card card-right-top"></div>
+            <div class="look-card card-right-bottom"></div>
         </div>
     </div>
 </div>
@@ -1053,11 +1086,11 @@
             const cardObs = new IntersectionObserver((entries) => { 
                 entries.forEach(entry => { 
                     if(entry.isIntersecting) { 
-                        setTimeout(() => entry.target.classList.add('visible-card'), i * 100); 
+                        setTimeout(() => entry.target.classList.add('visible-card'), i * 80); 
                         cardObs.unobserve(entry.target); 
                     } 
                 }); 
-            }, { threshold: 0.3 }); 
+            }, { threshold: 0.2 }); 
             cardObs.observe(card); 
         });
         
