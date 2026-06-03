@@ -596,7 +596,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (ОТРЕГУЛИРОВАННЫЕ ПОЗИЦИИ) ----- */
+        /* ----- ДРЕСС-КОД (С КОРРЕКТИРОВКОЙ ЛЕВЫХ ФОТО У ЖЕНЩИН) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -684,7 +684,7 @@
         }
         .look-card.visible-card { opacity: 1; transform: scale(1); }
         
-        /* LADIES — центральное фото опущено вниз, левое нижнее тоже вниз */
+        /* LADIES — левое верхнее поднято на 30px вверх, левое нижнее опущено на 30px вниз */
         .ladies .card-main { 
             width: 34%; 
             height: 260px; 
@@ -707,7 +707,7 @@
             width: 31%; 
             height: 200px; 
             left: 4%; 
-            top: 75px; 
+            top: 45px; 
             z-index: 2; 
             background-image: url('1.jpg'); 
             border-radius: 18px; 
@@ -725,13 +725,13 @@
             width: 35%; 
             height: 210px; 
             left: 9%; 
-            bottom: 25px; 
+            bottom: -5px; 
             z-index: 4; 
             background-image: url('5.jpg'); 
             border-radius: 18px; 
         }
         
-        /* GENTS — левое верхнее поднято выше, центральное опущено чуть вниз */
+        /* GENTS — без изменений */
         .gents { margin-top: 90px; position: relative; width: 100%; height: 540px; }
         .gents .card-left-bottom { 
             width: 34%; 
@@ -784,16 +784,16 @@
             .gents { height: 480px; }
             .ladies .card-main { width: 38%; height: 230px; left: 31%; top: 100px; }
             .gents .card-main { width: 36%; height: 230px; left: 32%; top: 70px; }
-            .ladies .card-left-bottom { bottom: 20px; }
-            .gents .card-left-top { top: 25px; }
+            .ladies .card-left-top { top: 30px; }
+            .ladies .card-left-bottom { bottom: 0px; }
         }
         @media (max-width: 480px) {
             .moodboard { height: 440px; margin-bottom: 50px; }
             .gents { height: 440px; margin-top: 70px; }
             .ladies .card-main { width: 40%; height: 200px; left: 30%; top: 90px; }
             .gents .card-main { width: 38%; height: 200px; left: 31%; top: 60px; }
-            .ladies .card-left-bottom { bottom: 15px; }
-            .gents .card-left-top { top: 20px; }
+            .ladies .card-left-top { top: 25px; }
+            .ladies .card-left-bottom { bottom: 5px; }
         }
 
         /* ----- ТАЙМЕР ----- */
