@@ -143,15 +143,8 @@
             color: #fffcf5;
             text-shadow: 0 2px 14px rgba(0,0,0,0.45);
             opacity: 0;
-            line-height: 1.2;
+            line-height: 1.1;
             display: block;
-        }
-
-        /* Убираем & после имён */
-        .name-line.vitaliy-name::after,
-        .name-line.alyona-name::after {
-            display: none;
-            content: none;
         }
 
         .vitaliy-name {
@@ -160,9 +153,9 @@
         }
 
         .alyona-name {
-            margin-left: 128px;
             transform: translateX(35px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
+            margin-top: -12px;
         }
 
         .vitaliy-name.visible,
@@ -171,25 +164,25 @@
             transform: translateX(0);
         }
 
-        /* Отдельный амперсанд между именами - под Виталием, перед Аленой */
+        /* Отдельный амперсанд между именами - более серый */
         .ampersand-between {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-weight: 500;
-            font-size: 4.2rem;
-            color: rgba(255,245,235,0.75);
-            text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+            font-size: 4rem;
+            color: rgba(200, 190, 175, 0.55);
+            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
             line-height: 1;
             margin-left: 0;
-            margin-top: -10px;
-            margin-bottom: -10px;
+            margin-top: -8px;
+            margin-bottom: -8px;
             opacity: 0;
             transform: translateX(-35px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
 
         .ampersand-between.visible {
-            opacity: 0.9;
+            opacity: 0.7;
             transform: translateX(0);
         }
 
@@ -233,7 +226,7 @@
             height: 11px;
         }
 
-        /* ----- ВТОРОЙ ЭКРАН (ЗАГОЛОВКИ LIGHTHAUS) ----- */
+        /* ----- ВТОРОЙ ЭКРАН ----- */
         .second-screen {
             width: 100%;
             background: #fff;
@@ -385,7 +378,6 @@
             visibility: hidden;
         }
 
-        /* Сердечко с красной обводкой в календаре */
         .heart-svg {
             position: absolute;
             width: 38px;
@@ -609,7 +601,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (РАСШИРЕННЫЕ ОТСТУПЫ С БЕЛЫМИ ПОЛЯМИ МЕЖДУ ФОТО) ----- */
+        /* ----- ДРЕСС-КОД (ФОТО С ОТСТУПАМИ, БЕЗ ПЕРЕКРЫТИЙ) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -682,46 +674,115 @@
         .color-3 { background-color: #eae1d8; }
         .color-4 { background-color: #b5b5b5; }
 
-        /* Карточки фото с белыми отступами между ними (расширенные интервалы) */
-        .moodboard { position: relative; width: 100%; height: 560px; margin-bottom: 80px; }
-        .moodboard:last-child { margin-bottom: 0; }
+        /* Фото с увеличенными отступами, без наложений, скругленные углы */
+        .moodboard { 
+            position: relative; 
+            width: 100%; 
+            height: auto; 
+            min-height: 540px;
+            margin-bottom: 80px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+        }
+        
         .look-card {
-            position: absolute;
             background-size: cover;
             background-position: center;
-            background-color: #f4f4f4;
-            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
-            border-radius: 2px;
+            background-color: #f8f8f8;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+            border-radius: 12px;
             opacity: 0;
-            transform: scale(0.95);
-            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+            transform: scale(0.96);
+            transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.4, 1), transform 0.6s cubic-bezier(0.25, 0.8, 0.4, 1);
+            flex-shrink: 0;
         }
-        .look-card.visible-card { opacity: 1; transform: scale(1); }
         
-        /* Ladies - увеличенные белые отступы между карточками */
-        .ladies .card-main { width: 44%; height: 270px; left: 28%; top: 20px; z-index: 10; background-image: url('2.jpg'); }
-        .ladies .card-right-top { width: 27%; height: 155px; right: 3%; top: 50px; z-index: 1; background-image: url('3.jpg'); }
-        .ladies .card-left-top { width: 29%; height: 185px; left: 3%; top: 85px; z-index: 2; background-image: url('1.jpg'); }
-        .ladies .card-right-bottom { width: 36%; height: 185px; right: 2%; top: 270px; z-index: 3; background-image: url('4.jpg'); }
-        .ladies .card-left-bottom { width: 35%; height: 195px; left: 6%; top: 310px; z-index: 4; background-image: url('5.jpg'); }
-        
-        /* Gents - увеличенные белые отступы */
-        .gents { margin-top: 100px; position: relative; width: 100%; height: 560px; }
-        .gents .card-left-bottom { width: 37%; height: 205px; left: 5%; top: 280px; z-index: 2; background-image: url('10.jpg'); }
-        .gents .card-right-bottom { width: 33%; height: 195px; right: 5%; top: 265px; z-index: 3; background-image: url('9.jpg'); }
-        .gents .card-main { width: 43%; height: 285px; left: 29%; top: 25px; z-index: 10; background-image: url('6.jpg'); }
-        .gents .card-left-top { width: 25%; height: 140px; left: 2%; top: 95px; z-index: 1; background-image: url('7.jpg'); }
-        .gents .card-right-top { width: 31%; height: 185px; right: 3%; top: 20px; z-index: 4; background-image: url('8.jpg'); }
-
-        @media (max-width: 580px) {
-            .moodboard { height: 500px; }
-            .gents { height: 500px; }
-            .ladies .card-main { width: 46%; left: 27%; }
-            .gents .card-main { width: 46%; left: 27%; }
+        .look-card.visible-card { 
+            opacity: 1; 
+            transform: scale(1);
         }
-        @media (max-width: 480px) {
-            .moodboard { height: 460px; margin-bottom: 60px; }
-            .gents { height: 460px; margin-top: 70px; }
+        
+        /* Ladies - сетка с отступами, без перекрытий */
+        .ladies {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            position: relative;
+        }
+        
+        .ladies .look-card {
+            position: relative;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+            width: calc(33.33% - 10px);
+            min-width: 100px;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 14px;
+        }
+        
+        .ladies .card-main { width: calc(50% - 8px); height: 210px; background-image: url('2.jpg'); }
+        .ladies .card-left-top { background-image: url('1.jpg'); }
+        .ladies .card-right-top { background-image: url('3.jpg'); }
+        .ladies .card-right-bottom { background-image: url('4.jpg'); }
+        .ladies .card-left-bottom { background-image: url('5.jpg'); }
+        
+        /* Gents - аналогично, сетка с отступами */
+        .gents {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 20px;
+            position: relative;
+        }
+        
+        .gents .look-card {
+            position: relative;
+            left: auto;
+            right: auto;
+            top: auto;
+            bottom: auto;
+            width: calc(33.33% - 10px);
+            min-width: 100px;
+            height: 160px;
+            background-size: cover;
+            background-position: center;
+            border-radius: 14px;
+        }
+        
+        .gents .card-main { width: calc(50% - 8px); height: 210px; background-image: url('6.jpg'); }
+        .gents .card-left-top { background-image: url('7.jpg'); }
+        .gents .card-right-top { background-image: url('8.jpg'); }
+        .gents .card-right-bottom { background-image: url('9.jpg'); }
+        .gents .card-left-bottom { background-image: url('10.jpg'); }
+        
+        /* Адаптация для мобильных */
+        @media (max-width: 550px) {
+            .ladies .look-card, .gents .look-card {
+                width: calc(50% - 8px);
+                height: 150px;
+            }
+            .ladies .card-main, .gents .card-main {
+                width: 100%;
+                height: 200px;
+            }
+            .moodboard {
+                min-height: auto;
+                margin-bottom: 40px;
+            }
+        }
+        
+        @media (max-width: 400px) {
+            .ladies .look-card, .gents .look-card {
+                height: 130px;
+            }
         }
 
         /* ----- ТАЙМЕР ----- */
@@ -853,22 +914,22 @@
             transition: opacity 2s cubic-bezier(0.25,0.8,0.4,1), transform 2s cubic-bezier(0.25,0.8,0.4,1);
         }
         .couple-photo-container.visible { opacity: 1; transform: translateY(0); }
-        .couple-photo { width: 100%; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; }
+        .couple-photo { width: 100%; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; border-radius: 16px; }
 
         @media (max-width: 768px) {
             .name-line { font-size: 3.4rem; }
-            .alyona-name { margin-left: 104px; }
-            .ampersand-between { font-size: 3.4rem; }
+            .ampersand-between { font-size: 3.2rem; }
+            .alyona-name { margin-top: -10px; }
         }
         @media (max-width: 580px) {
             .name-line { font-size: 2.8rem; }
-            .alyona-name { margin-left: 86px; }
-            .ampersand-between { font-size: 2.8rem; margin-top: -8px; margin-bottom: -8px; }
+            .ampersand-between { font-size: 2.6rem; }
+            .alyona-name { margin-top: -8px; }
         }
         @media (max-width: 480px) {
             .name-line { font-size: 2.4rem; }
-            .alyona-name { margin-left: 74px; }
-            .ampersand-between { font-size: 2.4rem; }
+            .ampersand-between { font-size: 2.2rem; }
+            .alyona-name { margin-top: -6px; }
         }
     </style>
 </head>
@@ -940,9 +1001,21 @@
         <p class="dresscode-description" id="dresscodeDescription">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
         <div class="color-palette"><span class="color-circle color-1"></span><span class="color-circle color-2"></span><span class="color-circle color-3"></span><span class="color-circle color-4"></span></div>
         <div class="section-subtitle animate-left" id="ladiesSubtitle">Ladies</div>
-        <div class="moodboard ladies"><div class="look-card card-left-top"></div><div class="look-card card-main"></div><div class="look-card card-right-top"></div><div class="look-card card-right-bottom"></div><div class="look-card card-left-bottom"></div></div>
+        <div class="moodboard ladies">
+            <div class="look-card card-left-top"></div>
+            <div class="look-card card-main"></div>
+            <div class="look-card card-right-top"></div>
+            <div class="look-card card-right-bottom"></div>
+            <div class="look-card card-left-bottom"></div>
+        </div>
         <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
-        <div class="moodboard gents"><div class="look-card card-left-bottom"></div><div class="look-card card-right-bottom"></div><div class="look-card card-main"></div><div class="look-card card-left-top"></div><div class="look-card card-right-top"></div></div>
+        <div class="moodboard gents">
+            <div class="look-card card-left-bottom"></div>
+            <div class="look-card card-right-bottom"></div>
+            <div class="look-card card-main"></div>
+            <div class="look-card card-left-top"></div>
+            <div class="look-card card-right-top"></div>
+        </div>
     </div>
 </div>
 
@@ -1026,7 +1099,20 @@
 
         const dressScreen = document.getElementById('dresscodeScreen');
         if (dressScreen) { const drObs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { document.getElementById('dresscodeMainTitle')?.classList.add('visible'); document.getElementById('dresscodeDescription')?.classList.add('visible'); document.getElementById('ladiesSubtitle')?.classList.add('visible'); document.getElementById('gentsSubtitle')?.classList.add('visible'); drObs.disconnect(); } }); }, { threshold: 0.3 }); drObs.observe(dressScreen); }
-        document.querySelectorAll('.look-card').forEach((card,i) => { const cardObs = new IntersectionObserver((entries) => { entries.forEach(entry => { if(entry.isIntersecting) { setTimeout(() => entry.target.classList.add('visible-card'), i*120); cardObs.unobserve(entry.target); } }); }, { threshold: 0.3 }); cardObs.observe(card); });
+        
+        // Анимация карточек дресс-кода
+        document.querySelectorAll('.look-card').forEach((card,i) => { 
+            const cardObs = new IntersectionObserver((entries) => { 
+                entries.forEach(entry => { 
+                    if(entry.isIntersecting) { 
+                        setTimeout(() => entry.target.classList.add('visible-card'), i * 80); 
+                        cardObs.unobserve(entry.target); 
+                    } 
+                }); 
+            }, { threshold: 0.2 }); 
+            cardObs.observe(card); 
+        });
+        
         const countBlock = document.querySelector('.countdown-dark-block');
         if (countBlock) new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible-block'); observer.disconnect(); } }); }, { threshold: 0.3 }).observe(countBlock);
         const wishesContainer = document.querySelector('.wishes-container');
