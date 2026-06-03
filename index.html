@@ -596,7 +596,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (У МУЖЧИН ТЕПЕРЬ ТАКОЕ ЖЕ РАСПОЛОЖЕНИЕ, КАК У ЖЕНЩИН, НИЖНЕЕ ЛЕВОЕ ЕЩЁ НИЖЕ) ----- */
+        /* ----- ДРЕСС-КОД (ВЕРХНИЕ ФОТО ВВЕРХ, НИЖНИЕ ВНИЗ) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -684,12 +684,12 @@
         }
         .look-card.visible-card { opacity: 1; transform: scale(1); }
         
-        /* ОДИНАКОВОЕ РАСПОЛОЖЕНИЕ ДЛЯ LADIES И GENTS */
+        /* ОДИНАКОВОЕ РАСПОЛОЖЕНИЕ ДЛЯ LADIES И GENTS — ВЕРХНИЕ ФОТО ВВЕРХ, НИЖНИЕ ВНИЗ */
         .ladies .card-main, .gents .card-main { 
             width: 34%; 
             height: 260px; 
             left: 33%; 
-            top: 130px; 
+            top: 120px; 
             z-index: 10; 
             border-radius: 24px; 
         }
@@ -697,7 +697,7 @@
             width: 28%; 
             height: 160px; 
             right: 5%; 
-            top: 50px; 
+            top: 30px; 
             z-index: 1; 
             border-radius: 18px; 
         }
@@ -705,7 +705,7 @@
             width: 31%; 
             height: 200px; 
             left: 4%; 
-            top: 20px; 
+            top: 0px; 
             z-index: 2; 
             border-radius: 18px; 
         }
@@ -713,7 +713,7 @@
             width: 32%; 
             height: 185px; 
             right: 6%; 
-            bottom: 35px; 
+            bottom: 25px; 
             z-index: 3; 
             border-radius: 18px; 
         }
@@ -721,7 +721,7 @@
             width: 35%; 
             height: 210px; 
             left: 9%; 
-            bottom: -50px; 
+            bottom: -60px; 
             z-index: 4; 
             border-radius: 18px; 
         }
@@ -742,15 +742,17 @@
 
         @media (max-width: 580px) {
             .moodboard { height: 500px; }
-            .ladies .card-main, .gents .card-main { width: 38%; height: 230px; left: 31%; top: 110px; }
-            .ladies .card-left-top, .gents .card-left-top { top: 15px; }
-            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -40px; }
+            .ladies .card-main, .gents .card-main { width: 38%; height: 230px; left: 31%; top: 100px; }
+            .ladies .card-left-top, .gents .card-left-top { top: -5px; }
+            .ladies .card-right-top, .gents .card-right-top { top: 25px; }
+            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -50px; }
         }
         @media (max-width: 480px) {
             .moodboard { height: 460px; margin-bottom: 50px; }
-            .ladies .card-main, .gents .card-main { width: 40%; height: 200px; left: 30%; top: 100px; }
-            .ladies .card-left-top, .gents .card-left-top { top: 10px; }
-            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -35px; }
+            .ladies .card-main, .gents .card-main { width: 40%; height: 200px; left: 30%; top: 90px; }
+            .ladies .card-left-top, .gents .card-left-top { top: -10px; }
+            .ladies .card-right-top, .gents .card-right-top { top: 20px; }
+            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -45px; }
         }
 
         /* ----- ТАЙМЕР ----- */
