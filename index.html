@@ -144,18 +144,21 @@
             text-shadow: 0 2px 14px rgba(0,0,0,0.45);
             opacity: 0;
             line-height: 1.1;
-            display: block;
+            display: inline-block;
         }
 
+        /* Виталий без дополнительных сдвигов */
         .vitaliy-name {
             transform: translateX(-35px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
 
+        /* Алёна со сдвигом, чтобы начиналась под буквой "т" (примерно 4.5rem + отступ) */
         .alyona-name {
             transform: translateX(35px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
-            margin-top: -12px;
+            margin-left: 85px;
+            margin-top: -6px;
         }
 
         .vitaliy-name.visible,
@@ -170,12 +173,12 @@
             font-style: italic;
             font-weight: 500;
             font-size: 4rem;
-            color: rgba(200, 190, 175, 0.55);
+            color: rgba(180, 170, 155, 0.55);
             text-shadow: 0 1px 5px rgba(0,0,0,0.2);
             line-height: 1;
             margin-left: 0;
-            margin-top: -8px;
-            margin-bottom: -8px;
+            margin-top: -10px;
+            margin-bottom: -6px;
             opacity: 0;
             transform: translateX(-35px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
@@ -601,7 +604,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (ФОТО С ОТСТУПАМИ, БЕЗ ПЕРЕКРЫТИЙ) ----- */
+        /* ----- ДРЕСС-КОД (ПРЕЖНЕЕ РАСПОЛОЖЕНИЕ ФОТО С НАЛОЖЕНИЕМ + СКРУГЛЕННЫЕ УГЛЫ) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -674,115 +677,44 @@
         .color-3 { background-color: #eae1d8; }
         .color-4 { background-color: #b5b5b5; }
 
-        /* Фото с увеличенными отступами, без наложений, скругленные углы */
-        .moodboard { 
-            position: relative; 
-            width: 100%; 
-            height: auto; 
-            min-height: 540px;
-            margin-bottom: 80px;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 16px;
-        }
-        
+        /* Прежнее расположение фото (с наложением), добавлены скругленные углы */
+        .moodboard { position: relative; width: 100%; height: 520px; margin-bottom: 70px; }
+        .moodboard:last-child { margin-bottom: 0; }
         .look-card {
+            position: absolute;
             background-size: cover;
             background-position: center;
-            background-color: #f8f8f8;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.08);
-            border-radius: 12px;
+            background-color: #f4f4f4;
+            box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+            border-radius: 16px;
             opacity: 0;
-            transform: scale(0.96);
-            transition: opacity 0.6s cubic-bezier(0.25, 0.8, 0.4, 1), transform 0.6s cubic-bezier(0.25, 0.8, 0.4, 1);
-            flex-shrink: 0;
+            transform: scale(0.95);
+            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
         }
+        .look-card.visible-card { opacity: 1; transform: scale(1); }
         
-        .look-card.visible-card { 
-            opacity: 1; 
-            transform: scale(1);
+        /* Ladies - исходное перекрывающееся расположение */
+        .ladies .card-main { width: 46%; height: 280px; left: 27%; top: 15px; z-index: 10; background-image: url('2.jpg'); border-radius: 20px; }
+        .ladies .card-right-top { width: 28%; height: 160px; right: 2%; top: 40px; z-index: 1; background-image: url('3.jpg'); border-radius: 16px; }
+        .ladies .card-left-top { width: 30%; height: 190px; left: 2%; top: 70px; z-index: 2; background-image: url('1.jpg'); border-radius: 16px; }
+        .ladies .card-right-bottom { width: 38%; height: 190px; right: 0; top: 250px; z-index: 3; background-image: url('4.jpg'); border-radius: 16px; }
+        .ladies .card-left-bottom { width: 36%; height: 200px; left: 8%; top: 280px; z-index: 4; background-image: url('5.jpg'); border-radius: 16px; }
+        
+        /* Gents - исходное перекрывающееся расположение */
+        .gents { margin-top: 90px; position: relative; width: 100%; height: 520px; }
+        .gents .card-left-bottom { width: 38%; height: 210px; left: 4%; top: 260px; z-index: 2; background-image: url('10.jpg'); border-radius: 16px; }
+        .gents .card-right-bottom { width: 34%; height: 200px; right: 4%; top: 240px; z-index: 3; background-image: url('9.jpg'); border-radius: 16px; }
+        .gents .card-main { width: 44%; height: 290px; left: 28%; top: 20px; z-index: 10; background-image: url('6.jpg'); border-radius: 20px; }
+        .gents .card-left-top { width: 26%; height: 145px; left: 0%; top: 80px; z-index: 1; background-image: url('7.jpg'); border-radius: 16px; }
+        .gents .card-right-top { width: 32%; height: 190px; right: 2%; top: 10px; z-index: 4; background-image: url('8.jpg'); border-radius: 16px; }
+
+        @media (max-width: 580px) {
+            .moodboard { height: 460px; }
+            .gents { height: 460px; }
         }
-        
-        /* Ladies - сетка с отступами, без перекрытий */
-        .ladies {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 14px;
-            position: relative;
-        }
-        
-        .ladies .look-card {
-            position: relative;
-            left: auto;
-            right: auto;
-            top: auto;
-            bottom: auto;
-            width: calc(33.33% - 10px);
-            min-width: 100px;
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 14px;
-        }
-        
-        .ladies .card-main { width: calc(50% - 8px); height: 210px; background-image: url('2.jpg'); }
-        .ladies .card-left-top { background-image: url('1.jpg'); }
-        .ladies .card-right-top { background-image: url('3.jpg'); }
-        .ladies .card-right-bottom { background-image: url('4.jpg'); }
-        .ladies .card-left-bottom { background-image: url('5.jpg'); }
-        
-        /* Gents - аналогично, сетка с отступами */
-        .gents {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 14px;
-            margin-top: 20px;
-            position: relative;
-        }
-        
-        .gents .look-card {
-            position: relative;
-            left: auto;
-            right: auto;
-            top: auto;
-            bottom: auto;
-            width: calc(33.33% - 10px);
-            min-width: 100px;
-            height: 160px;
-            background-size: cover;
-            background-position: center;
-            border-radius: 14px;
-        }
-        
-        .gents .card-main { width: calc(50% - 8px); height: 210px; background-image: url('6.jpg'); }
-        .gents .card-left-top { background-image: url('7.jpg'); }
-        .gents .card-right-top { background-image: url('8.jpg'); }
-        .gents .card-right-bottom { background-image: url('9.jpg'); }
-        .gents .card-left-bottom { background-image: url('10.jpg'); }
-        
-        /* Адаптация для мобильных */
-        @media (max-width: 550px) {
-            .ladies .look-card, .gents .look-card {
-                width: calc(50% - 8px);
-                height: 150px;
-            }
-            .ladies .card-main, .gents .card-main {
-                width: 100%;
-                height: 200px;
-            }
-            .moodboard {
-                min-height: auto;
-                margin-bottom: 40px;
-            }
-        }
-        
-        @media (max-width: 400px) {
-            .ladies .look-card, .gents .look-card {
-                height: 130px;
-            }
+        @media (max-width: 480px) {
+            .moodboard { height: 420px; margin-bottom: 50px; }
+            .gents { height: 420px; margin-top: 60px; }
         }
 
         /* ----- ТАЙМЕР ----- */
@@ -914,22 +846,22 @@
             transition: opacity 2s cubic-bezier(0.25,0.8,0.4,1), transform 2s cubic-bezier(0.25,0.8,0.4,1);
         }
         .couple-photo-container.visible { opacity: 1; transform: translateY(0); }
-        .couple-photo { width: 100%; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; border-radius: 16px; }
+        .couple-photo { width: 100%; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; border-radius: 20px; }
 
         @media (max-width: 768px) {
             .name-line { font-size: 3.4rem; }
             .ampersand-between { font-size: 3.2rem; }
-            .alyona-name { margin-top: -10px; }
+            .alyona-name { margin-left: 70px; margin-top: -5px; }
         }
         @media (max-width: 580px) {
             .name-line { font-size: 2.8rem; }
             .ampersand-between { font-size: 2.6rem; }
-            .alyona-name { margin-top: -8px; }
+            .alyona-name { margin-left: 58px; margin-top: -5px; }
         }
         @media (max-width: 480px) {
             .name-line { font-size: 2.4rem; }
             .ampersand-between { font-size: 2.2rem; }
-            .alyona-name { margin-top: -6px; }
+            .alyona-name { margin-left: 50px; margin-top: -4px; }
         }
     </style>
 </head>
@@ -1100,16 +1032,15 @@
         const dressScreen = document.getElementById('dresscodeScreen');
         if (dressScreen) { const drObs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { document.getElementById('dresscodeMainTitle')?.classList.add('visible'); document.getElementById('dresscodeDescription')?.classList.add('visible'); document.getElementById('ladiesSubtitle')?.classList.add('visible'); document.getElementById('gentsSubtitle')?.classList.add('visible'); drObs.disconnect(); } }); }, { threshold: 0.3 }); drObs.observe(dressScreen); }
         
-        // Анимация карточек дресс-кода
         document.querySelectorAll('.look-card').forEach((card,i) => { 
             const cardObs = new IntersectionObserver((entries) => { 
                 entries.forEach(entry => { 
                     if(entry.isIntersecting) { 
-                        setTimeout(() => entry.target.classList.add('visible-card'), i * 80); 
+                        setTimeout(() => entry.target.classList.add('visible-card'), i * 100); 
                         cardObs.unobserve(entry.target); 
                     } 
                 }); 
-            }, { threshold: 0.2 }); 
+            }, { threshold: 0.3 }); 
             cardObs.observe(card); 
         });
         
