@@ -1,16 +1,16 @@
 
-    <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <title>Приглашение на свадьбу | Виталий & Алёна</title>
     
-    <!-- Подключаем резервные шрифты (Quicksand, Montserrat, Pinyon Script) -->
+    <!-- Подключаем шрифты -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;700;800&family=Parisienne&family=Pinyon+Script&display=swap" rel="stylesheet">
     
     <style>
-        /* ===== ПОДКЛЮЧЕНИЕ ЛОКАЛЬНОГО ШРИФТА LIGHTHAUS (ВСЕ ФОРМАТЫ ДЛЯ ВСЕХ БРАУЗЕРОВ) ===== */
+        /* ===== ПОДКЛЮЧЕНИЕ ЛОКАЛЬНОГО ШРИФТА LIGHTHAUS ===== */
         @font-face {
             font-family: 'Lighthaus';
             src: url('Lighthaus.woff2') format('woff2'),
@@ -132,7 +132,7 @@
             gap: 0.1rem;
         }
 
-        /* ИМЕНА — LIGHTHAUS основной, резервные Quicksand и sans-serif */
+        /* ИМЕНА — LIGHTHAUS основной */
         .name-line {
             font-family: 'Lighthaus', 'Quicksand', sans-serif;
             font-weight: 300;
@@ -143,6 +143,35 @@
             text-shadow: 0 2px 14px rgba(0,0,0,0.45);
             opacity: 0;
             line-height: 1.2;
+            position: relative;
+            display: inline-block;
+        }
+
+        /* Добавляем & значок после имени Виталий и Алёна (в конце) */
+        .name-line.vitaliy-name::after {
+            content: "&";
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 500;
+            font-size: 4rem;
+            color: rgba(255,245,235,0.7);
+            margin-left: 15px;
+            display: inline-block;
+            vertical-align: middle;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.3);
+        }
+
+        .name-line.alyona-name::after {
+            content: "&";
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 500;
+            font-size: 4rem;
+            color: rgba(255,245,235,0.7);
+            margin-left: 15px;
+            display: inline-block;
+            vertical-align: middle;
+            text-shadow: 0 1px 6px rgba(0,0,0,0.3);
         }
 
         .vitaliy-name {
@@ -162,24 +191,9 @@
             transform: translateX(0);
         }
 
+        /* Убираем старый отдельный амперсанд, так как теперь знаки в именах */
         .delicate-ampersand {
-            position: absolute;
-            left: -5px;
-            top: 52%;
-            transform: translateY(-50%) scale(0.9);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 9.5rem;
-            font-style: italic;
-            color: rgba(255,245,235,0.12);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 3s ease, transform 3s ease;
-        }
-
-        .delicate-ampersand.visible {
-            opacity: 0.28;
-            transform: translateY(-50%) scale(1);
+            display: none;
         }
 
         .scroll-down {
@@ -374,6 +388,7 @@
             visibility: hidden;
         }
 
+        /* Сердечко с красной обводкой в календаре */
         .heart-svg {
             position: absolute;
             width: 38px;
@@ -385,8 +400,8 @@
         }
 
         .heart-path {
-            stroke: #1a1a1a;
-            stroke-width: 1.1;
+            stroke: #e31b23;
+            stroke-width: 1.4;
             fill: none;
         }
 
@@ -597,7 +612,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД ----- */
+        /* ----- ДРЕСС-КОД (РАСШИРЕННЫЕ ОТСТУПЫ ДЛЯ ФОТО) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -670,31 +685,39 @@
         .color-3 { background-color: #eae1d8; }
         .color-4 { background-color: #b5b5b5; }
 
-        .moodboard { position: relative; width: 100%; height: 480px; margin-bottom: 60px; }
+        /* Увеличены отступы между карточками фото, добавлено белое пространство */
+        .moodboard { position: relative; width: 100%; height: 520px; margin-bottom: 70px; }
         .moodboard:last-child { margin-bottom: 0; }
         .look-card {
             position: absolute;
             background-size: cover;
             background-position: center;
             background-color: #f4f4f4;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.05);
             border-radius: 2px;
             opacity: 0;
             transform: scale(0.95);
             transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
         }
         .look-card.visible-card { opacity: 1; transform: scale(1); }
-        .ladies .card-main { width: 48%; height: 300px; left: 26%; top: 0; z-index: 10; background-image: url('2.jpg'); }
-        .ladies .card-right-top { width: 30%; height: 180px; right: -2%; top: 10px; z-index: 1; background-image: url('3.jpg'); }
-        .ladies .card-left-top { width: 32%; height: 200px; left: -4%; top: 50px; z-index: 2; background-image: url('1.jpg'); }
-        .ladies .card-right-bottom { width: 40%; height: 210px; right: 0; top: 210px; z-index: 3; background-image: url('4.jpg'); }
-        .ladies .card-left-bottom { width: 38%; height: 210px; left: 10%; top: 250px; z-index: 4; background-image: url('5.jpg'); }
-        .gents { margin-top: 80px; position: relative; width: 100%; height: 480px; }
-        .gents .card-left-bottom { width: 40%; height: 220px; left: 3%; top: 240px; z-index: 2; background-image: url('10.jpg'); }
-        .gents .card-right-bottom { width: 36%; height: 210px; right: 4%; top: 215px; z-index: 3; background-image: url('9.jpg'); }
-        .gents .card-main { width: 46%; height: 300px; left: 27%; top: 15px; z-index: 10; background-image: url('6.jpg'); }
-        .gents .card-left-top { width: 28%; height: 155px; left: -4%; top: 65px; z-index: 1; background-image: url('7.jpg'); }
-        .gents .card-right-top { width: 34%; height: 200px; right: -6%; top: -10px; z-index: 4; background-image: url('8.jpg'); }
+        /* Ladies - расширенные отступы вокруг фото */
+        .ladies .card-main { width: 46%; height: 280px; left: 27%; top: 15px; z-index: 10; background-image: url('2.jpg'); }
+        .ladies .card-right-top { width: 28%; height: 160px; right: 2%; top: 40px; z-index: 1; background-image: url('3.jpg'); }
+        .ladies .card-left-top { width: 30%; height: 190px; left: 2%; top: 70px; z-index: 2; background-image: url('1.jpg'); }
+        .ladies .card-right-bottom { width: 38%; height: 190px; right: 0; top: 250px; z-index: 3; background-image: url('4.jpg'); }
+        .ladies .card-left-bottom { width: 36%; height: 200px; left: 8%; top: 280px; z-index: 4; background-image: url('5.jpg'); }
+        /* Gents - аналогично больше пространства */
+        .gents { margin-top: 90px; position: relative; width: 100%; height: 520px; }
+        .gents .card-left-bottom { width: 38%; height: 210px; left: 4%; top: 260px; z-index: 2; background-image: url('10.jpg'); }
+        .gents .card-right-bottom { width: 34%; height: 200px; right: 4%; top: 240px; z-index: 3; background-image: url('9.jpg'); }
+        .gents .card-main { width: 44%; height: 290px; left: 28%; top: 20px; z-index: 10; background-image: url('6.jpg'); }
+        .gents .card-left-top { width: 26%; height: 145px; left: 0%; top: 80px; z-index: 1; background-image: url('7.jpg'); }
+        .gents .card-right-top { width: 32%; height: 190px; right: 2%; top: 10px; z-index: 4; background-image: url('8.jpg'); }
+
+        @media (max-width: 580px) {
+            .moodboard { height: 460px; }
+            .gents { height: 460px; }
+        }
 
         /* ----- ТАЙМЕР ----- */
         .countdown-screen {
@@ -830,20 +853,16 @@
         @media (max-width: 768px) {
             .name-line { font-size: 3.4rem; }
             .alyona-name { margin-left: 104px; }
-            .moodboard, .gents { height: 420px; }
-            .section-subtitle { font-size: 36px; }
         }
         @media (max-width: 580px) {
             .name-line { font-size: 2.8rem; }
             .alyona-name { margin-left: 86px; }
-            .section-subtitle { font-size: 32px; }
+            .name-line.vitaliy-name::after, .name-line.alyona-name::after { font-size: 2.8rem; margin-left: 8px; }
         }
         @media (max-width: 480px) {
             .name-line { font-size: 2.4rem; }
             .alyona-name { margin-left: 74px; }
-            .timer-number { font-size: 34px; }
-            .countdown-title { font-size: 28px; }
-            .section-subtitle { font-size: 28px; }
+            .name-line.vitaliy-name::after, .name-line.alyona-name::after { font-size: 2.4rem; margin-left: 5px; }
         }
     </style>
 </head>
@@ -858,7 +877,6 @@
                 <div class="name-line vitaliy-name" id="vitaliyName">Виталий</div>
                 <div class="name-line alyona-name" id="alyonaName">Алёна</div>
             </div>
-            <div class="delicate-ampersand" id="ampersand">&</div>
         </div>
         <div class="scroll-down" id="scrollBtn">Листайте вниз<svg class="arrow-icon-svg" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3" style="fill:none; stroke:black; stroke-width:1.2;"/></svg></div>
     </div>
@@ -901,7 +919,7 @@
         <div class="timeline-subtitle">Of the day</div>
         <div class="timeline-middle-line"></div>
         <div class="timeline-list">
-            <div class="timeline-item slide-left"><div class="time">15:00</div><div class="timeline-desc">Церемония венчания</div></div>
+            <div class="timeline-item slide-left"><div class="time">15:00</div><div class="timeline-desc">Церемония венчания «Костел пресвятого искупителя»</div></div>
             <div class="timeline-item slide-left"><div class="time">16:30</div><div class="timeline-desc">Сбор гостей в живописном "River Hall". Фуршет</div></div>
             <div class="timeline-item slide-right"><div class="time">17:00</div><div class="timeline-desc">Банкет в "River Hall"</div></div>
             <div class="timeline-item slide-right"><div class="time">23:00</div><div class="timeline-desc">Завершение вечера</div></div>
@@ -968,7 +986,6 @@
                     setTimeout(() => document.getElementById('weddingScript')?.classList.add('visible'), 800);
                     setTimeout(() => document.getElementById('vitaliyName')?.classList.add('visible'), 1400);
                     setTimeout(() => document.getElementById('alyonaName')?.classList.add('visible'), 1800);
-                    setTimeout(() => document.getElementById('ampersand')?.classList.add('visible'), 2200);
                     firstObserver.disconnect();
                 }
             });
