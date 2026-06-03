@@ -596,7 +596,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (УВЕЛИЧЕН ОТСТУП МЕЖДУ ПРАВЫМИ ФОТО У МУЖЧИН) ----- */
+        /* ----- ДРЕСС-КОД (У МУЖЧИН ТЕПЕРЬ ТАКОЕ ЖЕ РАСПОЛОЖЕНИЕ, КАК У ЖЕНЩИН, НИЖНЕЕ ЛЕВОЕ ЕЩЁ НИЖЕ) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -684,124 +684,73 @@
         }
         .look-card.visible-card { opacity: 1; transform: scale(1); }
         
-        /* LADIES */
-        .ladies .card-main { 
+        /* ОДИНАКОВОЕ РАСПОЛОЖЕНИЕ ДЛЯ LADIES И GENTS */
+        .ladies .card-main, .gents .card-main { 
             width: 34%; 
             height: 260px; 
             left: 33%; 
             top: 130px; 
             z-index: 10; 
-            background-image: url('2.jpg'); 
             border-radius: 24px; 
         }
-        .ladies .card-right-top { 
+        .ladies .card-right-top, .gents .card-right-top { 
             width: 28%; 
             height: 160px; 
             right: 5%; 
             top: 50px; 
             z-index: 1; 
-            background-image: url('3.jpg'); 
             border-radius: 18px; 
         }
-        .ladies .card-left-top { 
+        .ladies .card-left-top, .gents .card-left-top { 
             width: 31%; 
             height: 200px; 
             left: 4%; 
             top: 20px; 
             z-index: 2; 
-            background-image: url('1.jpg'); 
             border-radius: 18px; 
         }
-        .ladies .card-right-bottom { 
+        .ladies .card-right-bottom, .gents .card-right-bottom { 
             width: 32%; 
             height: 185px; 
             right: 6%; 
             bottom: 35px; 
             z-index: 3; 
-            background-image: url('4.jpg'); 
             border-radius: 18px; 
         }
-        .ladies .card-left-bottom { 
+        .ladies .card-left-bottom, .gents .card-left-bottom { 
             width: 35%; 
             height: 210px; 
             left: 9%; 
-            bottom: -30px; 
+            bottom: -50px; 
             z-index: 4; 
-            background-image: url('5.jpg'); 
             border-radius: 18px; 
         }
         
-        /* GENTS — увеличен отступ между правыми фото (верхнее выше, нижнее ниже) */
-        .gents { margin-top: 90px; position: relative; width: 100%; height: 560px; }
-        .gents .card-left-bottom { 
-            width: 34%; 
-            height: 210px; 
-            left: 6%; 
-            bottom: -15px; 
-            z-index: 2; 
-            background-image: url('10.jpg'); 
-            border-radius: 18px; 
-        }
-        .gents .card-right-bottom { 
-            width: 33%; 
-            height: 200px; 
-            right: 6%; 
-            bottom: 20px; 
-            z-index: 3; 
-            background-image: url('9.jpg'); 
-            border-radius: 18px; 
-        }
-        .gents .card-main { 
-            width: 33%; 
-            height: 260px; 
-            left: 33.5%; 
-            top: 90px; 
-            z-index: 10; 
-            background-image: url('6.jpg'); 
-            border-radius: 24px; 
-        }
-        .gents .card-left-top { 
-            width: 27%; 
-            height: 155px; 
-            left: 3%; 
-            top: 10px; 
-            z-index: 1; 
-            background-image: url('7.jpg'); 
-            border-radius: 18px; 
-        }
-        .gents .card-right-top { 
-            width: 30%; 
-            height: 185px; 
-            right: 5%; 
-            top: -5px; 
-            z-index: 4; 
-            background-image: url('8.jpg'); 
-            border-radius: 18px; 
-        }
+        /* Фоны для Ladies */
+        .ladies .card-main { background-image: url('2.jpg'); }
+        .ladies .card-right-top { background-image: url('3.jpg'); }
+        .ladies .card-left-top { background-image: url('1.jpg'); }
+        .ladies .card-right-bottom { background-image: url('4.jpg'); }
+        .ladies .card-left-bottom { background-image: url('5.jpg'); }
+        
+        /* Фоны для Gents */
+        .gents .card-main { background-image: url('6.jpg'); }
+        .gents .card-right-top { background-image: url('8.jpg'); }
+        .gents .card-left-top { background-image: url('7.jpg'); }
+        .gents .card-right-bottom { background-image: url('9.jpg'); }
+        .gents .card-left-bottom { background-image: url('10.jpg'); }
 
         @media (max-width: 580px) {
             .moodboard { height: 500px; }
-            .gents { height: 500px; }
-            .ladies .card-main { width: 38%; height: 230px; left: 31%; top: 110px; }
-            .gents .card-main { width: 36%; height: 230px; left: 32%; top: 80px; }
-            .ladies .card-left-top { top: 15px; }
-            .ladies .card-left-bottom { bottom: -20px; }
-            .gents .card-left-top { top: 5px; }
-            .gents .card-left-bottom { bottom: -10px; }
-            .gents .card-right-top { top: 0px; }
-            .gents .card-right-bottom { bottom: 15px; }
+            .ladies .card-main, .gents .card-main { width: 38%; height: 230px; left: 31%; top: 110px; }
+            .ladies .card-left-top, .gents .card-left-top { top: 15px; }
+            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -40px; }
         }
         @media (max-width: 480px) {
             .moodboard { height: 460px; margin-bottom: 50px; }
-            .gents { height: 460px; margin-top: 70px; }
-            .ladies .card-main { width: 40%; height: 200px; left: 30%; top: 100px; }
-            .gents .card-main { width: 38%; height: 200px; left: 31%; top: 70px; }
-            .ladies .card-left-top { top: 10px; }
-            .ladies .card-left-bottom { bottom: -15px; }
-            .gents .card-left-top { top: 0px; }
-            .gents .card-left-bottom { bottom: -5px; }
-            .gents .card-right-top { top: 5px; }
-            .gents .card-right-bottom { bottom: 10px; }
+            .ladies .card-main, .gents .card-main { width: 40%; height: 200px; left: 30%; top: 100px; }
+            .ladies .card-left-top, .gents .card-left-top { top: 10px; }
+            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -35px; }
         }
 
         /* ----- ТАЙМЕР ----- */
@@ -1029,11 +978,11 @@
         </div>
         <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
         <div class="moodboard gents">
-            <div class="look-card card-left-bottom"></div>
-            <div class="look-card card-right-bottom"></div>
-            <div class="look-card card-main"></div>
             <div class="look-card card-left-top"></div>
+            <div class="look-card card-main"></div>
             <div class="look-card card-right-top"></div>
+            <div class="look-card card-right-bottom"></div>
+            <div class="look-card card-left-bottom"></div>
         </div>
     </div>
 </div>
