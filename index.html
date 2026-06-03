@@ -165,14 +165,14 @@
             transform: translateX(0);
         }
 
-        /* Отдельный амперсанд — увеличенный, в размер имени */
+        /* Амперсанд — полупрозрачный серый, увеличенный */
         .ampersand-between {
             font-family: 'Cormorant Garamond', serif;
             font-style: italic;
             font-weight: 600;
             font-size: 5.2rem;
-            color: rgba(180, 170, 155, 0.6);
-            text-shadow: 0 1px 5px rgba(0,0,0,0.2);
+            color: rgba(170, 160, 145, 0.55);
+            text-shadow: 0 1px 5px rgba(0,0,0,0.15);
             line-height: 0.9;
             margin-left: 0;
             margin-top: -12px;
@@ -183,7 +183,7 @@
         }
 
         .ampersand-between.visible {
-            opacity: 0.75;
+            opacity: 0.7;
             transform: translateX(0);
         }
 
@@ -600,7 +600,7 @@
             margin: 0 auto;
         }
 
-        /* ----- ДРЕСС-КОД (ПРЕЖНЕЕ РАСПОЛОЖЕНИЕ + СКРУГЛЕННЫЕ УГЛЫ + ЦЕНТРАЛЬНЫЕ ФОТО УМЕНЬШЕНЫ) ----- */
+        /* ----- ДРЕСС-КОД (ЦЕНТРАЛЬНЫЕ ФОТО ПО ЦЕНТРУ) ----- */
         .dresscode-screen {
             background: #fff;
             padding: 40px 16px 60px;
@@ -673,7 +673,7 @@
         .color-3 { background-color: #eae1d8; }
         .color-4 { background-color: #b5b5b5; }
 
-        /* Прежнее расположение фото, скругленные углы, центральные фото уменьшены */
+        /* Прежнее расположение фото, скругленные углы, центральные фото строго по центру */
         .moodboard { position: relative; width: 100%; height: 520px; margin-bottom: 70px; }
         .moodboard:last-child { margin-bottom: 0; }
         .look-card {
@@ -689,14 +689,14 @@
         }
         .look-card.visible-card { opacity: 1; transform: scale(1); }
         
-        /* Ladies - центральное фото уменьшено */
+        /* Ladies - центральное фото по центру (left: 31% при ширине 38% = центр) */
         .ladies .card-main { width: 38%; height: 240px; left: 31%; top: 20px; z-index: 10; background-image: url('2.jpg'); border-radius: 22px; }
         .ladies .card-right-top { width: 28%; height: 160px; right: 2%; top: 40px; z-index: 1; background-image: url('3.jpg'); border-radius: 16px; }
         .ladies .card-left-top { width: 30%; height: 190px; left: 2%; top: 70px; z-index: 2; background-image: url('1.jpg'); border-radius: 16px; }
         .ladies .card-right-bottom { width: 38%; height: 190px; right: 0; top: 250px; z-index: 3; background-image: url('4.jpg'); border-radius: 16px; }
         .ladies .card-left-bottom { width: 36%; height: 200px; left: 8%; top: 280px; z-index: 4; background-image: url('5.jpg'); border-radius: 16px; }
         
-        /* Gents - центральное фото уменьшено */
+        /* Gents - центральное фото по центру (left: 32% при ширине 36% = центр) */
         .gents { margin-top: 90px; position: relative; width: 100%; height: 520px; }
         .gents .card-left-bottom { width: 38%; height: 210px; left: 4%; top: 260px; z-index: 2; background-image: url('10.jpg'); border-radius: 16px; }
         .gents .card-right-bottom { width: 34%; height: 200px; right: 4%; top: 240px; z-index: 3; background-image: url('9.jpg'); border-radius: 16px; }
@@ -707,14 +707,14 @@
         @media (max-width: 580px) {
             .moodboard { height: 460px; }
             .gents { height: 460px; }
-            .ladies .card-main { width: 40%; height: 210px; left: 30%; }
-            .gents .card-main { width: 38%; height: 220px; left: 31%; }
+            .ladies .card-main { width: 42%; height: 210px; left: 29%; }
+            .gents .card-main { width: 40%; height: 220px; left: 30%; }
         }
         @media (max-width: 480px) {
             .moodboard { height: 420px; margin-bottom: 50px; }
             .gents { height: 420px; margin-top: 60px; }
-            .ladies .card-main { width: 42%; height: 190px; left: 29%; }
-            .gents .card-main { width: 40%; height: 200px; left: 30%; }
+            .ladies .card-main { width: 44%; height: 190px; left: 28%; }
+            .gents .card-main { width: 42%; height: 200px; left: 29%; }
         }
 
         /* ----- ТАЙМЕР ----- */
