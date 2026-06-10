@@ -4,14 +4,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Приглашение на свадьбу | Илья & Алина</title>
+    <title>Приглашение на свадьбу | Виталий & Алёна</title>
     
     <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,400&family=Montserrat:wght@100;200;300;400;500;700;800&family=Parisienne&family=Pinyon+Script&display=swap" rel="stylesheet">
     
     <style>
         @font-face {
             font-family: 'Lighthaus';
-            src: url('Lighthaus.otf') format('opentype');
+            src: url('Lighthaus.woff2') format('woff2'),
+                 url('Lighthaus.woff') format('woff'),
+                 url('Lighthaus.ttf') format('truetype'),
+                 url('Lighthaus.otf') format('opentype');
             font-weight: 300;
             font-style: normal;
             font-display: swap;
@@ -19,16 +22,11 @@
         
         @font-face {
             font-family: 'Lighthaus';
-            src: url('Lighthaus.otf') format('opentype');
+            src: url('Lighthaus.woff2') format('woff2'),
+                 url('Lighthaus.woff') format('woff'),
+                 url('Lighthaus.ttf') format('truetype'),
+                 url('Lighthaus.otf') format('opentype');
             font-weight: 400;
-            font-style: normal;
-            font-display: swap;
-        }
-        
-        @font-face {
-            font-family: 'Lighthaus';
-            src: url('Lighthaus.otf') format('opentype');
-            font-weight: 500;
             font-style: normal;
             font-display: swap;
         }
@@ -47,16 +45,17 @@
 
         body {
             font-family: 'Montserrat', sans-serif;
-            background-color: #ffffff;
+            background-color: #0a0a0a;
         }
 
+        /* ----- ПЕРВЫЙ ЭКРАН ----- */
         .first-screen {
             position: relative;
             width: 100%;
             height: 100vh;
             height: 100dvh;
             overflow: hidden;
-            background-color: #ffffff;
+            background-color: #0a0a0a;
         }
 
         .photo-bg {
@@ -65,23 +64,26 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('главная.png');
+            background-image: url('молодые.jpg');
             background-size: cover;
             background-position: center 30%;
             opacity: 0;
-            filter: brightness(0.85) contrast(1.02);
+            filter: brightness(0.78) contrast(1.05);
             transition: opacity 3.5s ease-out;
             z-index: 1;
         }
 
-        .photo-bg.visible { opacity: 1; }
+        .photo-bg.visible {
+            opacity: 1;
+        }
+
         .soft-veil {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: radial-gradient(circle at 30% 40%, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.3) 100%);
+            background: radial-gradient(circle at 30% 40%, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.45) 100%);
             z-index: 2;
             pointer-events: none;
         }
@@ -101,14 +103,18 @@
         .wedding-script {
             font-family: 'Parisienne', cursive;
             font-size: 3.2rem;
-            color: rgba(255,255,255,0.95);
-            text-shadow: 0 1px 4px rgba(0,0,0,0.3);
+            color: rgba(255,248,235,0.92);
+            text-shadow: 0 1px 8px rgba(0,0,0,0.2);
             margin-top: 0.5vh;
             opacity: 0;
             transform: translateY(30px);
             transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
         }
-        .wedding-script.visible { opacity: 1; transform: translateY(0); }
+
+        .wedding-script.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
         .names-block-first {
             position: absolute;
@@ -116,37 +122,66 @@
             left: 8%;
             z-index: 10;
         }
-        .names-lines { display: flex; flex-direction: column; align-items: flex-start; gap: 0.1rem; }
+
+        .names-lines {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 0.1rem;
+            position: relative;
+        }
+
         .name-line {
             font-family: 'Lighthaus', 'Quicksand', sans-serif;
             font-weight: 300;
             font-size: 4.2rem;
             letter-spacing: 5px;
             text-transform: uppercase;
-            color: #ffffff;
-            text-shadow: 0 1px 8px rgba(0,0,0,0.4);
+            color: #fffcf5;
+            text-shadow: 0 2px 14px rgba(0,0,0,0.45);
             opacity: 0;
-            line-height: 1.2;
+            line-height: 1.1;
+            display: inline-block;
         }
-        .artem-name { transform: translateX(-35px); transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .ekaterina-name { margin-left: 128px; transform: translateX(35px); transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .artem-name.visible, .ekaterina-name.visible { opacity: 1; transform: translateX(0); }
 
-        .delicate-ampersand {
-            position: absolute;
-            left: -5px;
-            top: 52%;
-            transform: translateY(-50%) scale(0.9);
-            font-family: 'Cormorant Garamond', serif;
-            font-size: 9.5rem;
-            font-style: italic;
-            color: rgba(255,255,255,0.12);
-            pointer-events: none;
-            z-index: 0;
-            opacity: 0;
-            transition: opacity 3s ease, transform 3s ease;
+        .vitaliy-name {
+            transform: translateX(-35px);
+            transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
-        .delicate-ampersand.visible { opacity: 0.25; transform: translateY(-50%) scale(1); }
+
+        .alyona-name {
+            transform: translateX(35px);
+            transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
+            margin-left: 85px;
+            margin-top: -6px;
+        }
+
+        .vitaliy-name.visible,
+        .alyona-name.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .ampersand-between {
+            font-family: 'Cormorant Garamond', serif;
+            font-style: italic;
+            font-weight: 600;
+            font-size: 5.2rem;
+            color: rgba(136, 136, 136, 0.6);
+            text-shadow: none;
+            line-height: 0.9;
+            margin-left: 0;
+            margin-top: -12px;
+            margin-bottom: -8px;
+            opacity: 0;
+            transform: translateX(-35px);
+            transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+
+        .ampersand-between.visible {
+            opacity: 0.65;
+            transform: translateX(0);
+        }
 
         .scroll-down {
             position: absolute;
@@ -180,10 +215,25 @@
             box-shadow: 0 6px 16px rgba(0,0,0,0.2);
         }
 
-        .arrow-icon-svg { margin-left: 8px; width: 11px; height: 11px; stroke: #1a1a1a; }
+        .arrow-icon-svg {
+            margin-left: 8px;
+            width: 11px;
+            height: 11px;
+        }
 
-        .second-screen { width: 100%; background: #fff; padding: 60px 20px; }
-        .invitation-container { text-align: center; max-width: 400px; margin: 0 auto; }
+        /* ----- ВТОРОЙ ЭКРАН ----- */
+        .second-screen {
+            width: 100%;
+            background: #fff;
+            padding: 60px 20px;
+        }
+
+        .invitation-container {
+            text-align: center;
+            max-width: 400px;
+            margin: 0 auto;
+        }
+
         .title {
             font-family: 'Lighthaus', 'Quicksand', sans-serif;
             font-weight: 400;
@@ -196,6 +246,7 @@
             transform: translateY(50px);
             transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
         }
+
         .save-the-date {
             font-family: 'Pinyon Script', cursive;
             font-size: clamp(2rem, 4.5vw, 2.4rem);
@@ -205,6 +256,7 @@
             transform: translateY(50px);
             transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
         }
+
         .description-text {
             font-family: 'Montserrat', sans-serif;
             font-size: 0.85rem;
@@ -218,10 +270,35 @@
             transform: translateY(50px);
             transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
         }
-        .line { width: 1px; background: #1a1a1a; height: 60px; margin: 0 auto; opacity: 0; transform: scaleY(0); transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .line-top { margin-bottom: 30px; transform-origin: top; }
-        .line-bottom { margin-top: 30px; margin-bottom: 50px; transform-origin: bottom; }
-        .date-block { display: flex; flex-direction: row; justify-content: center; align-items: baseline; gap: 5px; }
+
+        .line {
+            width: 1px;
+            background: #1a1a1a;
+            height: 60px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: scaleY(0);
+            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+
+        .line-top {
+            margin-bottom: 30px;
+            transform-origin: top;
+        }
+
+        .line-bottom {
+            margin-top: 30px;
+            margin-bottom: 50px;
+            transform-origin: bottom;
+        }
+
+        .date-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 5px;
+        }
+
         .date-number {
             font-family: 'Bodoni Moda', 'Playfair Display', serif;
             font-size: clamp(2.8rem, 6.5vw, 3.5rem);
@@ -230,24 +307,115 @@
             line-height: 0.9;
             opacity: 0;
         }
-        .from-left-1, .from-left-2 { transform: translateX(-100px); transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .from-right { transform: translateX(100px); transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .dot { font-size: 1.3rem; color: #1a1a1a; margin: 0 3px; opacity: 0; transition: opacity 2s ease; }
-        .calendar-section { max-width: 280px; margin: 0 auto; opacity: 0; transform: translateY(120px); transition: opacity 3.5s cubic-bezier(0.16,1,0.3,1.1), transform 3.5s cubic-bezier(0.16,1,0.3,1.1); }
-        .calendar-month { font-family: 'Bodoni Moda', 'Playfair Display', serif; font-size: 1.3rem; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 20px; }
-        .calendar-grid { display: grid; grid-template-columns: repeat(7,1fr); gap: 12px 6px; }
-        .weekday { font-family: 'Montserrat', sans-serif; font-size: 0.7rem; font-weight: 400; color: #999; text-transform: lowercase; }
-        .day { font-family: 'Montserrat', sans-serif; font-size: 0.9rem; font-weight: 300; color: #1a1a1a; position: relative; height: 32px; display: flex; justify-content: center; align-items: center; }
-        .empty-day { visibility: hidden; }
-        .heart-svg { position: absolute; width: 46px; height: 46px; top: 50%; left: 50%; transform: translate(-50%,-48%); pointer-events: none; z-index: 1; }
-        .heart-path { stroke: #1a1a1a; stroke-width: 1.1; fill: none; }
-        .title.visible, .save-the-date.visible, .description-text.visible { opacity: 1; transform: translateY(0); }
-        .line.visible { opacity: 0.6; transform: scaleY(1); }
-        .date-number.visible { opacity: 1; transform: translateX(0); }
-        .dot.visible { opacity: 1; }
-        .calendar-section.visible { opacity: 1; transform: translateY(0); }
 
-        /* ЛОКАЦИЯ */
+        .from-left-1,
+        .from-left-2 {
+            transform: translateX(-100px);
+            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+
+        .from-right {
+            transform: translateX(100px);
+            transition: opacity 2.5s cubic-bezier(0.2,0.9,0.3,1.1), transform 2.5s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+
+        .dot {
+            font-size: 1.3rem;
+            color: #1a1a1a;
+            margin: 3px 0;
+            opacity: 0;
+            transition: opacity 2s ease;
+        }
+
+        .calendar-section {
+            max-width: 280px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(120px);
+            transition: opacity 3.5s cubic-bezier(0.16,1,0.3,1.1), transform 3.5s cubic-bezier(0.16,1,0.3,1.1);
+        }
+
+        .calendar-month {
+            font-family: 'Bodoni Moda', 'Playfair Display', serif;
+            font-size: 1.3rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 20px;
+        }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7,1fr);
+            gap: 12px 6px;
+        }
+
+        .weekday {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #999;
+            text-transform: lowercase;
+        }
+
+        .day {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 300;
+            color: #1a1a1a;
+            position: relative;
+            height: 28px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .empty-day {
+            visibility: hidden;
+        }
+
+        .heart-svg {
+            position: absolute;
+            width: 38px;
+            height: 38px;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%,-46%);
+            pointer-events: none;
+        }
+
+        .heart-path {
+            stroke: #e31b23;
+            stroke-width: 1.4;
+            fill: none;
+        }
+
+        .title.visible,
+        .save-the-date.visible,
+        .description-text.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .line.visible {
+            opacity: 0.6;
+            transform: scaleY(1);
+        }
+
+        .date-number.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .dot.visible {
+            opacity: 1;
+        }
+
+        .calendar-section.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ----- ЛОКАЦИЯ ----- */
         .location-section {
             position: relative;
             max-width: 450px;
@@ -256,32 +424,44 @@
             background: #fff;
             opacity: 0;
             transition: opacity 0.5s ease;
-            min-height: 420px;
         }
-        .location-section.visible { opacity: 1; }
+
+        .location-section.visible {
+            opacity: 1;
+        }
+
         .location-bg {
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('локация.png');
+            background-image: url('локация.JPG');
             background-size: cover;
             background-position: center;
             opacity: 0;
-            filter: grayscale(100%);
             transition: opacity 2.5s cubic-bezier(0.2,0.9,0.4,1) 0.3s;
             z-index: 1;
         }
+
         .location-card {
             position: relative;
             z-index: 2;
             background: #fff;
             padding: 40px 25px;
             text-align: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
         }
-        .icon-scene { width: 70px; height: 70px; margin: 0 auto 20px; opacity: 0; transform: scale(0.8); transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1); }
+
+        .icon-scene {
+            width: 70px;
+            height: 70px;
+            margin: 0 auto 20px;
+            opacity: 0;
+            transform: scale(0.8);
+            transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+
         .location-title {
             font-family: 'Lighthaus', 'Quicksand', sans-serif;
             font-weight: 400;
@@ -293,6 +473,7 @@
             transform: translateX(-60px);
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
+
         .save-the-place {
             font-family: 'Pinyon Script', cursive;
             font-size: clamp(2rem, 5vw, 2.5rem);
@@ -303,20 +484,21 @@
             opacity: 0;
             transition: opacity 2s cubic-bezier(0.2,0.9,0.3,1.1), transform 2s cubic-bezier(0.2,0.9,0.3,1.1);
         }
+
         .venue-name {
             font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            font-weight: 700;
-            line-height: 1.5;
-            max-width: 280px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            line-height: 1.4;
+            max-width: 260px;
             margin: 0 auto 30px;
             text-transform: uppercase;
-            letter-spacing: 0.5px;
+            letter-spacing: 1px;
             opacity: 0;
             transform: translateY(55px);
             transition: opacity 2.8s cubic-bezier(0.16,1,0.3,1.1), transform 2.8s cubic-bezier(0.16,1,0.3,1.1);
-            color: #1a1a1a;
         }
+
         .btn-maps {
             display: inline-block;
             background: #1a1a1a;
@@ -332,164 +514,398 @@
             transform: translateY(55px);
             transition: opacity 3s cubic-bezier(0.16,1,0.3,1.1), transform 3s cubic-bezier(0.16,1,0.3,1.1);
         }
-        .btn-maps:hover { background: #333; }
-        .location-section.visible .location-bg { opacity: 0.9; }
+
+        .btn-maps:hover {
+            background: #333;
+        }
+
+        .location-section.visible .location-bg { opacity: 1; }
         .location-section.visible .icon-scene { opacity: 1; transform: scale(1); }
         .location-section.visible .location-title { opacity: 1; transform: translateX(0); }
         .location-section.visible .save-the-place { opacity: 1; transform: skewX(-3deg) translateX(0); }
         .location-section.visible .venue-name { opacity: 1; transform: translateY(0); }
         .location-section.visible .btn-maps { opacity: 1; transform: translateY(0); }
 
-        .timeline-screen { background: #fff; padding: 50px 20px 60px; }
-        .timeline-container { max-width: 400px; margin: 0 auto; text-align: center; opacity: 0; transform: translateY(30px); transition: opacity 1.8s cubic-bezier(0.2,0.9,0.3,1.1), transform 1.8s cubic-bezier(0.2,0.9,0.3,1.1); }
-        .timeline-container.visible { opacity: 1; transform: translateY(0); }
-        .timeline-main-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-weight: 400; font-size: clamp(1.8rem, 4.5vw, 2.2rem); text-transform: uppercase; letter-spacing: 6px; margin-bottom: 8px; }
-        .timeline-subtitle { font-family: 'Pinyon Script', cursive; font-size: clamp(1.3rem, 3.5vw, 1.6rem); margin-bottom: 25px; }
-        .timeline-middle-line { width: 1px; background: #b5b5b5; margin: 0 auto 30px auto; height: 50px; }
-        .timeline-list { margin: 35px 0 25px; }
-        .timeline-item { margin: 30px 0; opacity: 0; transition: opacity 0.8s cubic-bezier(0.2,0.9,0.3,1.1), transform 0.8s cubic-bezier(0.2,0.9,0.3,1.1); }
+        /* ----- ТАЙМИНГ ----- */
+        .timeline-screen {
+            background: #fff;
+            padding: 50px 20px 60px;
+        }
+
+        .timeline-container {
+            max-width: 400px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.8s cubic-bezier(0.2,0.9,0.3,1.1), transform 1.8s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+
+        .timeline-container.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline-main-title {
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: clamp(1.8rem, 4.5vw, 2.2rem);
+            text-transform: uppercase;
+            letter-spacing: 6px;
+            margin-bottom: 8px;
+        }
+
+        .timeline-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-size: clamp(1.3rem, 3.5vw, 1.6rem);
+            margin-bottom: 25px;
+        }
+
+        .timeline-middle-line {
+            width: 1px;
+            background: #b5b5b5;
+            margin: 0 auto 30px auto;
+            height: 50px;
+        }
+
+        .timeline-list {
+            margin: 35px 0 25px;
+        }
+
+        .timeline-item {
+            margin: 30px 0;
+            opacity: 0;
+            transition: opacity 0.8s cubic-bezier(0.2,0.9,0.3,1.1), transform 0.8s cubic-bezier(0.2,0.9,0.3,1.1);
+        }
+
         .timeline-item.slide-left { transform: translateX(-40px); }
         .timeline-item.slide-right { transform: translateX(40px); }
         .timeline-item.visible { opacity: 1; transform: translateX(0); }
-        .timeline-item .time { font-family: 'Cormorant Garamond', serif; font-size: 32px; font-weight: 500; margin-bottom: 6px; }
-        .timeline-item .timeline-desc { font-family: 'Montserrat', sans-serif; font-size: 14px; font-weight: 400; color: #333; max-width: 300px; margin: 0 auto; }
+        .timeline-item .time {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 6px;
+        }
+        .timeline-item .timeline-desc {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 14px;
+            font-weight: 400;
+            color: #333;
+            max-width: 300px;
+            margin: 0 auto;
+        }
 
-        .dresscode-screen { background: #fff; padding: 40px 16px 60px; }
-        .dresscode-container { width: 100%; max-width: 450px; margin: 0 auto; text-align: center; position: relative; }
-        .dresscode-main-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-weight: 400; font-size: 42px; text-transform: uppercase; letter-spacing: 3px; line-height: 1.2; color: #121212; margin-bottom: 15px; opacity: 0; transform: translateY(40px); transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1); }
-        .dresscode-description { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; line-height: 1.7; color: #333; max-width: 340px; margin: 0 auto 20px auto; opacity: 0; transform: translateY(40px); transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1); font-style: normal; }
-        .dresscode-main-title.visible, .dresscode-description.visible { opacity: 1; transform: translate(0); }
+        /* ----- ДРЕСС-КОД (НИЖНЕЕ ЛЕВОЕ ФОТО ЧУТЬ ПОДНЯТО) ----- */
+        .dresscode-screen {
+            background: #fff;
+            padding: 40px 16px 60px;
+        }
 
-        .wishes-screen { background: #ffffff; padding: 60px 20px 40px; }
+        .dresscode-container {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: center;
+            position: relative;
+        }
+
+        .dresscode-main-title {
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            line-height: 1.2;
+            color: #121212;
+            margin-bottom: 24px;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+        }
+        .dresscode-description {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px;
+            font-weight: 300;
+            line-height: 1.7;
+            color: #555555;
+            max-width: 340px;
+            margin: 0 auto 30px auto;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+        }
+        .section-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-weight: 400;
+            font-size: 42px;
+            color: #121212;
+            margin-bottom: 35px;
+            letter-spacing: 1px;
+            opacity: 0;
+            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+        }
+        .section-subtitle.animate-left { transform: translateX(-40px); }
+        .section-subtitle.animate-right { transform: translateX(40px); }
+        .dresscode-main-title.visible, .dresscode-description.visible, .section-subtitle.visible {
+            opacity: 1;
+            transform: translate(0);
+        }
+        .color-palette {
+            display: block;
+            margin: 0 auto 35px auto;
+            font-size: 0;
+        }
+        .color-circle {
+            display: inline-block;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin: 0 6px;
+            box-shadow: inset 0 0 1px rgba(0,0,0,0.1);
+        }
+        .color-1 { background-color: #000000; }
+        .color-2 { background-color: #beaf9e; }
+        .color-3 { background-color: #eae1d8; }
+        .color-4 { background-color: #b5b5b5; }
+
+        .moodboard { position: relative; width: 100%; height: 560px; margin-bottom: 70px; }
+        .moodboard:last-child { margin-bottom: 0; }
+        .look-card {
+            position: absolute;
+            background-size: cover;
+            background-position: center;
+            background-color: #f4f4f4;
+            box-shadow: 0 12px 28px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            opacity: 0;
+            transform: scale(0.96);
+            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+        }
+        .look-card.visible-card { opacity: 1; transform: scale(1); }
+        
+        /* ОДИНАКОВОЕ РАСПОЛОЖЕНИЕ ДЛЯ LADIES И GENTS — НИЖНЕЕ ЛЕВОЕ ПОДНЯТО */
+        .ladies .card-main, .gents .card-main { 
+            width: 34%; 
+            height: 260px; 
+            left: 33%; 
+            top: 120px; 
+            z-index: 10; 
+            border-radius: 24px; 
+        }
+        .ladies .card-right-top, .gents .card-right-top { 
+            width: 28%; 
+            height: 160px; 
+            right: 5%; 
+            top: 15px; 
+            z-index: 1; 
+            border-radius: 18px; 
+        }
+        .ladies .card-left-top, .gents .card-left-top { 
+            width: 31%; 
+            height: 200px; 
+            left: 4%; 
+            top: 0px; 
+            z-index: 2; 
+            border-radius: 18px; 
+        }
+        .ladies .card-right-bottom, .gents .card-right-bottom { 
+            width: 32%; 
+            height: 185px; 
+            right: 6%; 
+            bottom: 10px; 
+            z-index: 3; 
+            border-radius: 18px; 
+        }
+        .ladies .card-left-bottom, .gents .card-left-bottom { 
+            width: 35%; 
+            height: 210px; 
+            left: 9%; 
+            bottom: -45px; 
+            z-index: 4; 
+            border-radius: 18px; 
+        }
+        
+        /* Фоны для Ladies */
+        .ladies .card-main { background-image: url('2.jpg'); }
+        .ladies .card-right-top { background-image: url('3.jpg'); }
+        .ladies .card-left-top { background-image: url('1.jpg'); }
+        .ladies .card-right-bottom { background-image: url('4.jpg'); }
+        .ladies .card-left-bottom { background-image: url('5.jpg'); }
+        
+        /* Фоны для Gents */
+        .gents .card-main { background-image: url('6.jpg'); }
+        .gents .card-right-top { background-image: url('8.jpg'); }
+        .gents .card-left-top { background-image: url('7.jpg'); }
+        .gents .card-right-bottom { background-image: url('9.jpg'); }
+        .gents .card-left-bottom { background-image: url('10.jpg'); }
+
+        @media (max-width: 580px) {
+            .moodboard { height: 500px; }
+            .ladies .card-main, .gents .card-main { width: 38%; height: 230px; left: 31%; top: 100px; }
+            .ladies .card-left-top, .gents .card-left-top { top: -5px; }
+            .ladies .card-right-top, .gents .card-right-top { top: 10px; right: 4%; }
+            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -35px; }
+            .ladies .card-right-bottom, .gents .card-right-bottom { bottom: 5px; right: 5%; }
+        }
+        @media (max-width: 480px) {
+            .moodboard { height: 460px; margin-bottom: 50px; }
+            .ladies .card-main, .gents .card-main { width: 40%; height: 200px; left: 30%; top: 90px; }
+            .ladies .card-left-top, .gents .card-left-top { top: -10px; }
+            .ladies .card-right-top, .gents .card-right-top { top: 5px; right: 3%; }
+            .ladies .card-left-bottom, .gents .card-left-bottom { bottom: -30px; }
+            .ladies .card-right-bottom, .gents .card-right-bottom { bottom: 0px; right: 4%; }
+        }
+
+        /* ----- ТАЙМЕР ----- */
+        .countdown-screen {
+            background: #000000;
+            padding: 75px 16px 85px 16px;
+        }
+        .countdown-dark-block {
+            width: 100%;
+            max-width: 450px;
+            margin: 0 auto;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 2.5s cubic-bezier(0.25,0.8,0.4,1), transform 2.5s cubic-bezier(0.25,0.8,0.4,1);
+        }
+        .countdown-dark-block.visible-block { opacity: 1; transform: translateY(0); }
+        .countdown-title {
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 38px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            line-height: 1.3;
+            color: #ffffff;
+            max-width: 340px;
+            margin: 0 auto 12px auto;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.5s ease 0.3s, transform 1.5s ease 0.3s;
+        }
+        .countdown-dark-block.visible-block .countdown-title { opacity: 1; transform: translateY(0); }
+        .countdown-subtitle {
+            font-family: 'Pinyon Script', cursive;
+            font-size: 34px;
+            color: #ffffff;
+            font-weight: 400;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 1.5s ease 0.5s, transform 1.5s ease 0.5s;
+        }
+        .countdown-dark-block.visible-block .countdown-subtitle { opacity: 1; transform: translateY(0); }
+        .countdown-divider {
+            width: 1px;
+            height: 80px;
+            background-color: rgba(255,255,255,0.25);
+            margin: 0 auto 55px auto;
+            opacity: 0;
+            transition: opacity 2s ease 0.7s;
+        }
+        .countdown-dark-block.visible-block .countdown-divider { opacity: 1; }
+        .timer-grid { display: flex; justify-content: center; align-items: baseline; max-width: 360px; margin: 0 auto; }
+        .timer-item { flex: 1; text-align: center; }
+        .timer-number {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 46px;
+            font-weight: 300;
+            line-height: 1;
+            color: #ffffff;
+            margin-bottom: 14px;
+            opacity: 0;
+            transform: translateX(-40px);
+            transition: opacity 1.8s cubic-bezier(0.2,0.9,0.3,1), transform 1.8s cubic-bezier(0.2,0.9,0.3,1);
+        }
+        .countdown-dark-block.visible-block .timer-number { opacity: 1; transform: translateX(0); }
+        .timer-number.slide-from-right { transform: translateX(40px); }
+        .timer-label {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(255,255,255,0.4);
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transition: opacity 2s ease 1.2s;
+        }
+        .countdown-dark-block.visible-block .timer-label { opacity: 1; }
+
+        /* ----- ПОЖЕЛАНИЯ ----- */
+        .wishes-screen { background: #ffffff; padding: 60px 20px 80px; }
         .wishes-container { max-width: 450px; margin: 0 auto; text-align: center; }
-        .anim-slide-up, .anim-fade-in, .anim-slide-left, .anim-slide-right { opacity: 0; transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1); }
+        .anim-slide-up, .anim-fade-in, .anim-slide-left, .anim-slide-right {
+            opacity: 0;
+            transition: opacity 2s cubic-bezier(0.25, 0.8, 0.4, 1), transform 2s cubic-bezier(0.25, 0.8, 0.4, 1);
+        }
         .anim-slide-up { transform: translateY(40px); }
         .anim-slide-left { transform: translateX(-40px); }
         .anim-slide-right { transform: translateX(40px); }
         .anim-fade-in { transform: none; }
         .anim-slide-up.visible, .anim-fade-in.visible, .anim-slide-left.visible, .anim-slide-right.visible { opacity: 1; transform: translate(0) !important; }
-        .wishes-main-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-weight: 400; font-size: 42px; text-transform: uppercase; letter-spacing: 4px; margin-bottom: 10px; }
+        .wishes-main-title {
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 400;
+            font-size: 42px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            margin-bottom: 10px;
+        }
         .wishes-handwritten-subtitle { font-family: 'Pinyon Script', cursive; font-size: 34px; margin-bottom: 35px; }
-        .slider-wrapper { position: relative; display: flex; align-items: center; justify-content: center; min-height: 200px; margin-bottom: 50px; padding: 0 40px; }
+        .slider-wrapper { position: relative; display: flex; align-items: center; justify-content: center; min-height: 140px; margin-bottom: 50px; padding: 0 40px; }
         .slider-content { width: 100%; position: relative; }
-        .slide-text { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 400; line-height: 1.6; color: #444; position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%); opacity: 0; visibility: hidden; transition: opacity 1.2s ease, visibility 1.2s ease; }
+        .slide-text {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 12px; font-weight: 300; line-height: 1.8; color: #555;
+            position: absolute; top: 50%; left: 0; right: 0; transform: translateY(-50%);
+            opacity: 0; visibility: hidden; transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
         .slide-text.active { opacity: 1; visibility: visible; position: relative; transform: none; }
         .slider-arrow { position: absolute; top: 50%; transform: translateY(-50%); background: none; border: none; cursor: pointer; padding: 10px; }
         .arrow-left { left: -5px; }
         .arrow-right { right: -5px; }
         .slider-arrow svg { width: 24px; height: 16px; fill: none; stroke: #121212; stroke-width: 1px; }
-        .wishes-vertical-divider { width: 1px; height: 60px; background-color: #b5b5b5; margin: 0 auto 35px auto; }
-        .pre-closing { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; margin-bottom: 35px; }
-        .wishes-names-block { display: flex; flex-direction: column; align-items: center; margin-bottom: 45px; }
-        .name-item { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-weight: 300; font-size: 46px; text-transform: uppercase; letter-spacing: 5px; line-height: 1.1; color: #121212; }
+        .wishes-vertical-divider { width: 1px; height: 90px; background-color: #b5b5b5; margin: 0 auto 45px auto; }
+        .pre-closing { font-family: 'Montserrat', sans-serif; font-size: 13px; font-weight: 300; line-height: 1.6; color: #121212; margin-bottom: 45px; }
+        .wishes-names-block { display: flex; flex-direction: column; align-items: center; margin-bottom: 55px; }
+        .name-item {
+            font-family: 'Lighthaus', 'Quicksand', sans-serif;
+            font-weight: 300;
+            font-size: 46px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            line-height: 1.1;
+            color: #121212;
+        }
         .ampersand-item { font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 38px; font-weight: 400; color: #121212; margin: 12px 0; }
-        
-        .final-photo-block {
-            width: 100%;
-            max-width: 380px;
-            margin: 30px auto 0;
-            padding: 0 10px;
-            opacity: 0;
-            transform: translateY(40px);
+        .couple-photo-container {
+            width: 100%; padding: 0 10px;
+            opacity: 0; transform: translateY(40px);
             transition: opacity 2s cubic-bezier(0.25,0.8,0.4,1), transform 2s cubic-bezier(0.25,0.8,0.4,1);
         }
-        .final-photo-block.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-        .final-couple-img {
-            width: 100%;
-            aspect-ratio: 4 / 5;
-            background-image: url('главная.png');
-            background-size: cover;
-            background-position: center 35%;
-            background-color: #f5f5f5;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
-        }
-
-        .rsvp-screen {
-            background: #ffffff;
-            padding: 60px 20px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.4, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.4, 1);
-        }
-        .rsvp-screen.visible { opacity: 1; transform: translateY(0); }
-        .rsvp-container { max-width: 500px; margin: 0 auto; background: #ffffff; padding: 40px 30px; box-shadow: none; text-align: left; }
-        .rsvp-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-size: 32px; text-transform: uppercase; letter-spacing: 3px; color: #1a1a1a; margin-bottom: 20px; text-align: center; }
-        .form-group { margin-bottom: 25px; text-align: left; }
-        .form-group label { display: block; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; color: #1a1a1a; text-align: left; }
-        .form-group input, .form-group select { width: 100%; padding: 12px 0; border: none; border-bottom: 1px solid #ddd; font-family: 'Montserrat', sans-serif; font-size: 16px; background: transparent; transition: border 0.2s ease; outline: none; color: #1a1a1a; text-align: left; }
-        .form-group select option { color: #1a1a1a; background: #ffffff; }
-        .form-group input:focus, .form-group select:focus { border-bottom-color: #1a1a1a; }
-        .radio-group { display: flex; gap: 25px; margin-top: 8px; flex-wrap: wrap; justify-content: flex-start; }
-        .radio-group label { display: flex; align-items: center; gap: 8px; font-weight: 400; text-transform: none; font-size: 14px; color: #1a1a1a; }
-        .radio-group input { width: auto; margin: 0; accent-color: #1a1a1a; }
-        .submit-btn { display: block; width: 100%; background: #1a1a1a; color: white; border: none; padding: 14px; font-family: 'Montserrat', sans-serif; font-size: 12px; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; margin-top: 30px; transition: background 0.2s; }
-        .submit-btn:hover { background: #333; }
-        .hidden-message { text-align: center; margin-top: 20px; font-family: 'Montserrat', sans-serif; font-size: 12px; color: #1a1a1a; display: none; }
-
-        .contacts-screen {
-            background: #ffffff;
-            padding: 60px 20px 80px;
-            opacity: 0;
-            transform: translateY(50px);
-            transition: opacity 0.9s cubic-bezier(0.25, 0.8, 0.4, 1), transform 0.9s cubic-bezier(0.25, 0.8, 0.4, 1);
-        }
-        .contacts-screen.visible { opacity: 1; transform: translateY(0); }
-        .contacts-container { max-width: 450px; margin: 0 auto; text-align: center; }
-        .contacts-title { font-family: 'Lighthaus', 'Quicksand', sans-serif; font-size: 32px; text-transform: uppercase; letter-spacing: 3px; color: #1a1a1a; margin-bottom: 15px; font-weight: 400; }
-        .contacts-subtitle { 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 13px; 
-            font-weight: 300; 
-            letter-spacing: 1px; 
-            color: #777; 
-            margin-bottom: 35px; 
-            text-transform: none;
-            line-height: 1.5;
-        }
-        .contacts-list { display: flex; flex-direction: column; gap: 28px; margin-bottom: 45px; }
-        .contact-row { 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-            flex-wrap: wrap; 
-            gap: 8px 15px; 
-            font-family: 'Montserrat', sans-serif; 
-            font-size: 14px; 
-            letter-spacing: 0.3px; 
-            flex-direction: column; 
-        }
-        .contact-role { font-weight: 500; color: #1a1a1a; text-transform: uppercase; font-size: 11px; letter-spacing: 1.5px; }
-        .contact-info a { color: #333; text-decoration: none; transition: color 0.2s; }
-        .contact-info a:hover { color: #6B705C; }
-        .contact-telegram { 
-            font-size: 12px; 
-            color: #555; 
-            margin-top: 4px;
-        }
-        .contacts-divider { width: 1px; height: 50px; background-color: #d0d0d0; margin: 0 auto 35px; }
-        .contacts-copyright { font-family: 'Montserrat', sans-serif; font-size: 10px; letter-spacing: 1.5px; color: #aaa; text-transform: uppercase; }
+        .couple-photo-container.visible { opacity: 1; transform: translateY(0); }
+        .couple-photo { width: 100%; aspect-ratio: 3 / 2; background-image: url('пара.jpg'); background-size: cover; background-position: center; background-color: #f5f5f5; border-radius: 20px; }
 
         @media (max-width: 768px) {
             .name-line { font-size: 3.4rem; }
-            .ekaterina-name { margin-left: 104px; }
+            .ampersand-between { font-size: 4.2rem; margin-top: -10px; margin-bottom: -6px; }
+            .alyona-name { margin-left: 70px; margin-top: -5px; }
         }
         @media (max-width: 580px) {
             .name-line { font-size: 2.8rem; }
-            .ekaterina-name { margin-left: 86px; }
+            .ampersand-between { font-size: 3.5rem; }
+            .alyona-name { margin-left: 58px; margin-top: -5px; }
         }
         @media (max-width: 480px) {
             .name-line { font-size: 2.4rem; }
-            .ekaterina-name { margin-left: 74px; }
-            .contact-row { flex-direction: column; align-items: center; gap: 6px; }
-            .venue-name { font-size: 0.8rem; }
+            .ampersand-between { font-size: 3rem; }
+            .alyona-name { margin-left: 50px; margin-top: -4px; }
         }
     </style>
 </head>
 <body>
-
 <div class="first-screen" id="firstScreen">
     <div class="photo-bg" id="photoBg"></div>
     <div class="soft-veil"></div>
@@ -497,10 +913,10 @@
         <div class="wedding-script" id="weddingScript">Wedding</div>
         <div class="names-block-first">
             <div class="names-lines">
-                <div class="name-line artem-name" id="artemName">Илья</div>
-                <div class="name-line ekaterina-name" id="ekaterinaName">Алина</div>
+                <div class="name-line vitaliy-name" id="vitaliyName">Виталий</div>
+                <div class="ampersand-between" id="ampersandSign">&</div>
+                <div class="name-line alyona-name" id="alyonaName">Алёна</div>
             </div>
-            <div class="delicate-ampersand" id="ampersand">&</div>
         </div>
         <div class="scroll-down" id="scrollBtn">Листайте вниз<svg class="arrow-icon-svg" viewBox="0 0 10 10"><polyline points="1,3 5,7 9,3" style="fill:none; stroke:black; stroke-width:1.2;"/></svg></div>
     </div>
@@ -513,23 +929,14 @@
         <p class="description-text">Это официальное приглашение на нашу свадьбу! А получили вы его потому, что мы очень хотим видеть вас в этот день рядом с нами!</p>
         <div class="line line-top"></div>
         <div class="date-block">
-            <span class="date-number from-left-1">28</span><span class="dot">.</span><span class="date-number from-right">08</span><span class="dot">.</span><span class="date-number from-left-2">26</span>
+            <span class="date-number from-left-1">03</span><span class="dot">.</span><span class="date-number from-right">07</span><span class="dot">.</span><span class="date-number from-left-2">26</span>
         </div>
         <div class="line line-bottom"></div>
         <div class="calendar-section">
-            <div class="calendar-month">Август 2026</div>
+            <div class="calendar-month">Июль</div>
             <div class="calendar-grid">
                 <div class="weekday">пн</div><div class="weekday">вт</div><div class="weekday">ср</div><div class="weekday">чт</div><div class="weekday">пт</div><div class="weekday">сб</div><div class="weekday">вс</div>
-                <div class="day empty-day"></div><div class="day empty-day"></div><div class="day empty-day"></div><div class="day empty-day"></div><div class="day empty-day"></div><div class="day">1</div><div class="day">2</div>
-                <div class="day">3</div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div>
-                <div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div>
-                <div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div>
-                <div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div>
-                <div class="day special-day">
-                    <svg class="heart-svg" viewBox="0 0 50 50"><path class="heart-path" d="M25,15 C21,8 11,9 11,18 C11,27 23,36 25,38 C27,36 39,27 39,18 C39,9 29,8 25,15 Z"/></svg>
-                    28
-                </div>
-                <div class="day">29</div><div class="day">30</div><div class="day">31</div>
+                <div class="day empty-day"></div><div class="day empty-day"></div><div class="day">1</div><div class="day">2</div><div class="day special-day">3<svg class="heart-svg" viewBox="0 0 50 50"><path class="heart-path" d="M25,15 C21,8 11,9 11,18 C11,27 23,36 25,38 C27,36 39,27 39,18 C39,9 29,8 25,15 Z"/></svg></div><div class="day">4</div><div class="day">5</div><div class="day">6</div><div class="day">7</div><div class="day">8</div><div class="day">9</div><div class="day">10</div><div class="day">11</div><div class="day">12</div><div class="day">13</div><div class="day">14</div><div class="day">15</div><div class="day">16</div><div class="day">17</div><div class="day">18</div><div class="day">19</div><div class="day">20</div><div class="day">21</div><div class="day">22</div><div class="day">23</div><div class="day">24</div><div class="day">25</div><div class="day">26</div><div class="day">27</div><div class="day">28</div><div class="day">29</div><div class="day">30</div><div class="day">31</div>
             </div>
         </div>
     </div>
@@ -538,15 +945,11 @@
 <div class="location-section" id="locationSection">
     <div class="location-bg"></div>
     <div class="location-card">
-        <div class="icon-scene"><svg class="location-svg" viewBox="0 0 24 24" width="50" height="50"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#1a1a1a"/></svg></div>
+        <div class="icon-scene"><svg class="location-svg" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z" fill="#1a1a1a"/></svg></div>
         <h2 class="location-title">МЕСТО<br>ПРОВЕДЕНИЯ</h2>
         <div class="save-the-place">Save the place!</div>
-        <p class="venue-name">
-            Royal Hall<br>
-            Минская область, д. Чуденичи<br>
-            ул. Лесная 2а
-        </p>
-        <a href="https://yandex.by/maps/org/usadba_royal_hall/1400112911/?ll=27.793345%2C54.137742&z=15" target="_blank" class="btn-maps">Как добраться</a>
+        <p class="venue-name">Костёл Пресвятого<br>Искупителя</p>
+        <a href="https://yandex.by/maps/org/kostyol_presvyatogo_iskupitelya/1124266683/?ll=23.850890%2C53.707931&z=15" target="_blank" class="btn-maps">Как добраться</a>
     </div>
 </div>
 
@@ -556,10 +959,10 @@
         <div class="timeline-subtitle">Of the day</div>
         <div class="timeline-middle-line"></div>
         <div class="timeline-list">
-            <div class="timeline-item slide-left"><div class="time">15:00</div><div class="timeline-desc">Сбор гостей, фуршет</div></div>
-            <div class="timeline-item slide-left"><div class="time">16:00</div><div class="timeline-desc">Торжественная регистрация</div></div>
-            <div class="timeline-item slide-right"><div class="time">17:30</div><div class="timeline-desc">Праздничный ужин</div></div>
-            <div class="timeline-item slide-right"><div class="time">22:30</div><div class="timeline-desc">Завершение вечера</div></div>
+            <div class="timeline-item slide-left"><div class="time">15:00</div><div class="timeline-desc">Церемония венчания «Костел пресвятого искупителя»</div></div>
+            <div class="timeline-item slide-left"><div class="time">16:30</div><div class="timeline-desc">Сбор гостей в живописном "River Hall". Фуршет</div></div>
+            <div class="timeline-item slide-right"><div class="time">17:00</div><div class="timeline-desc">Банкет в "River Hall"</div></div>
+            <div class="timeline-item slide-right"><div class="time">23:00</div><div class="timeline-desc">Завершение вечера</div></div>
         </div>
     </div>
 </div>
@@ -567,7 +970,38 @@
 <div class="dresscode-screen" id="dresscodeScreen">
     <div class="dresscode-container">
         <h1 class="dresscode-main-title" id="dresscodeMainTitle">Дресс-код</h1>
-        <p class="dresscode-description" id="dresscodeDescription">Строгих правил нет — только красивые и элегантные образы!<br>Милые дамы, давайте оставим белый цвет для невесты.<br>Уважаемые джентльмены, помните: шорты и футболки в этот день в отпуске.</p>
+        <p class="dresscode-description" id="dresscodeDescription">Мы очень ждем и готовимся к нашему незабываемому дню! Поддержите нас Вашими улыбками и объятиями, а также красивыми нарядами в палитре мероприятия</p>
+        <div class="color-palette"><span class="color-circle color-1"></span><span class="color-circle color-2"></span><span class="color-circle color-3"></span><span class="color-circle color-4"></span></div>
+        <div class="section-subtitle animate-left" id="ladiesSubtitle">Ladies</div>
+        <div class="moodboard ladies">
+            <div class="look-card card-left-top"></div>
+            <div class="look-card card-main"></div>
+            <div class="look-card card-right-top"></div>
+            <div class="look-card card-right-bottom"></div>
+            <div class="look-card card-left-bottom"></div>
+        </div>
+        <div class="section-subtitle animate-right" id="gentsSubtitle">Gents</div>
+        <div class="moodboard gents">
+            <div class="look-card card-left-top"></div>
+            <div class="look-card card-main"></div>
+            <div class="look-card card-right-top"></div>
+            <div class="look-card card-right-bottom"></div>
+            <div class="look-card card-left-bottom"></div>
+        </div>
+    </div>
+</div>
+
+<div class="countdown-screen" id="countdownScreen">
+    <div class="countdown-dark-block">
+        <h2 class="countdown-title">До свадьбы осталось</h2>
+        <div class="countdown-subtitle">Waiting for you!</div>
+        <div class="countdown-divider"></div>
+        <div class="timer-grid">
+            <div class="timer-item"><div class="timer-number" id="days">00</div><div class="timer-label">Дней</div></div>
+            <div class="timer-item"><div class="timer-number" id="hours">00</div><div class="timer-label">Часов</div></div>
+            <div class="timer-item"><div class="timer-number slide-from-right" id="minutes">00</div><div class="timer-label">Минут</div></div>
+            <div class="timer-item"><div class="timer-number slide-from-right" id="seconds">00</div><div class="timer-label">Секунд</div></div>
+        </div>
     </div>
 </div>
 
@@ -577,129 +1011,34 @@
         <div class="wishes-handwritten-subtitle anim-slide-up">Our wishes</div>
         <div class="slider-wrapper anim-slide-up">
             <button class="slider-arrow arrow-left" id="prevBtn"><svg viewBox="0 0 24 24"><line x1="20" y1="12" x2="4" y2="12"></line><polyline points="10 6 4 12 10 18"></polyline></svg></button>
-            <div class="slider-content"><div class="slide-text active">Самое главное для нас — ваше присутствие в этот день!<br><br>Просим вас не дарить цветы: мы не сможем окружить их заботой, которую они заслуживают. Вместо букета будем рады бутылке вина с пожеланием, на какой праздник нам её открыть.</div><div class="slide-text">А если задумываетесь о подарке — мы будем очень благодарны за вклад в бюджет нашей молодой семьи. Это поможет осуществить наши общие мечты.</div></div>
+            <div class="slider-content">
+                <div class="slide-text active">Дорогие гости, ваше присутствие — уже лучший подарок! ✨ Вместо цветов лучше подарите нам бутылочку вина для нашей коллекции — так душе теплее, а полки радостнее. Ждем смеха, танцев и теплых объятий! 🍷🎉</div>
+                <div class="slide-text">Будем очень признательны, если Вы воздержитесь от криков «Горько». Ведь поцелуй — это знак выражения чувств, и он не может быть по заказу. 💋</div>
+                <div class="slide-text">Мы очень любим детей, но в связи с особенностями площадки наш праздник пройдет в формате только для взрослых. Спасибо за понимание — будем рады провести этот вечер вместе с вами! 🌸</div>
+            </div>
             <button class="slider-arrow arrow-right" id="nextBtn"><svg viewBox="0 0 24 24"><line x1="4" y1="12" x2="20" y2="12"></line><polyline points="14 6 20 12 14 18"></polyline></svg></button>
         </div>
         <div class="wishes-vertical-divider anim-fade-in"></div>
         <div class="pre-closing anim-slide-up">До скорой встречи!<br>С любовью</div>
         <div class="wishes-names-block">
-            <span class="name-item anim-slide-left" id="artemWishes">Илья</span>
+            <span class="name-item anim-slide-left" id="vitaliyWishes">Виталий</span>
             <span class="ampersand-item anim-slide-left" id="ampersandWishes">&</span>
-            <span class="name-item anim-slide-right" id="ekaterinaWishes">Алина</span>
+            <span class="name-item anim-slide-right" id="alyonaWishes">Алена</span>
         </div>
-    </div>
-</div>
-
-<div class="final-photo-block" id="finalPhotoBlock">
-    <div class="final-couple-img"></div>
-</div>
-
-<div class="rsvp-screen" id="rsvpScreen">
-    <div class="rsvp-container">
-        <h2 class="rsvp-title">Анкета гостя</h2>
-        <p style="font-family: 'Montserrat', sans-serif; font-size: 12px; text-align: center; margin-bottom: 30px; color: #555;">Пожалуйста, заполняйте анкету от каждого члена семьи по отдельности, чтобы мы могли учесть все ваши пожелания</p>
-        <form id="guestForm" action="https://formspree.io/f/xkoazyer" method="POST">
-            <div class="form-group">
-                <label>Ваше имя и фамилия</label>
-                <input type="text" name="name" id="guestName" placeholder="Например, Анна Петрова" required>
-            </div>
-            <div class="form-group">
-                <label>Планируете ли вы присутствовать?</label>
-                <div class="radio-group">
-                    <label><input type="radio" name="attendance" value="yes" required> Да, с радостью!</label>
-                    <label><input type="radio" name="attendance" value="no"> К сожалению, нет</label>
-                </div>
-            </div>
-            <div class="form-group">
-                <label>Есть ли у вас аллергия на что-либо?</label>
-                <input type="text" name="allergy" placeholder="Укажите, если есть аллергия">
-            </div>
-            <div class="form-group">
-                <label>Ваши предпочтения по алкоголю</label>
-                <select name="alcohol_preference">
-                    <option value="Вино">Вино</option><option value="Игристое">Игристое</option><option value="Виски">Виски</option>
-                    <option value="Водка">Водка</option><option value="Коньяк">Коньяк</option><option value="Не буду пить алкоголь">Не буду пить алкоголь</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Нужен ли вам трансфер из Минска?</label>
-                <select name="transfer">
-                    <option value="Да">Да</option><option value="Нет">Нет</option><option value="Только в усадьбу">Только в усадьбу</option><option value="Только из усадьбы">Только из усадьбы</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label>Есть ли что-то, что вы хотели бы добавить или о чем нам нужно обязательно знать?</label>
-                <input type="text" name="additional_info" placeholder="Ваши пожелания...">
-            </div>
-            <button type="submit" class="submit-btn">Отправить ответ</button>
-            <div id="formMessage" class="hidden-message">Спасибо! Ждём вас на нашей свадьбе</div>
-        </form>
-    </div>
-</div>
-
-<div class="contacts-screen" id="contactsScreen">
-    <div class="contacts-container">
-        <h2 class="contacts-title">Контакты</h2>
-        <div class="contacts-subtitle">остались вопросы?<br>Свяжитесь с нашим организатором</div>
-        <div class="contacts-list">
-            <div class="contact-row">
-                <span class="contact-role">Наш свадебный организатор</span>
-                <span class="contact-info"><a href="tel:+375333337012">+375 33 333 7012</a></span>
-                <div class="contact-telegram">Telegram: @Anna_LabirintGroup</div>
-            </div>
-        </div>
-        <div class="contacts-divider"></div>
-        <div class="contacts-copyright">Илья и Алина</div>
+        <div class="couple-photo-container" id="finalPhoto"><div class="couple-photo"></div></div>
     </div>
 </div>
 
 <script>
     (function() {
-        // Точная анимация прокрутки как в эталонном коде: кнопка кликабельна + первый скролл колесом плавно ведёт ко второму экрану
-        const scrollBtn = document.getElementById('scrollBtn');
-        const secondScreen = document.getElementById('secondScreen');
-        
-        if (scrollBtn) {
-            scrollBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                if (secondScreen) {
-                    secondScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        }
-        
-        let scrollTriggerUsed = false;
-        function gentleScrollToSecond() {
-            if (!scrollTriggerUsed && secondScreen) {
-                scrollTriggerUsed = true;
-                secondScreen.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }
-        }
-        
-        // Первое вращение колеса мыши
-        window.addEventListener('wheel', function onFirstWheel(e) {
-            if (!scrollTriggerUsed && e.deltaY > 0) {
-                gentleScrollToSecond();
-                window.removeEventListener('wheel', onFirstWheel);
-            }
-        }, { passive: true });
-        
-        // Первое касание для мобильных (swipe вниз)
-        window.addEventListener('touchmove', function onFirstTouch(e) {
-            if (!scrollTriggerUsed && e.touches && e.touches.length) {
-                gentleScrollToSecond();
-                window.removeEventListener('touchmove', onFirstTouch);
-            }
-        }, { once: true });
-        
         const firstObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) {
                     setTimeout(() => document.getElementById('photoBg')?.classList.add('visible'), 100);
                     setTimeout(() => document.getElementById('weddingScript')?.classList.add('visible'), 800);
-                    setTimeout(() => document.getElementById('artemName')?.classList.add('visible'), 1400);
-                    setTimeout(() => document.getElementById('ekaterinaName')?.classList.add('visible'), 1800);
-                    setTimeout(() => document.getElementById('ampersand')?.classList.add('visible'), 2200);
+                    setTimeout(() => document.getElementById('vitaliyName')?.classList.add('visible'), 1400);
+                    setTimeout(() => document.getElementById('ampersandSign')?.classList.add('visible'), 1750);
+                    setTimeout(() => document.getElementById('alyonaName')?.classList.add('visible'), 2100);
                     firstObserver.disconnect();
                 }
             });
@@ -708,7 +1047,7 @@
 
         const secondContainer = document.querySelector('.invitation-container');
         if (secondContainer) {
-            let obs = new IntersectionObserver((entries) => {
+            new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         document.querySelector('.title')?.classList.add('visible');
@@ -719,164 +1058,39 @@
                         setTimeout(() => document.querySelectorAll('.dot').forEach(el => el.classList.add('visible')), 1200);
                         setTimeout(() => document.querySelector('.line-bottom')?.classList.add('visible'), 1500);
                         setTimeout(() => document.querySelector('.calendar-section')?.classList.add('visible'), 2000);
-                        obs.disconnect();
+                        observer.disconnect();
                     }
                 });
-            }, { threshold: 0.2 });
-            obs.observe(secondContainer);
+            }, { threshold: 0.2 }).observe(secondContainer);
         }
 
         const locSec = document.getElementById('locationSection');
-        if (locSec) {
-            let locObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        locSec.classList.add('visible');
-                        locObserver.disconnect();
-                    }
-                });
-            }, { threshold: 0.2 });
-            locObserver.observe(locSec);
-        }
-        
+        if (locSec) new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) locSec.classList.add('visible'); observer.disconnect(); }); }, { threshold: 0.3 }).observe(locSec);
         const timeline = document.querySelector('.timeline-container');
-        if (timeline) {
-            let obs = new IntersectionObserver((entries) => {
-                entries.forEach(e => {
-                    if(e.isIntersecting) {
-                        timeline.classList.add('visible');
-                        document.querySelectorAll('.timeline-item').forEach((item,i) => setTimeout(() => item.classList.add('visible'), [200,600,1000,1400][i]));
-                        obs.disconnect();
-                    }
-                });
-            }, { threshold: 0.5 });
-            obs.observe(timeline);
-        }
+        if (timeline) new IntersectionObserver((entries) => { entries.forEach(e => { if(e.isIntersecting) { timeline.classList.add('visible'); document.querySelectorAll('.timeline-item').forEach((item,i) => setTimeout(() => item.classList.add('visible'), [300,800,1300,1800][i])); observer.disconnect(); } }); }, { threshold: 0.5 }).observe(timeline);
 
         const dressScreen = document.getElementById('dresscodeScreen');
-        if (dressScreen) {
-            let drObs = new IntersectionObserver((e) => {
-                e.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        document.getElementById('dresscodeMainTitle')?.classList.add('visible');
-                        document.getElementById('dresscodeDescription')?.classList.add('visible');
-                        drObs.disconnect();
-                    }
-                });
-            }, { threshold: 0.3 });
-            drObs.observe(dressScreen);
-        }
+        if (dressScreen) { const drObs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { document.getElementById('dresscodeMainTitle')?.classList.add('visible'); document.getElementById('dresscodeDescription')?.classList.add('visible'); document.getElementById('ladiesSubtitle')?.classList.add('visible'); document.getElementById('gentsSubtitle')?.classList.add('visible'); drObs.disconnect(); } }); }, { threshold: 0.3 }); drObs.observe(dressScreen); }
         
+        document.querySelectorAll('.look-card').forEach((card,i) => { 
+            const cardObs = new IntersectionObserver((entries) => { 
+                entries.forEach(entry => { 
+                    if(entry.isIntersecting) { 
+                        setTimeout(() => entry.target.classList.add('visible-card'), i * 100); 
+                        cardObs.unobserve(entry.target); 
+                    } 
+                }); 
+            }, { threshold: 0.3 }); 
+            cardObs.observe(card); 
+        });
+        
+        const countBlock = document.querySelector('.countdown-dark-block');
+        if (countBlock) new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { entry.target.classList.add('visible-block'); observer.disconnect(); } }); }, { threshold: 0.3 }).observe(countBlock);
         const wishesContainer = document.querySelector('.wishes-container');
-        if (wishesContainer) {
-            let topObs = new IntersectionObserver((e) => {
-                e.forEach(entry => {
-                    if(entry.isIntersecting) {
-                        document.querySelectorAll('.anim-slide-up').forEach(el => el.classList.add('visible'));
-                        document.querySelector('.anim-fade-in')?.classList.add('visible');
-                        topObs.disconnect();
-                    }
-                });
-            }, { threshold: 0.3 });
-            topObs.observe(wishesContainer);
-            
-            const leftEl = document.querySelectorAll('.anim-slide-left');
-            if(leftEl.length) {
-                let lObs = new IntersectionObserver((e) => {
-                    e.forEach(entry => {
-                        if(entry.isIntersecting) {
-                            leftEl.forEach(el => el.classList.add('visible'));
-                            lObs.disconnect();
-                        }
-                    });
-                }, { threshold: 0.6 });
-                lObs.observe(document.querySelector('.wishes-names-block'));
-            }
-            const rightEl = document.querySelector('.anim-slide-right');
-            if(rightEl) {
-                let rObs = new IntersectionObserver((e) => {
-                    e.forEach(entry => {
-                        if(entry.isIntersecting) {
-                            rightEl.classList.add('visible');
-                            rObs.disconnect();
-                        }
-                    });
-                }, { threshold: 0.6 });
-                rObs.observe(rightEl);
-            }
-        }
-
-        const finalPhotoDiv = document.getElementById('finalPhotoBlock');
-        if (finalPhotoDiv) {
-            let photoObs = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        finalPhotoDiv.classList.add('visible');
-                        photoObs.disconnect();
-                    }
-                });
-            }, { threshold: 0.3 });
-            photoObs.observe(finalPhotoDiv);
-        }
-
-        const rsvpScreen = document.getElementById('rsvpScreen');
-        if (rsvpScreen) {
-            let rsvpObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        rsvpScreen.classList.add('visible');
-                        rsvpObserver.disconnect();
-                    }
-                });
-            }, { threshold: 0.2 });
-            rsvpObserver.observe(rsvpScreen);
-        }
-
-        const contactsScreen = document.getElementById('contactsScreen');
-        if (contactsScreen) {
-            let contactsObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        contactsScreen.classList.add('visible');
-                        contactsObserver.disconnect();
-                    }
-                });
-            }, { threshold: 0.2 });
-            contactsObserver.observe(contactsScreen);
-        }
-        
-        const slides = document.querySelectorAll('.slide-text');
-        const prevBtn = document.getElementById('prevBtn');
-        const nextBtn = document.getElementById('nextBtn');
-        let currentSlide = 0;
-        if(slides.length && prevBtn && nextBtn) {
-            const showSlide = (i) => {
-                slides[currentSlide].classList.remove('active');
-                currentSlide = (i + slides.length) % slides.length;
-                slides[currentSlide].classList.add('active');
-            };
-            prevBtn.onclick = () => showSlide(currentSlide-1);
-            nextBtn.onclick = () => showSlide(currentSlide+1);
-        }
-
-        const form = document.getElementById('guestForm');
-        const messageDiv = document.getElementById('formMessage');
-        if (form) {
-            form.addEventListener('submit', function(e) {
-                const nameInput = document.getElementById('guestName');
-                if (nameInput && !nameInput.value.trim()) {
-                    e.preventDefault();
-                    alert('Пожалуйста, укажите ваше имя');
-                    return;
-                }
-                messageDiv.style.display = 'block';
-                setTimeout(() => { messageDiv.style.opacity = '1'; }, 10);
-                setTimeout(() => {
-                    messageDiv.style.display = 'none';
-                    messageDiv.style.opacity = '0';
-                }, 4000);
-            });
-        }
+        if (wishesContainer) { const topObs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { document.querySelectorAll('.anim-slide-up').forEach(el => el.classList.add('visible')); document.querySelector('.anim-fade-in')?.classList.add('visible'); topObs.disconnect(); } }); }, { threshold: 0.3 }); topObs.observe(wishesContainer); const leftEl = document.querySelectorAll('.anim-slide-left'); if(leftEl.length) { const lObs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { leftEl.forEach(el => el.classList.add('visible')); lObs.disconnect(); } }); }, { threshold: 0.6 }); lObs.observe(document.querySelector('.wishes-names-block')); } const rightEl = document.querySelector('.anim-slide-right'); if(rightEl) { const rObs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { rightEl.classList.add('visible'); rObs.disconnect(); } }); }, { threshold: 0.6 }); rObs.observe(rightEl); } const finPhoto = document.getElementById('finalPhoto'); if(finPhoto) { const phObs = new IntersectionObserver((e) => { e.forEach(entry => { if(entry.isIntersecting) { finPhoto.classList.add('visible'); phObs.disconnect(); } }); }, { threshold: 0.25 }); phObs.observe(finPhoto); } }
+        document.getElementById('scrollBtn')?.addEventListener('click', () => { document.getElementById('secondScreen')?.scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+        const slides = document.querySelectorAll('.slide-text'); const prevBtn = document.getElementById('prevBtn'); const nextBtn = document.getElementById('nextBtn'); let currentSlide = 0; if(slides.length && prevBtn && nextBtn) { const showSlide = (i) => { slides[currentSlide].classList.remove('active'); currentSlide = (i + slides.length) % slides.length; slides[currentSlide].classList.add('active'); }; prevBtn.onclick = () => showSlide(currentSlide-1); nextBtn.onclick = () => showSlide(currentSlide+1); }
+        const targetDate = new Date(2026,6,3,15,0,0).getTime(); function updateTimer() { let diff = targetDate - new Date().getTime(); if(diff<=0) { ['days','hours','minutes','seconds'].forEach(id=>document.getElementById(id).innerText='00'); return; } document.getElementById('days').innerText = String(Math.floor(diff/86400000)).padStart(2,'0'); document.getElementById('hours').innerText = String(Math.floor((diff%86400000)/3600000)).padStart(2,'0'); document.getElementById('minutes').innerText = String(Math.floor((diff%3600000)/60000)).padStart(2,'0'); document.getElementById('seconds').innerText = String(Math.floor((diff%60000)/1000)).padStart(2,'0'); } updateTimer(); setInterval(updateTimer,1000);
     })();
 </script>
 </body>
